@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>加速 Github Clone | Ramsayi's Blog</title><meta name="description" content="原因：Git clone 特别慢是因为 github.global.ssl.fastly.Net 域名被限制了。只要找到这个域名对应的 ip 地址，然后在 hosts 文件中加上 ip–&gt; 域名的映射，刷新 DNS 缓存就可以了  1. 查询域名 global-ssl.fastly.Net 和 github.com 公网地址https:&#x2F;&#x2F;www.ipaddress.com&#x2F; 可以用这个查"><meta name="keywords" content="Github"><meta name="author" content="Ramsayi"><meta name="copyright" content="Ramsayi"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ramsayi.gitee.io/2020/07/12/%E5%8A%A0%E9%80%9FGithub-Clone/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="加速 Github Clone"><meta property="og:url" content="https://ramsayi.gitee.io/2020/07/12/%E5%8A%A0%E9%80%9FGithub-Clone/"><meta property="og:site_name" content="Ramsayi's Blog"><meta property="og:description" content="原因：Git clone 特别慢是因为 github.global.ssl.fastly.Net 域名被限制了。只要找到这个域名对应的 ip 地址，然后在 hosts 文件中加上 ip–&gt; 域名的映射，刷新 DNS 缓存就可以了  1. 查询域名 global-ssl.fastly.Net 和 github.com 公网地址https:&#x2F;&#x2F;www.ipaddress.com&#x2F; 可以用这个查"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/ramsayi/0/thumbnail/Github_1.png"><meta property="article:published_time" content="2020-07-12T13:09:18.000Z"><meta property="article:modified_time" content="2020-07-17T06:18:12.947Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-07-17 14:18:12'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.0.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">17</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">26</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">10</div></a></div></div></div><hr/></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9F%A5%E8%AF%A2%E5%9F%9F%E5%90%8D-global-ssl-fastly-Net-%E5%92%8C-github-com-%E5%85%AC%E7%BD%91%E5%9C%B0%E5%9D%80"><span class="toc-number">1.</span> <span class="toc-text">1. 查询域名 global-ssl.fastly.Net 和 github.com 公网地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B0%86-ip-%E5%9C%B0%E5%9D%80%E6%B7%BB%E5%8A%A0%E5%88%B0-hosts-%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">2. 将 ip 地址添加到 hosts 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%B7%E6%96%B0-DNS-%E7%BC%93%E5%AD%98"><span class="toc-number">3.</span> <span class="toc-text">3. 刷新 DNS 缓存</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/ramsayi/0/thumbnail/Github_2.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Ramsayi's Blog</a></span><span class="pull-right menus"><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">加速 Github Clone</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-12T13:09:18.000Z" title="发表于 2020-07-12 21:09:18">2020-07-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-07-17T06:18:12.947Z" title="更新于 2020-07-17 14:18:12">2020-07-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Github/">Github</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><blockquote>
+<p>原因：Git clone 特别慢是因为 github.global.ssl.fastly.Net 域名被限制了。只要找到这个域名对应的 ip 地址，然后在 hosts 文件中加上 ip–&gt; 域名的映射，刷新 DNS 缓存就可以了</p>
+</blockquote>
+<h3 id="1-查询域名-global-ssl-fastly-Net-和-github-com-公网地址"><a href="#1-查询域名-global-ssl-fastly-Net-和-github-com-公网地址" class="headerlink" title="1. 查询域名 global-ssl.fastly.Net 和 github.com 公网地址"></a>1. 查询域名 global-ssl.fastly.Net 和 github.com 公网地址</h3><p><a target="_blank" rel="noopener" href="https://www.ipaddress.com/">https://www.ipaddress.com/</a> 可以用这个查。</p>
+<p>或者<a target="_blank" rel="noopener" href="http://tool.chinaz.com/dns/?type=1&host=github.global.ssl.fastly.net&ip="> Dns检测|Dns查询 - 站长工具 查找检测列表里的TTL值最小的IP</a></p>
+<p>分别查找<code>github.global.ssl.fastly.net</code>和<code>github.com</code>这两个网址的 ip 地址</p>
+<h3 id="2-将-ip-地址添加到-hosts-文件"><a href="#2-将-ip-地址添加到-hosts-文件" class="headerlink" title="2. 将 ip 地址添加到 hosts 文件"></a>2. 将 ip 地址添加到 hosts 文件</h3><p>Linux：<code>sudo gedit /etc/hosts</code><br>Windows：<code>C:\Windows\System32\drivers\etc\hosts</code></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/0/content/%E5%8A%A0%E9%80%9FGithub-Clone/%E6%89%B9%E6%B3%A8%202020-07-17%20102636.png" alt="GitHub clone慢.jpg"></p>
+<p>保存退出</p>
+<h3 id="3-刷新-DNS-缓存"><a href="#3-刷新-DNS-缓存" class="headerlink" title="3. 刷新 DNS 缓存"></a>3. 刷新 DNS 缓存</h3><p>修改完 hosts 还不会立即生效，你需要刷新 DNS 缓存，告诉电脑我的 hosts 文件已经修改了。</p>
+<p>Linux：<code>sudo /etc/init.d/networking restart</code></p>
+<p>windows 下刷新 DNS 的方法：</p>
+<p>打开 CMD</p>
+<p>输入<code>ipconfig /flushdns</code></p>
+<p><strong>重新 clone 就会发现速度飞起</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/0/content/%E5%8A%A0%E9%80%9FGithub-Clone/0.png" alt="GitHub clone.png"></p>
+<p>如果不行就把<code>github.global.ssl.fastly.net</code>的配置删掉，只留<code>github.com</code></p>
+<blockquote>
+<p>标题：GitHub clone太慢？来加速你的GitHub clone<br>作者：<a target="_blank" rel="noopener" href="https://www.algerfan.cn/">AlgerFan</a><br>地址：<a target="_blank" rel="noopener" href="https://www.algerfan.cn/articles/2019/07/25/1564064604429.html">https://www.algerfan.cn/articles/2019/07/25/1564064604429.html</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+</blockquote>
+</div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Github/">Github</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/ramsayi/0/thumbnail/Github_1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/28/Github%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/"><img class="prev-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/0/thumbnail/Github_1.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Github 代理设置</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/07/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"><img class="next-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/0/thumbnail/Hexo-Github_1.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hexo博客搭建</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/07/28/Github代理设置/" title="Github 代理设置"><img class="relatedPosts_cover" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/0/thumbnail/Github_1.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-28</div><div class="relatedPosts_title">Github 代理设置</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Ramsayi</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
