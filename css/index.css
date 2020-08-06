@@ -236,7 +236,7 @@ hr:before,
   --tab-button-active-bg: #fff;
   --card-bg: #fff;
   --sidebar-bg: #f6f8fa;
-  --btn-hover-color: ##579FFF;
+  --btn-hover-color: #579fff;
   --btn-color: #fff;
   --btn-bg: #0a73ff;
   --text-bg-hover: #0a73ff;
@@ -2411,7 +2411,7 @@ blockquote footer cite:before {
   line-height: 0.3rem;
 }
 .category-content ul li:hover:before {
-  border-color: ##579FFF;
+  border-color: #579fff;
 }
 #post-comment .comment-head {
   margin-bottom: 1rem;
@@ -3312,7 +3312,7 @@ _:future,
   line-height: 1;
 }
 .article-sort-title:hover:before {
-  border-color: ##579FFF;
+  border-color: #579fff;
 }
 .article-sort-title:before {
   position: absolute;
@@ -3354,7 +3354,7 @@ _:future,
   transition: all 0.2s ease-in-out;
 }
 .article-sort-item:hover:before {
-  border-color: ##579FFF;
+  border-color: #579fff;
 }
 .article-sort-item:before {
   position: absolute;
@@ -3406,7 +3406,7 @@ _:future,
 }
 .article-sort-item.year:before {
   top: 0.7rem;
-  border-color: ##579FFF;
+  border-color: #579fff;
 }
 .article-sort-item-time {
   color: #fff;
