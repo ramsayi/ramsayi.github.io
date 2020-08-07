@@ -1,0 +1,52 @@
+#web_bg {
+  background: -webkit-linear-gradient(
+    90deg, 
+	rgba(249,206,255,1) 0% 
+	rgba(229,207,255,1) 25%, 
+	rgba(207,213,255,1) 50%, 
+	rgba(208,234,255,1) 75%, 
+	rgba(205,255,255,1) 100%, 
+  );
+  background: -moz-linear-gradient(
+    90deg, 
+	rgba(249,206,255,1) 0% 
+	rgba(229,207,255,1) 25%, 
+	rgba(207,213,255,1) 50%, 
+	rgba(208,234,255,1) 75%, 
+	rgba(205,255,255,1) 100%, 
+  );
+  background: -o-linear-gradient(
+    90deg, 
+	rgba(249,206,255,1) 0% 
+	rgba(229,207,255,1) 25%, 
+	rgba(207,213,255,1) 50%, 
+	rgba(208,234,255,1) 75%, 
+	rgba(205,255,255,1) 100%, 
+  );
+  background: -ms-linear-gradient(
+    90deg, 
+	rgba(249,206,255,1) 0% 
+	rgba(229,207,255,1) 25%, 
+	rgba(207,213,255,1) 50%, 
+	rgba(208,234,255,1) 75%, 
+	rgba(205,255,255,1) 100%, 
+  );
+  background: linear-gradient(
+    90deg, 
+	rgba(249,206,255,1) 0% 
+	rgba(229,207,255,1) 25%, 
+	rgba(207,213,255,1) 50%, 
+	rgba(208,234,255,1) 75%, 
+	rgba(205,255,255,1) 100%, 
+  );
+}
+/* 文章页背景 */
+.layout_post>#post {
+    /* 以下代表白色透明度为0.3 */
+    background: rgba(255,255,255,.5);
+}
+/* 所有背景（包括首页卡片、文章页、页面页等） */
+#aside_content .card-widget, #recent-posts>.recent-post-item, .layout_page>div:first-child:not(.recent-posts), .layout_post>#page, .layout_post>#post, .read-mode .layout_post>#post{
+    /* 以下代表白色透明度为0.3 */
+    background: rgba(255,255,255,.5);
+}
