@@ -2286,7 +2286,7 @@ blockquote footer cite:before {
 }
 #aside_content .card-recent-post .aside-recent-item > .aside-recent-post .aside-post-info .aside-post_meta {
   padding-left: 10px;
-  color: #fff;
+  color: #858585;
   font-size: 0.6rem;
 }
 #aside_content .card-recent-post .aside-recent-item > .aside-recent-post .aside-post-info .aside-post-title {
@@ -3267,7 +3267,7 @@ _:future,
   color: #0a73ff;
 }
 #recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap {
-  color: #fff;
+  color: #858585;
   font-size: 90%;
 }
 #recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .post-meta-date {
@@ -3292,7 +3292,7 @@ _:future,
   margin: 0 0.2rem;
 }
 #recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap a {
-  color: #fff;
+  color: #858585;
 }
 #recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap a:hover {
   color: #0a73ff;
@@ -3459,7 +3459,7 @@ _:future,
   border-color: #579fff;
 }
 .article-sort-item-time {
-  color: #fff;
+  color: #858585;
   font-size: 0.9em;
 }
 .article-sort-item-time time {
@@ -3529,7 +3529,7 @@ _:future,
 }
 .category-list .category-list-count {
   margin-left: 0.4rem;
-  color: #fff;
+  color: #858585;
 }
 .category-list .category-list-count:before {
   content: '(';
@@ -3860,7 +3860,7 @@ img {
   overflow-wrap: break-word;
 }
 #article-container a {
-  color: #8000ff;
+  color: #9147ff;
 }
 #article-container a:hover {
   text-decoration: underline;
