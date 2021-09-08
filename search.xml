@@ -8,7 +8,7 @@
       <link href="/posts/2155/"/>
       <url>/posts/2155/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<table><thead><tr><th align="center">作者</th><th align="center">连结</th></tr></thead><tbody><tr><td align="center">Jerry</td><td align="center"><a href="https://butterfly.js.org/posts/ea33ab97/">自定义侧边栏</a></td></tr><tr><td align="center">小康</td><td align="center"><a href="https://www.antmoe.com/posts/a811d614/index.html">优雅魔改</a></td></tr><tr><td align="center">Lete 乐特</td><td align="center"><a href="https://butterfly.lete114.top/article/Butterfly-config.html">Butterfly主题美化-无修改源码 (持续更新中…)</a></td></tr><tr><td align="center">Akilar</td><td align="center"><a href="https://akilar.top/posts/7c16c4bb/">Hexo博客访问优化日记</a></td></tr><tr><td align="center">Akilar</td><td align="center"><a href="https://akilar.top/posts/f99b208/">基于Butterfly主题的美化日记</a></td></tr><tr><td align="center">Akilar</td><td align="center"><a href="https://akilar.top/posts/bbf68ad4/">平滑升级魔改后的Hexo主题</a></td></tr><tr><td align="center">小冰博客</td><td align="center"><a href="https://zfe.space/post/hexo-butterfly-orchid.html">小冰插件包 butterfly-orchid 1.0</a></td></tr><tr><td align="center">小嘉的部落格</td><td align="center"><a href="https://blog.imzjw.cn/posts/b74f504f/">关于我 Butterfly 主题的所有美化</a></td></tr><tr><td align="center">唐先森の博客</td><td align="center"><a href="https://ethant.top/articles/hexo541u/">Hexo+Butterfly主题美化</a></td></tr><tr><td align="center">guole’s Blog</td><td align="center"><a href="https://guole.fun/posts/butterfly-custom/">Butterfly美化日记/页面美化/插件美化/踩坑经历</a></td></tr><tr><td align="center">guole’s Blog</td><td align="center"><a href="https://guole.fun/posts/18158/">使用 Charts 插件给 Butterfly 增加统计图表</a></td></tr><tr><td align="center">guole’s Blog</td><td align="center"><a href="https://guole.fun/posts/41887/">使用 Hexo-tag-map 插件，给文章插入高德百度谷歌地图</a></td></tr></tbody></table>]]></content>
       
       
       <categories>
@@ -24,9 +24,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> 博客 </tag>
+            
+            <tag> Hexo </tag>
             
             <tag> Butterfly </tag>
             
@@ -109,9 +109,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> 博客 </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
       
@@ -140,9 +140,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> 博客 </tag>
+            
+            <tag> Hexo </tag>
             
             <tag> Yun </tag>
             
@@ -275,9 +275,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> 博客 </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
       
@@ -489,9 +489,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> 博客 </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
       
