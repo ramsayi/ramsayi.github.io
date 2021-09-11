@@ -51,3 +51,34 @@ h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
         transform: rotate(-1turn)
     }
 }
+
+/*半透明*/
+
+/*文章*/
+.layout > div:first-child:not(.recent-posts) {
+    background: rgba(255,255,255,.7);
+  }
+  
+  /*主页文章*/
+  #recent-posts > .recent-post-item {
+    background: rgba(255,255,255,.7);
+  }
+  
+  /*侧边栏*/
+  #aside-content .card-widget {
+    background: rgba(255,255,255,.7);
+  }
+  /*黑暗模式*/
+  [data-theme="dark"] 
+  .layout > div:first-child:not(.recent-posts) {
+    background: rgba(255,255,255,.3);
+  }
+  [data-theme="dark"] 
+  #recent-posts > .recent-post-item {
+    background: rgba(255,255,255,.3);
+  }
+  [data-theme="dark"]     
+  #aside-content .card-widget {
+    background: rgba(255,255,255,.3);
+  }
+
