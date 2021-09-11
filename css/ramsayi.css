@@ -82,3 +82,10 @@ h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
     background: rgba(255,255,255,.3);
   }
 
+/* 底部按钮圆角 */
+#rightside > div > button, #rightside > div > a{
+    margin-bottom: 6px;
+}
+#rightside>div>a, #rightside>div>button {
+    border-radius: 12px;
+}
