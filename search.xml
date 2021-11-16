@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Excel学习记录</title>
+      <link href="/posts/f2029d3b/"/>
+      <url>/posts/f2029d3b/</url>
+      
+        <content type="html"><![CDATA[<h2 id="求和"><a href="#求和" class="headerlink" title="求和"></a>求和</h2><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=<span class="built_in">SUM</span>(<span class="symbol">C3</span>:<span class="symbol">E3</span>)</span><br></pre></td></tr></table></figure><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>区域<code>F3:F13</code>必须用绝对引用，因为要拖动，而区域不能改变</p><p><code>0</code>按降序排序，<code>1</code>按升序排序</p><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=<span class="built_in">RANK</span>(<span class="symbol">F3</span>,$F$<span class="symbol">3:</span>$F$<span class="number">13</span>,<span class="number">0</span>)</span><br></pre></td></tr></table></figure><h2 id="条件与和或"><a href="#条件与和或" class="headerlink" title="条件与和或"></a>条件与和或</h2><p>条件AND(与)必须3个条件同时满足，则条件为真(true)，公式值为优；否则，为假(false)，值为良</p><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=<span class="built_in">IF</span>(<span class="built_in">AND</span>(<span class="symbol">C3</span>&gt;<span class="number">80</span>,<span class="symbol">D3</span>&gt;<span class="number">80</span>,<span class="symbol">E3</span>&gt;<span class="number">80</span>),<span class="string">&quot;优&quot;</span>,<span class="string">&quot;良&quot;</span>)</span><br></pre></td></tr></table></figure><p>条件OR(或)只须3个条件有1个满足，则条件为真(true)，公式值为优；否则(即3个条件都不满足)，<br>为假(false)，值为及格</p><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=<span class="built_in">IF</span>(<span class="built_in">OR</span>(<span class="symbol">C3</span>&gt;<span class="number">95</span>,<span class="symbol">D3</span>&gt;<span class="number">95</span>,<span class="symbol">E3</span>&gt;<span class="number">95</span>),<span class="string">&quot;优&quot;</span>,<span class="string">&quot;及格&quot;</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Excel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vim简明教程</title>
       <link href="/posts/ad2d1971/"/>
       <url>/posts/ad2d1971/</url>
