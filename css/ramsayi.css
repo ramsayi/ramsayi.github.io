@@ -6,7 +6,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #5E72E4;
+    background-color: #FFC107;
     background-image: -webkit-linear-gradient( 45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
     border-radius: 2em;
 }
@@ -17,7 +17,7 @@
 
 ::-moz-selection {
     color: #fff;
-    background-color: #5E72E4;
+    background-color: #FFC107;
 }
 
 /* 自定义字体 */
