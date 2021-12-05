@@ -22,8 +22,8 @@
 
 /* 自定义字体 */
 @font-face {
-    font-family: '思源宋体';
-    src: url('https://cdn.jsdelivr.net/gh/ramsayi/src/fonts/SourceHanSerifCN/SourceHanSerifCN.otf');
+    font-family: '迷你简书宋';
+    src: url('https://cdn.jsdelivr.net/gh/ramsayi/src/fonts/MiNiJianShuSong/MiNiJianShuSong.ttf');
 }
 
 /* 文章页H1-H6图标样式效果 */
