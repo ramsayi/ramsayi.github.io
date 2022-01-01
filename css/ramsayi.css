@@ -21,10 +21,10 @@
 }
 
 /* 自定义字体 */
-/* @font-face {
-    font-family: '迷你简书宋';
-    src: url('https://cdn.jsdelivr.net/gh/ramsayi/src/fonts/MiNiJianShuSong/MiNiJianShuSong.ttf');
-} */
+@font-face {
+    font-family: '霞鹜文楷';
+    src: url('https://cdn.jsdelivr.net/gh/ramsayi/src/fonts/LXGWWenKai/LXGWWenKaiLite-Bold.ttf');
+}
 
 /* 文章页H1-H6图标样式效果 */
 h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
