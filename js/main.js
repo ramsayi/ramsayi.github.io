@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  let blogNameWidth, menusWidth, searchWidth, $nav, hideMenuIndex
+  let blogNameWidth, menusWidth, searchWidth, $nav
   let mobileSidebarOpen = false
 
   const adjustMenu = (init) => {
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
       $nav = document.getElementById('nav')
     }
 
+    let hideMenuIndex = ''
     if (window.innerWidth < 768) hideMenuIndex = true
     else hideMenuIndex = blogNameWidth + menusWidth + searchWidth > $nav.offsetWidth - 120
 
@@ -259,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 當滾動條小于 56 的時候
     if (document.body.scrollHeight <= innerHeight) {
-      $rightside.style.cssText = 'opacity: 1; transform: translateX(-38px)'
+      $rightside.style.cssText = 'opacity: 1; transform: translateX(-58px)'
       return
     }
 
@@ -296,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
           $header.classList.add('nav-fixed')
           if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
-            $rightside.style.cssText = 'opacity: 0.7; transform: translateX(-58px)'
+            $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
           }
         } else {
           if (currentTop === 0) {
@@ -306,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (document.body.scrollHeight <= innerHeight) {
-          $rightside.style.cssText = 'opacity: 0.7; transform: translateX(-58px)'
+          $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
         }
       }, 200)()
     }
@@ -478,15 +479,16 @@ document.addEventListener('DOMContentLoaded', function () {
       window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)
       typeof runMermaid === 'function' && window.runMermaid()
     },
-    showOrHideBtn: () => { // rightside 點擊設置 按鈕 展開
-      const target = document.getElementById('rightside-config-hide')
-      if (window.rightSideIn) {
-        window.rightSideIn = false
-        btf.animateOut(target, 'rightside-item-out 0.5s')
-      } else {
-        window.rightSideIn = true
-        btf.animateIn(target, 'rightside-item-in 0.5s')
+    showOrHideBtn: (e) => { // rightside 點擊設置 按鈕 展開
+      const rightsideHideClassList = document.getElementById('rightside-config-hide').classList
+      rightsideHideClassList.toggle('show')
+      if (e.classList.contains('show')) {
+        rightsideHideClassList.add('status')
+        setTimeout(() => {
+          rightsideHideClassList.remove('status')
+        }, 300)
       }
+      e.classList.toggle('show')
     },
     scrollToTop: () => { // Back to top
       btf.scrollToDest(0, 500)
@@ -506,13 +508,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   document.getElementById('rightside').addEventListener('click', function (e) {
-    const $target = e.target.id || e.target.parentNode.id
-    switch ($target) {
+    const $target = e.target.id ? e.target : e.target.parentNode
+    switch ($target.id) {
       case 'go-up':
         rightSideFn.scrollToTop()
         break
       case 'rightside_config':
-        rightSideFn.showOrHideBtn()
+        rightSideFn.showOrHideBtn($target)
         break
       case 'mobile-toc-button':
         rightSideFn.runMobileToc()
@@ -534,7 +536,6 @@ document.addEventListener('DOMContentLoaded', function () {
   /**
    * menu
    * 側邊欄sub-menu 展開/收縮
-   * 解決menus在觸摸屏下，滑動屏幕menus_item_child不消失的問題（手機hover的bug)
    */
   const clickFnOfSubMenu = () => {
     document.querySelectorAll('#sidebar-menus .site-page.group').forEach(function (item) {
@@ -594,7 +595,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /**
    * table overflow
    */
-  const addTableWrap = function () {
+  const addTableWrap = () => {
     const $table = document.querySelectorAll('#article-container :not(.highlight) > table, #article-container > table')
     if ($table.length) {
       $table.forEach(item => {
@@ -734,7 +735,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const unRefreshFn = function () {
     window.addEventListener('resize', () => {
       adjustMenu(false)
-      hideMenuIndex && mobileSidebarOpen && sidebarFn.close()
+      btf.isHidden(document.getElementById('toggle-menu')) && mobileSidebarOpen && sidebarFn.close()
     })
 
     document.getElementById('menu-mask').addEventListener('click', e => { sidebarFn.close() })
