@@ -5,7 +5,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #FFC107;
+    background-color: #304FFE;
     background-image: -webkit-linear-gradient( 45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
     border-radius: 2em;
 }
@@ -16,7 +16,7 @@
 
 ::-moz-selection {
     color: #fff;
-    background-color: #FFC107;
+    background-color: #304FFE;
 }
 
 /* 自定义字体 */
@@ -126,4 +126,26 @@ div#page:hover{
 [data-theme="dark"]
 div#page:hover{
     background-color: rgb(255 255 255 / 30%);
+}
+
+/* 页脚透明 */
+#footer {
+	background: rgba(255, 255, 255, .15);
+	color: #000;
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	-webkit-backdrop-filter: saturate(100%) blur(5px);
+	backdrop-filter: saturate(100%) blur(5px)
+}
+
+#footer::before {
+	background: rgba(255, 255, 255, .15);
+}
+
+#footer #footer-wrap {
+	color: var(--font-color);
+}
+
+#footer #footer-wrap a {
+	color: var(--font-color);
 }
