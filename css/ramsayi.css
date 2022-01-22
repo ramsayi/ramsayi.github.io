@@ -1,5 +1,4 @@
 /* 滚动条 */
-
 ::-webkit-scrollbar {
     width: 6px;
     height: 10px;
@@ -88,4 +87,43 @@ h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
 }
 #rightside>div>a, #rightside>div>button {
     border-radius: 12px;
+}
+
+/* 卡片毛玻璃效果 */
+div#post:hover{
+    -webkit-backdrop-filter: saturate(180%) blur(5px);
+    backdrop-filter: saturate(180%) blur(5px);
+    background-color: rgb(255 255 255 / 70%);
+}
+[data-theme="dark"]
+div#post:hover{
+    background-color: rgb(255 255 255 / 30%);
+}
+#aside-content .card-widget:hover{
+    -webkit-backdrop-filter: saturate(180%) blur(5px);
+    backdrop-filter: saturate(180%) blur(5px);
+    background-color: rgb(255 255 255 / 70%);
+    border-radius: 8px;
+}
+[data-theme="dark"]
+#aside-content .card-widget:hover {
+    background-color: rgb(255 255 255 / 30%);
+}
+div#recent-posts .recent-post-item:hover{
+    -webkit-backdrop-filter: saturate(180%) blur(5px);
+    backdrop-filter: saturate(180%) blur(5px);
+    background-color: rgb(255 255 255 / 70%);
+}
+[data-theme="dark"]
+div#recent-posts .recent-post-item:hover{
+    background-color: rgb(255 255 255 / 30%);
+}
+div#page:hover{
+    -webkit-backdrop-filter: saturate(180%) blur(5px);
+    backdrop-filter: saturate(180%) blur(5px);
+    background-color: rgb(255 255 255 / 70%);
+}
+[data-theme="dark"]
+div#page:hover{
+    background-color: rgb(255 255 255 / 30%);
 }
