@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>《Python编程快速上手》7.18 实践项目</title>
+      <link href="/posts/a8f15a08/"/>
+      <url>/posts/a8f15a08/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="7-18-1-强口令检测"><a href="#7-18-1-强口令检测" class="headerlink" title="7.18.1 强口令检测"></a>7.18.1 强口令检测</h3><p>写一个函数，它使用正则表达式，确保传入的口令字符串是强口令。</p><p>强口令的定义是：长度不少于 8 个字符，同时包含大写和小写字符，至少有一位数字。</p><p>你可能需要用多个正则表达式来测试该字符串，以保证它的强度。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">strong</span>(<span class="params"><span class="built_in">str</span></span>):</span></span><br><span class="line">    m1 = re.search(<span class="string">r&#x27;\d&#x27;</span>, <span class="built_in">str</span>)        <span class="comment"># 至少有一位数字</span></span><br><span class="line">    m2 = re.search(<span class="string">r&#x27;[A-Z]&#x27;</span>, <span class="built_in">str</span>)    <span class="comment"># 包含大写字符</span></span><br><span class="line">    m3 = re.search(<span class="string">r&#x27;[a-z]+&#x27;</span>, <span class="built_in">str</span>)    <span class="comment"># 包含小写字符</span></span><br><span class="line">    m4 = re.search(<span class="string">r&#x27;(.*)&#123;8,&#125;&#x27;</span>, <span class="built_in">str</span>)  <span class="comment"># 长度不少于8个字符</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> m1 <span class="keyword">and</span> m2 <span class="keyword">and</span> m3 <span class="keyword">and</span> m4:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;强密码&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;弱密码&#x27;</span>)</span><br><span class="line"></span><br><span class="line">strong(<span class="built_in">input</span>(<span class="string">&#x27;请输入密码&#x27;</span>))</span><br></pre></td></tr></table></figure><h3 id="7-18-2-strip-的正则表达式版本"><a href="#7-18-2-strip-的正则表达式版本" class="headerlink" title="7.18.2 strip()的正则表达式版本"></a>7.18.2 strip()的正则表达式版本</h3><p>写一个函数，它接受一个字符串，做的事情和 strip()字符串方法一样。</p><p>如果只传入了要去除的字符串，没有其他参数，那么就从该字符串首尾去除空白字符。</p><p>否则，函数第二个参数指定的字符将从该字符串中去除。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">stripRe</span>():</span></span><br><span class="line">    text = <span class="built_in">input</span>(<span class="string">&quot;请输入文本：&quot;</span>)</span><br><span class="line">    word = <span class="built_in">input</span>(<span class="string">&quot;请输入去除的字符串，默认空格则直接按&#x27;Enter键&#x27;&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> word == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">        stripRegex = re.<span class="built_in">compile</span>(<span class="string">r&#x27;([a-zA-Z0-0])+(.*)*([a-zA-Z0-9])+&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(stripRegex.search(text).group())</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        stripRegex = re.<span class="built_in">compile</span>(<span class="string">f&#x27;<span class="subst">&#123;word&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(stripRegex.sub(<span class="string">&#x27;&#x27;</span>,text))</span><br><span class="line"></span><br><span class="line">stripRe()</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>《Python编程快速上手》第七章 模式匹配与正则表达式</title>
       <link href="/posts/e26ca5c0/"/>
       <url>/posts/e26ca5c0/</url>
