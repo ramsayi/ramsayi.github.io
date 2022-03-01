@@ -4,7 +4,57 @@
   
     
     <entry>
-      <title>HTML5+CSS3 4</title>
+      <title>HTML5+CSS3 6 盒子模型</title>
+      <link href="/posts/5d756fb5/"/>
+      <url>/posts/5d756fb5/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>[toc]</p><p>页面布局三大核心，盒子模型，浮动，定位<br>页面布局过程：</p><ol><li>确定页面内网页元素，大部分都是一个个的盒子</li><li>利用css设置盒子样式，和相应的位置</li><li>往盒子里装内容<br>网页布局最核心的就是利用css摆放盒子</li></ol><h1 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h1><h2 id="盒子模型组成"><a href="#盒子模型组成" class="headerlink" title="盒子模型组成"></a>盒子模型组成</h2><p>所谓盒子模型就是把html页面内的布局元素看作一个盒子，装内容的容器<br>CSS盒子模型本质上是一个盒子，封装周围的HTML元素，它包括：边框，外边距，内边距，实际内容</p><h2 id="边框（border）"><a href="#边框（border）" class="headerlink" title="边框（border）"></a>边框（border）</h2><p>border可以设置元素的边框，边框有三部分组成：边框宽度（粗细） 边框样式 边框颜色<br>border ：border-width || border-style || border-color</p><h3 id="border-style属性值"><a href="#border-style属性值" class="headerlink" title="border-style属性值"></a>border-style属性值</h3><p>solid ：实线边框<br>dashed：虚线边框<br>dotted： 点线边框<br>还有outset ridge groove等值，但兼容性不好</p><h3 id="边框的复合写法"><a href="#边框的复合写法" class="headerlink" title="边框的复合写法"></a>边框的复合写法</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">border</span>: <span class="number">12px</span> solid red;</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure><p>无先后顺序，不需要都写出来，但不声明样式会不显示</p><h3 id="某一条边框"><a href="#某一条边框" class="headerlink" title="某一条边框"></a>某一条边框</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> <span class="attribute">border-top</span>: <span class="number">12px</span> solid red;</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure><p>合理利用层叠性可以简化代码（感觉也是我之前得出的结论，先找共同点，再写不同的）</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">  <span class="attribute">border</span>: <span class="number">12px</span> dashed blue;</span><br><span class="line">  <span class="attribute">border-top</span>:  solid red;</span><br><span class="line">  <span class="attribute">border-bottom</span>:  solid <span class="number">#000</span>;</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure><p>但是border-top和bottom的宽却不是12px？这里理解的是可能会自动填补未声明的属性</p><h3 id="合并相邻的边框"><a href="#合并相邻的边框" class="headerlink" title="合并相邻的边框"></a>合并相邻的边框</h3><p>两个边框重叠在一起时会变粗（1+1=2），这时可以用<code>border-collapse: collapse;</code>属性，使1+1=1（不知道这个属性之前想的是可以使用某一条边）</p><h3 id="边框对盒子实际大小的影响"><a href="#边框对盒子实际大小的影响" class="headerlink" title="边框对盒子实际大小的影响"></a>边框对盒子实际大小的影响</h3><p>当加入边框时，会增加盒子实际的大小（也就是宽度，高度不包括边框宽度）</p><h2 id="内边距（padding）"><a href="#内边距（padding）" class="headerlink" title="内边距（padding）"></a>内边距（padding）</h2><p>用于设置内边距，即边框与内容之间的距离<br>也可以分为left top right bottom四个部分</p><h3 id="padding简写属性"><a href="#padding简写属性" class="headerlink" title="padding简写属性"></a>padding简写属性</h3><table><thead><tr><th>项目</th><th>属性</th></tr></thead><tbody><tr><td>padding：5px</td><td>1个值，代表上下左右都是5px</td></tr><tr><td>padding：5px 10px</td><td>2个值，代表上下是5px，左右是10px</td></tr><tr><td>padding：5px 10px 20px</td><td>代表上是5px，左右是10px，下边距是20px</td></tr><tr><td>padding：5px 10px 20px 30px</td><td>顺时针从上开始</td></tr></tbody></table><h3 id="内边距会撑大盒子"><a href="#内边距会撑大盒子" class="headerlink" title="内边距会撑大盒子"></a>内边距会撑大盒子</h3><p>如果盒子已经有了宽度和高度，增加内边距会使盒子变大<br>当一系列盒子内字数不同时，比如导航栏每个小盒子内容不一样，这时不能设置宽度了（会因字数不同导致盒子与盒子间距离不同）这时可以只设置内边距相等即可，宽度不需要设置（此时盒子会根据内容自动变化宽度），让内边距自由撑开，使没个盒子之间的距离看起来相等（这一个例子让我明白了作为前端程序员对细节需要把握到一个魔鬼的程度。。。）</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> <span class="selector-class">.nav2</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">            <span class="attribute">display</span>: inline-block;</span><br><span class="line">            <span class="attribute">color</span>: <span class="number">#4c4c4c</span>;</span><br><span class="line">            <span class="attribute">text-decoration</span>: none;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">42px</span>;</span><br><span class="line">            <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">20px</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"><span class="number">123456789</span></span><br></pre></td></tr></table></figure><p>如果盒子本身没有指定width/height属性，则增加padding不会撑开盒子大小（例如，当盒子宽度为100%，有了内边距也不会超出父容器），换言之，如果声明了宽度，当在声明padding时，可能会超出父容器</p><h2 id="外边距（margin）"><a href="#外边距（margin）" class="headerlink" title="外边距（margin）"></a>外边距（margin）</h2><h3 id="利用外边距可以实现块级盒子水平居中"><a href="#利用外边距可以实现块级盒子水平居中" class="headerlink" title="利用外边距可以实现块级盒子水平居中"></a>利用外边距可以实现块级盒子水平居中</h3><ol><li>盒子需要设定宽度（不设定宽度盒子会继承父元素的宽度，那居中就没有意义了）</li><li>声明：<code>margin: 0 auto;</code></li></ol><p>如果是使行内块元素或行内元素居中对齐，只需为父元素添加 <code>text-align: center;</code></p><h3 id="嵌套块元素垂直外边距的塌陷"><a href="#嵌套块元素垂直外边距的塌陷" class="headerlink" title="嵌套块元素垂直外边距的塌陷"></a>嵌套块元素垂直外边距的塌陷</h3><p>对于两个嵌套关系的块元素，当子元素有外边距时，此时父元素会塌陷较大的外边距值（与父元素本身的外边距比较大的），只有第一个子元素才会出现这个状况</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;margin&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">1234</span><br><span class="line"> .margin &#123;</span><br><span class="line">            margin: 0 auto;</span><br><span class="line">            background-color: blue;</span><br><span class="line">            height: 200px;</span><br><span class="line">            width: 100px;</span><br><span class="line">            text-align: center;</span><br><span class="line">        &#125;</span><br><span class="line">  .margin div &#123;</span><br><span class="line">            margin-top: 50px;</span><br><span class="line">            background-color: pink;</span><br><span class="line">            width: 50px;</span><br><span class="line">            height: 100px;</span><br><span class="line">        &#125;</span><br><span class="line">12345678910111213</span><br></pre></td></tr></table></figure><p>会发现第一个子元素div带动着父元素下降，即变成父元素的外边距，但第二个不会<br>解决方案</p><ol><li>为父元素加边框，恩情决断框（hhh）<code>border: 1px solid transparent;</code></li><li>为父元素定义内边框</li><li>为父元素添加<code>overflow: hidden;</code></li></ol><p>在测试中发现margin-right不会产生类似塌陷的</p><h2 id="清除内外边距"><a href="#清除内外边距" class="headerlink" title="清除内外边距"></a>清除内外边距</h2><p>一般是css代码第一行</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> * &#123;</span><br><span class="line">            <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">            <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="number">1234</span></span><br></pre></td></tr></table></figure><p>行内元素为了考虑兼容性，尽量只设置左右内外边距，就算设定了上下内外边距，也不一定生效，但是转化为块元素或行内块元素就可以设置</p><h2 id="清除无序列表的小圆点"><a href="#清除无序列表的小圆点" class="headerlink" title="清除无序列表的小圆点"></a>清除无序列表的小圆点</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"> <span class="attribute">list-style</span>: none;</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure><h2 id="圆角边框"><a href="#圆角边框" class="headerlink" title="圆角边框"></a>圆角边框</h2><p>设置元素的外边框圆角 <code>border-radius: 10px;</code><br>radius（圆的半径），长度代表圆的半径，该半径的圆与边框相切时，直角弧会被相应的圆边长取代，进而使边框呈现圆角，半径越大，弧度越大<br>长度参数可以用长度或百分比表示，因此设置圆形时，可以将参数调节为高度和宽度的一半，或直接写成50%<br>该属性是一个简写属性，还可以进一步确实四个角的弧度<br>写四个值，则是从左上角顺时针，两个值则是分别对应左上右下，左下右上</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTML5+CSS3 5 CSS的三大特性</title>
+      <link href="/posts/4bd8ed8b/"/>
+      <url>/posts/4bd8ed8b/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>[TOC]</p><h1 id="CSS的三大特性"><a href="#CSS的三大特性" class="headerlink" title="CSS的三大特性"></a>CSS的三大特性</h1><p>css具有三大特性：层叠性，继承性，优先级。</p><h2 id="层叠性"><a href="#层叠性" class="headerlink" title="层叠性"></a>层叠性</h2><p>相同选择器给设置相同的样式，此时一个样式就会覆盖（层叠）另一个冲突的样式。层叠性主要解决样式冲突的问题<br>原则：<br>样式冲突，遵循的就近原则，哪个样式离结构近，就执行哪个样式<br>样式不冲突，不会层叠（以最后一个为准）<br>（多个类叠加使用时，也是遵循层叠性）</p><h2 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h2><p>子标签会继承父标签的一些样式（inherited from）,比如文本颜色和色号<br>恰当的利用继承性可以简化代码，降低css样式的复杂性<br>但是子标签一般只会继承某些样式，一般是与文字有关的，如text-,font-,line-,color等，像padding等不会继承</p><h3 id="行高的继承（相对单位）"><a href="#行高的继承（相对单位）" class="headerlink" title="行高的继承（相对单位）"></a>行高的继承（相对单位）</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font</span>: <span class="number">16px</span>/<span class="number">1.5</span> <span class="string">&#x27;Microsoft YaHei&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>1.5是一个相对单位，即行高是16*1.5，该行高也会被继承，不过会以子元素对应的文字大小进行计算<br>这样写的好处是可以根据文字的大小自动调整行高，文字大时变大，文字小时变小</p><h2 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h2><p>不同的选择器优先级不同，当选择器相同时，按层叠性原则执行，当选择器不同时，对应选择器权重，权重越高，则优先执行该选择器内的样式，与声明顺序无关</p><table><thead><tr><th>选择器</th><th>选择器权重</th></tr></thead><tbody><tr><td>继承或*</td><td>0，0，0，0</td></tr><tr><td>元素选择器（标签）</td><td>0，0，0，1</td></tr><tr><td>类选择器，伪类选择器</td><td>0，0，1，0</td></tr><tr><td>ID选择器</td><td>0，1，0，0</td></tr><tr><td>行内样式</td><td>1，0，0，0</td></tr><tr><td>！important</td><td>无穷大</td></tr></tbody></table><p>比如：</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">rgb</span>(<span class="number">42</span>, <span class="number">184</span>, <span class="number">219</span>) <span class="meta">!important</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.primer</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">a</span> class=&quot;primer&quot; href=&quot;#&quot;&gt;五彩导航&lt;/<span class="selector-tag">a</span>&gt;</span><br></pre></td></tr></table></figure><p>则最终会a标签会是蓝色<br>（注意a标签有些特殊，即浏览器会自动用元素选择器为a标签指定样式，所以给我们的直观感觉就是没有继承，其实是继承了，但是由于继承的权重最低，是<code>0</code>，被覆盖掉了，因此我们可以利用层叠性再用元素标签指定样式）</p><p>权重由四位数字组成，但不会有进位<br>等级判断从左往右，如果某一位数值相同，则判断下一位数值</p><h3 id="权重叠加"><a href="#权重叠加" class="headerlink" title="权重叠加"></a>权重叠加</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>之前以为是同级标签，权重相同，所以按照层叠性来显示，这是错误的，权重会叠加的，比如ul li 的权重此时就变成了0，0，0，2，他是比li大的，所以会按照他的显示（这也就和前边提到过的权重不会进位有了关系）</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;nav&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;primer&quot;</span>&gt;</span>123<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>456<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>789<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">.nav li &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br><span class="line">.primer &#123;</span><br><span class="line">    color: #000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>第一个li文字会是红色，因为其所对应的权重较高（0，0，1，0）（0，0，1，1）</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.nav</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.nav</span> <span class="selector-class">.primer</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>第一个li这是会是黑色（0，0，2，0）（0，0，1，1）<br>也就是其父元素也会参与到权重计算中，可以说，范围越小，权重越高</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTML5+CSS3 4 emment语法</title>
       <link href="/posts/6b7203f0/"/>
       <url>/posts/6b7203f0/</url>
       
@@ -29,7 +79,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3 3</title>
+      <title>HTML5+CSS3 3 CSS</title>
       <link href="/posts/f5169653/"/>
       <url>/posts/f5169653/</url>
       
@@ -54,7 +104,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3 2</title>
+      <title>HTML5+CSS3 2 HTML标签</title>
       <link href="/posts/8211a6c5/"/>
       <url>/posts/8211a6c5/</url>
       
@@ -79,7 +129,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3 1</title>
+      <title>HTML5+CSS3 1 HTML语法</title>
       <link href="/posts/1b18f77f/"/>
       <url>/posts/1b18f77f/</url>
       
