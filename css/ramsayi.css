@@ -51,81 +51,12 @@ h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
     }
 }
 
-/*半透明*/
-
-/*文章*/
-.layout > div:first-child:not(.recent-posts) {
-    background: rgba(255,255,255,.7);
-}
-  
-/*主页文章*/
-#recent-posts > .recent-post-item {
-    background: rgba(255,255,255,.7);
-}
-  
-/*侧边栏*/
-#aside-content .card-widget {
-    background: rgba(255,255,255,.7);
-}
-/*黑暗模式*/
-[data-theme="dark"] 
-.layout > div:first-child:not(.recent-posts) {
-    background: rgba(255,255,255,.3);
-}
-[data-theme="dark"] 
-#recent-posts > .recent-post-item {
-    background: rgba(255,255,255,.3);
-}
-[data-theme="dark"]     
-#aside-content .card-widget {
-    background: rgba(255,255,255,.3);
-}
-
 /* 底部按钮圆角 */
 #rightside > div > button, #rightside > div > a{
     margin-bottom: 6px;
 }
 #rightside>div>a, #rightside>div>button {
     border-radius: 12px;
-}
-
-/* 卡片毛玻璃效果 */
-div#post:hover{
-    -webkit-backdrop-filter: saturate(180%) blur(5px);
-    backdrop-filter: saturate(180%) blur(5px);
-    background-color: rgb(255 255 255 / 70%);
-}
-[data-theme="dark"]
-div#post:hover{
-    background-color: rgb(255 255 255 / 30%);
-}
-#aside-content .card-widget:hover{
-    -webkit-backdrop-filter: saturate(180%) blur(5px);
-    backdrop-filter: saturate(180%) blur(5px);
-    background-color: rgb(255 255 255 / 70%);
-    border-radius: 8px;
-}
-[data-theme="dark"]
-#aside-content .card-widget:hover {
-    background-color: rgb(255 255 255 / 30%);
-}
-div#recent-posts .recent-post-item:hover{
-    -webkit-backdrop-filter: saturate(180%) blur(5px);
-    backdrop-filter: saturate(180%) blur(5px);
-    background-color: rgb(255 255 255 / 70%);
-}
-[data-theme="dark"]
-div#recent-posts .recent-post-item:hover{
-    background-color: rgb(255 255 255 / 30%);
-}
-div#page:hover{
-    -webkit-backdrop-filter: saturate(180%) blur(5px);
-    backdrop-filter: saturate(180%) blur(5px);
-    background-color: rgb(255 255 255 / 70%);
-}
-[data-theme="dark"]
-div#page:hover{
-    background-color: rgb(255 255 255 / 30%);
 }
 
 /* 页脚透明 */
