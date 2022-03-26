@@ -104,31 +104,6 @@
     
     
     <entry>
-      <title>HTML5+CSS3_11 网页favicon图标</title>
-      <link href="/posts/1cd0b480/"/>
-      <url>/posts/1cd0b480/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>[toc]</p><h1 id="网页favicon图标"><a href="#网页favicon图标" class="headerlink" title="网页favicon图标"></a>网页favicon图标</h1><ol><li>截取png格式的图片</li><li>在网站中将其转为.ico格式</li><li>在head中引入</li></ol><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;link rel=&quot;shortcut <span class="attribute">icon</span>&quot; href=&quot;favicon<span class="selector-class">.ico</span>&quot;&gt;</span><br></pre></td></tr></table></figure><h1 id="网站三大标签SEO优化"><a href="#网站三大标签SEO优化" class="headerlink" title="网站三大标签SEO优化"></a>网站三大标签SEO优化</h1><p>SEO(search Engine Optinization)意思是搜素引擎优化，是一种利用搜索引擎的规则提高网站在有关搜索引擎内的自然排名的方式<br>页面必须有三个标签TDK，即title description keyword来进行SEO优化</p><h2 id="title-网站标题"><a href="#title-网站标题" class="headerlink" title="title 网站标题"></a>title 网站标题</h2><p>title具有不可替代性，是我们网页的第一个重要的标签，是搜索引擎了解网页的入口和对网页主题归属的最佳判断点。<br>建议：网站名-网站的介绍（不超过三十个字）</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>品优购-综合网购首选，价格实惠，质量保证，配送及时，轻松购物！<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="description-网页介绍"><a href="#description-网页介绍" class="headerlink" title="description 网页介绍"></a>description 网页介绍</h2><p>对网站进行介绍</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">ncontent</span>=<span class="string">&quot;品优购-专业的综合网上购物商城,销售家电、家居百货、服装服饰、母婴、图书、食品等数万个品牌优质商品.便捷、诚信的服务，为您提供愉悦的网上购物体验!&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure><h2 id="keywords"><a href="#keywords" class="headerlink" title="keywords"></a>keywords</h2><p>keywords 是页面关键词，是搜索引擎的关注点之一<br>keywords最好限制在6~8个关键词，关键词之间用英文逗号隔开，采用关键词1，关键词2的形式（越靠前权重越高）</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;Keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;网上购物,网上商城,手机,笔记本,电脑,MP3,CD,VCD,DV,相机,数码,配件,手表,存储卡,品优购&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure><h2 id="LOGO-SEO优化"><a href="#LOGO-SEO优化" class="headerlink" title="LOGO SEO优化"></a>LOGO SEO优化</h2><ol><li>logo里面首先放一个h1标签，目的是为了提权，告诉搜索引擎这个重要性</li><li>h1里再放一个链接，可以返回首页的，把logo作为a的背景图片</li><li>为了搜索引擎收录我们，我们在链接里面要放文字（网站名称），但是文字不要显示出来，可以使用以下做法：<br>方法1：text-indent移动到盒子外边（<code>text-index:-9999px</code>），然后<code>overflow:hidden</code><br>方法2：<code>font-size:0</code></li><li>最后给链接一个title属性，这样鼠标放到logo上就可以看到提示文字了</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 前端 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 前端 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>HTML5+CSS3 品优购代码规范</title>
       <link href="/posts/f3b40e6c/"/>
       <url>/posts/f3b40e6c/</url>
@@ -154,7 +129,32 @@
     
     
     <entry>
-      <title>HTML5+CSS3_10 CSS初始化</title>
+      <title>HTML5+CSS3-11 网页favicon图标</title>
+      <link href="/posts/1cd0b480/"/>
+      <url>/posts/1cd0b480/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>[toc]</p><h1 id="网页favicon图标"><a href="#网页favicon图标" class="headerlink" title="网页favicon图标"></a>网页favicon图标</h1><ol><li>截取png格式的图片</li><li>在网站中将其转为.ico格式</li><li>在head中引入</li></ol><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;link rel=&quot;shortcut <span class="attribute">icon</span>&quot; href=&quot;favicon<span class="selector-class">.ico</span>&quot;&gt;</span><br></pre></td></tr></table></figure><h1 id="网站三大标签SEO优化"><a href="#网站三大标签SEO优化" class="headerlink" title="网站三大标签SEO优化"></a>网站三大标签SEO优化</h1><p>SEO(search Engine Optinization)意思是搜素引擎优化，是一种利用搜索引擎的规则提高网站在有关搜索引擎内的自然排名的方式<br>页面必须有三个标签TDK，即title description keyword来进行SEO优化</p><h2 id="title-网站标题"><a href="#title-网站标题" class="headerlink" title="title 网站标题"></a>title 网站标题</h2><p>title具有不可替代性，是我们网页的第一个重要的标签，是搜索引擎了解网页的入口和对网页主题归属的最佳判断点。<br>建议：网站名-网站的介绍（不超过三十个字）</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>品优购-综合网购首选，价格实惠，质量保证，配送及时，轻松购物！<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="description-网页介绍"><a href="#description-网页介绍" class="headerlink" title="description 网页介绍"></a>description 网页介绍</h2><p>对网站进行介绍</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">ncontent</span>=<span class="string">&quot;品优购-专业的综合网上购物商城,销售家电、家居百货、服装服饰、母婴、图书、食品等数万个品牌优质商品.便捷、诚信的服务，为您提供愉悦的网上购物体验!&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure><h2 id="keywords"><a href="#keywords" class="headerlink" title="keywords"></a>keywords</h2><p>keywords 是页面关键词，是搜索引擎的关注点之一<br>keywords最好限制在6~8个关键词，关键词之间用英文逗号隔开，采用关键词1，关键词2的形式（越靠前权重越高）</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;Keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;网上购物,网上商城,手机,笔记本,电脑,MP3,CD,VCD,DV,相机,数码,配件,手表,存储卡,品优购&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure><h2 id="LOGO-SEO优化"><a href="#LOGO-SEO优化" class="headerlink" title="LOGO SEO优化"></a>LOGO SEO优化</h2><ol><li>logo里面首先放一个h1标签，目的是为了提权，告诉搜索引擎这个重要性</li><li>h1里再放一个链接，可以返回首页的，把logo作为a的背景图片</li><li>为了搜索引擎收录我们，我们在链接里面要放文字（网站名称），但是文字不要显示出来，可以使用以下做法：<br>方法1：text-indent移动到盒子外边（<code>text-index:-9999px</code>），然后<code>overflow:hidden</code><br>方法2：<code>font-size:0</code></li><li>最后给链接一个title属性，这样鼠标放到logo上就可以看到提示文字了</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTML5+CSS3-10 CSS初始化</title>
       <link href="/posts/6bd78416/"/>
       <url>/posts/6bd78416/</url>
       
@@ -179,7 +179,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3_9 元素的显示与隐藏</title>
+      <title>HTML5+CSS3-9 元素的显示与隐藏</title>
       <link href="/posts/bd641a74/"/>
       <url>/posts/bd641a74/</url>
       
@@ -204,7 +204,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3_8 css属性书写顺序（代码规范）</title>
+      <title>HTML5+CSS3-8 css属性书写顺序（代码规范）</title>
       <link href="/posts/ca632ae2/"/>
       <url>/posts/ca632ae2/</url>
       
@@ -229,7 +229,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3_7 盒子阴影</title>
+      <title>HTML5+CSS3-7 盒子阴影</title>
       <link href="/posts/f27b524a/"/>
       <url>/posts/f27b524a/</url>
       
@@ -254,7 +254,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3_6 盒子模型</title>
+      <title>HTML5+CSS3-6 盒子模型</title>
       <link href="/posts/5d756fb5/"/>
       <url>/posts/5d756fb5/</url>
       
@@ -279,7 +279,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3_5 CSS的三大特性</title>
+      <title>HTML5+CSS3-5 CSS的三大特性</title>
       <link href="/posts/4bd8ed8b/"/>
       <url>/posts/4bd8ed8b/</url>
       
@@ -304,7 +304,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3_4 emment语法</title>
+      <title>HTML5+CSS3-4 emment语法</title>
       <link href="/posts/6b7203f0/"/>
       <url>/posts/6b7203f0/</url>
       
@@ -329,7 +329,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3_3 CSS</title>
+      <title>HTML5+CSS3-3 CSS</title>
       <link href="/posts/f5169653/"/>
       <url>/posts/f5169653/</url>
       
@@ -354,7 +354,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3_2 HTML标签</title>
+      <title>HTML5+CSS3-2 HTML标签</title>
       <link href="/posts/8211a6c5/"/>
       <url>/posts/8211a6c5/</url>
       
@@ -379,7 +379,7 @@
     
     
     <entry>
-      <title>HTML5+CSS3_1 HTML语法</title>
+      <title>HTML5+CSS3-1 HTML语法</title>
       <link href="/posts/1b18f77f/"/>
       <url>/posts/1b18f77f/</url>
       
