@@ -1334,8 +1334,8 @@ canvas:not(#ribbon-canvas),
   --global-font-size: 14px;
   --global-bg: #fff;
   --font-color: #4c4948;
-  --hr-border: #d2ebfd;
-  --hr-before-color: #bfe4fb;
+  --hr-border: #98a7ff;
+  --hr-before-color: #6e84fe;
   --search-bg: #f6f8fa;
   --search-input-color: #4c4948;
   --search-result-title: #4c4948;
@@ -1348,7 +1348,7 @@ canvas:not(#ribbon-canvas),
   --tab-button-active-bg: #fff;
   --card-bg: #fff;
   --sidebar-bg: #f6f8fa;
-  --btn-hover-color: #b388ff;
+  --btn-hover-color: #8c9eff;
   --btn-color: #fff;
   --btn-bg: #304ffe;
   --text-bg-hover: rgba(48,79,254,0.7);
@@ -1362,9 +1362,9 @@ canvas:not(#ribbon-canvas),
   --toc-link-color: #666261;
   --card-box-shadow: 0 3px 8px 6px rgba(7,17,27,0.05);
   --card-hover-box-shadow: 0 3px 8px 6px rgba(7,17,27,0.09);
-  --pseudo-hover: #b388ff;
+  --pseudo-hover: #8c9eff;
   --headline-presudo: #a0a0a0;
-  --scrollbar-color: #49b1f5;
+  --scrollbar-color: #304ffe;
 }
 body {
   position: relative;
@@ -1392,19 +1392,6 @@ body {
 }
 input::placeholder {
   color: var(--font-color);
-}
-#web_bg {
-  position: fixed;
-  z-index: -999;
-  width: 100%;
-  height: 100%;
-  background: url(https://cdn.jsdelivr.net/gh/ramsayi/src/img/bg/bg/1002.webp);
-  background-attachment: local;
-  background-position: center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 h1,
 h2,
@@ -1475,7 +1462,7 @@ table td {
   vertical-align: middle;
 }
 *::selection {
-  background: #8c9eff;
+  background: #304ffe;
   color: #f7f7f7;
 }
 button {
@@ -1672,12 +1659,12 @@ figure.highlight pre .javascript .function {
 #article-container pre,
 #article-container code {
   font-size: var(--global-font-size);
-  font-family: consolas, Menlo, 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
+  font-family: consola !important;
 }
 #article-container code {
   padding: 2px 4px;
   background: rgba(27,31,35,0.05);
-  color: #651fff;
+  color: #00b0ff;
 }
 #article-container pre {
   padding: 10px 20px;
@@ -3214,6 +3201,108 @@ h1.page-title + .tag-cloud-list {
     transform: scale(0.7);
   }
 }
+#calendar a {
+  text-decoration: none;
+}
+.cal-head {
+  position: relative;
+  height: 20px;
+  padding: 8px 6px 2px 6px;
+  margin-bottom: 15px;
+}
+.cal-prev,
+.cal-next {
+  position: absolute;
+  top: 9px;
+  width: 9px;
+  height: 10px;
+  padding: 3px 4px;
+  border: 1px solid transparent;
+  color: #333;
+  outline: 0;
+}
+.cal-prev {
+  left: 8px;
+}
+.cal-prev:before {
+  border-right: 9px solid #333;
+}
+.cal-next {
+  right: 8px;
+}
+.cal-next:before {
+  border-left: 9px solid #333;
+}
+.cal-prev:before,
+.cal-next:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.cal-title {
+  width: 120px;
+  margin: 0 auto;
+  color: #333;
+  font: bold 14px/18px Arial;
+  text-align: center;
+}
+.cal-title a {
+  border: 1px solid transparent;
+  color: color-theme;
+}
+.cal,
+.cal th,
+.cal td {
+  border: none;
+}
+.cal {
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+}
+.cal th {
+  background: #fff;
+  color: #000;
+  font-weight: 900 !important;
+}
+.cal tbody a {
+  background-color: #42d3d8;
+  color: #fff;
+  display: block;
+  font-weight: 700;
+}
+.cal tbody .cal-today {
+  background-color: #eaf4f3;
+  color: #26a2a4;
+}
+.cal .cal-gray {
+  color: #ddd;
+}
+.cal th,
+.cal td {
+  font-weight: normal;
+  line-height: 2.5625;
+  padding: 0;
+  text-align: center;
+}
+.cal-title a:hover,
+.cal-prev:hover,
+.cal-next:hover,
+.cal .cal-foot:hover,
+.cal .cal-foot:focus {
+  cursor: pointer;
+}
+.cal tbody a:hover,
+.cal tbody a:focus {
+  background-color: #a1e4e6;
+  color: #fff;
+  cursor: pointer;
+}
 #post-comment .comment-head {
   margin-bottom: 20px;
 }
@@ -3769,7 +3858,7 @@ h1.page-title + .tag-cloud-list {
   text-align: center;
 }
 #pagination .page-number.current {
-  background: #8c9eff;
+  background: #304ffe;
   color: var(--white);
 }
 #pagination .pagination-info {
@@ -4327,7 +4416,7 @@ h1.page-title + .tag-cloud-list {
 #waline-wrap {
   --waline-font-size: 1.1em;
   --waline-theme-color: #304ffe;
-  --waline-active-color: #b388ff;
+  --waline-active-color: #8c9eff;
 }
 #waline-wrap .vuser {
   -webkit-transition: all 0.5s;
