@@ -1,6 +1,6 @@
 /* 滚动条 */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
     height: 10px;
 }
 
@@ -25,10 +25,3 @@
     src: url('https://cdn.jsdelivr.net/gh/ramsayi/src/fonts/Consola/consola.ttf');
 }
 
-/* 底部按钮圆角 */
-#rightside > div > button, #rightside > div > a{
-    margin-bottom: 6px;
-}
-#rightside>div>a, #rightside>div>button {
-    border-radius: 12px;
-}
