@@ -21,8 +21,8 @@
 
 /* 自定义字体 */
 @font-face {
-    font-family: '霞鹜文楷';
-    src: url('https://cdn.jsdelivr.net/gh/ramsayi/src/fonts/LXGWWenKai/LXGWWenKaiLite-Bold.ttf');
+    font-family: 'consola';
+    src: url('https://cdn.jsdelivr.net/gh/ramsayi/src/fonts/Consola/consola.ttf');
 }
 
 /* 底部按钮圆角 */
