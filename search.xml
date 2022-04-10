@@ -4,6 +4,384 @@
   
     
     <entry>
+      <title>问题 D: C语言7.13</title>
+      <link href="/posts/161dc1d4/"/>
+      <url>/posts/161dc1d4/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输出杨辉三角形的前n行。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>第一行有一个正整数n，保证n不超过20。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>共有n行，从第1行至第n行，每行输出与行数相等个数的整数，整数后输出一个空格。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">6</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 </span><br><span class="line">1 1 </span><br><span class="line">1 2 1 </span><br><span class="line">1 3 3 1 </span><br><span class="line">1 4 6 4 1 </span><br><span class="line">1 5 10 10 5 1 </span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> n,i,j;</span><br><span class="line">cin&gt;&gt;n;</span><br><span class="line"><span class="keyword">int</span> a[n][n];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++) &#123;</span><br><span class="line">a[i][i]=<span class="number">1</span>;</span><br><span class="line">a[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;n;i++)</span><br><span class="line"><span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;i;j++)</span><br><span class="line">a[i][j]=a[i<span class="number">-1</span>][j<span class="number">-1</span>]+a[i<span class="number">-1</span>][j];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=i;j++)</span><br><span class="line">cout&lt;&lt;a[i][j]&lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月1号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 C: C++数组实验——循环右移</title>
+      <link href="/posts/448a4ec5/"/>
+      <url>/posts/448a4ec5/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入一个正整数n，定义一个包含n个元素的动态一维数组a（int型），键盘依次输入n个元素。将数组中的元素循环右移，即：a[0]移到a[1]，a[1移到a[2]，……，a[n-1] 移到a[0]。然后输出数组各元素。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入：元素个数n以及这n个元素</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出：重新存放的n个元素（各元素之间有一个空格）</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">8</span><br><span class="line">1 3 5 7 2 4 6 9</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">9 1 3 5 7 2 4 6</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> n,x;</span><br><span class="line">cin&gt;&gt;n;</span><br><span class="line"><span class="keyword">int</span> a[n];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">cin&gt;&gt;a[i];</span><br><span class="line">x=a[n<span class="number">-1</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">a[i]=a[i<span class="number">-1</span>];</span><br><span class="line">a[<span class="number">0</span>]=x;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">cout&lt;&lt;a[i]&lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月1号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 B: C++数组实验—一维数组元素查找</title>
+      <link href="/posts/f857272c/"/>
+      <url>/posts/f857272c/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>定义包含10个整型数的一维数组，从键盘输入10个整数，然后再输入一个待查找的整数x，判断如果能在数组中找到x，则输出x“ is found at ”、下标，否则输出x“ is not found”。</p><p>说明：如果数组中找到多个与x相同的数，则只输出找到的首个元素。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入：第1行输入10个整数</p><p>第2行输入1个待查找的整数</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出：x “ is found at”、下标（数据之间空1格）</p><p>或者：输出 x“ is not found”</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">23 14 45 26 90 85 67 48 62 65</span><br><span class="line">85</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">85 is found at 5</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">10</span>],x,isFound=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)</span><br><span class="line">cin&gt;&gt;arr[i];</span><br><span class="line">cin&gt;&gt;x;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line"><span class="keyword">if</span>(x==arr[i]) &#123;</span><br><span class="line">cout&lt;&lt;x&lt;&lt;<span class="string">&quot; is found at &quot;</span>&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">isFound=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(isFound==<span class="number">0</span>)</span><br><span class="line">cout&lt;&lt;x&lt;&lt;<span class="string">&quot; is not found&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月1号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 A: C++数组实验——从小到大排序</title>
+      <link href="/posts/f9b5041/"/>
+      <url>/posts/f9b5041/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入一个正整数n，定义一个包含n个元素的动态一维数组（double型），输入n个元素，对这n个元素按照从小到大顺序排序，输出排序以后的各个元素。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入：元素个数n以及这n个元素</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出：这n个元素按照从小到大顺序排序以后的结果（各元素之间有一个空格）</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">3.2 1.4 8.5 4.6 2.2</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.4 2.2 3.2 4.6 8.5</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">cin&gt;&gt;n;</span><br><span class="line"><span class="keyword">double</span> arr[n];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">cin&gt;&gt;arr[i];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n<span class="number">-1</span>; i++) &#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n-i<span class="number">-1</span>; j++) &#123;</span><br><span class="line"><span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line"><span class="keyword">double</span> tmp = arr[j];</span><br><span class="line">arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">arr[j+<span class="number">1</span>] = tmp;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">cout&lt;&lt;arr[i]&lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月1号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 E: C语言10.25</title>
+      <link href="/posts/8d05fb4a/"/>
+      <url>/posts/8d05fb4a/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>在main函数中输入10个不等长的字符串，另外写一个函数对它们按字典序从小到大排序。并在main函数中输出这10个已经排好序的字符串。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>共有10行，每行一个字符串。输入保证每行的字符串长度不超过100个字符。请注意字符串中有可能包含空格。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>与输入格式相同，每行输出一个排好序之后的字符串。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">String DDD</span><br><span class="line">String Ee</span><br><span class="line">string AA</span><br><span class="line">String CCCCC</span><br><span class="line">string GG</span><br><span class="line">string jJj</span><br><span class="line">String IiiIII</span><br><span class="line">String h</span><br><span class="line">string fFf</span><br><span class="line">String BBbb</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">String BBbb</span><br><span class="line">String CCCCC</span><br><span class="line">String DDD</span><br><span class="line">String Ee</span><br><span class="line">String IiiIII</span><br><span class="line">String h</span><br><span class="line">string AA</span><br><span class="line">string GG</span><br><span class="line">string fFf</span><br><span class="line">string jJj</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(string *s1,string *s2)</span> </span>&#123;</span><br><span class="line">string x;</span><br><span class="line">x=*s1;</span><br><span class="line">*s1=*s2;</span><br><span class="line">*s2=x;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">string s[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line"><span class="built_in">getline</span>(cin,s[i]);</span><br><span class="line">string *a,*b;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">9</span>;i++)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">9</span>-i;j++)</span><br><span class="line"><span class="keyword">if</span>(s[j]&gt;s[j+<span class="number">1</span>]) &#123;</span><br><span class="line">a=&amp;s[j];</span><br><span class="line">b=&amp;s[j+<span class="number">1</span>];</span><br><span class="line"><span class="built_in">swap</span>(a,b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">cout&lt;&lt;s[i]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月8号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 D: C语言10.15</title>
+      <link href="/posts/1fd37361/"/>
+      <url>/posts/1fd37361/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入3个字符串，按从小到大的顺序输出。要求使用指针的方法进行处理。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>3行，每行一个用字符串。保证每个字符串的长度不超过20。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>按从小到大的顺序输出这3个字符串，每个字符串一行。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">China</span><br><span class="line">CLOCK</span><br><span class="line">deal</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CLOCK</span><br><span class="line">China</span><br><span class="line">deal</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(string *s1,string *s2)</span> </span>&#123;</span><br><span class="line">    string x;</span><br><span class="line">    x=*s1;</span><br><span class="line">    *s1=*s2;</span><br><span class="line">    *s2=x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string s1,s2,s3;</span><br><span class="line">    cin&gt;&gt;s1&gt;&gt;s2&gt;&gt;s3;</span><br><span class="line">    string *a,*b,*c;</span><br><span class="line">    a=&amp;s1;</span><br><span class="line">    b=&amp;s2;</span><br><span class="line">    c=&amp;s3;</span><br><span class="line">    <span class="keyword">if</span>(s1&gt;s2) <span class="built_in">swap</span>(a,b);</span><br><span class="line">    <span class="keyword">if</span>(s1&gt;s3) <span class="built_in">swap</span>(a,c);</span><br><span class="line">    <span class="keyword">if</span>(s2&gt;s3) <span class="built_in">swap</span>(b,c);</span><br><span class="line">    cout&lt;&lt;*a&lt;&lt;<span class="string">&#x27;\n&#x27;</span>&lt;&lt;*b&lt;&lt;<span class="string">&#x27;\n&#x27;</span>&lt;&lt;*c&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月8号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 C: C语言10.10</title>
+      <link href="/posts/f4b888f4/"/>
+      <url>/posts/f4b888f4/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定字符串定义char *a = “I love China!”，读入整数n，输出在进行了a = a + n这个赋值操作以后字符指针a对应的字符串。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>一个整数n，保证0&lt;=n&lt;13.</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出进行了题目描述中赋值操作之后a对应的字符串。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">China!</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *a=<span class="string">&quot;I love China!&quot;</span>;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    a=a+n;</span><br><span class="line">    <span class="keyword">while</span>(*a) &#123;</span><br><span class="line">        <span class="built_in">putchar</span>(*a);</span><br><span class="line">        a++;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月8号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 B: C语言7.20</title>
+      <link href="/posts/5cfb881b/"/>
+      <url>/posts/5cfb881b/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>读入两个字符串s1和s2，比较这两个字符串。若s1&gt;s2，输出一个正数；若s1=s2，输出0；若s1&lt;s2，输出一个负数。输出的非零值应该是相比较的两个字符串第一个不相同位置的字符ASCII差值，例如”And”和”Aid”比较，根据第2个字符的比较结果，应输出5。<br>要求不要使用strcpy和strcmp函数。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>两行字符串。保证每个字符串的长度不超过100。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>两个字符串的比较结果。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">I am a program.</span><br><span class="line">I am not a program.</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-13</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> d=<span class="number">0</span>,i;</span><br><span class="line"><span class="keyword">char</span> s1[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">char</span> s2[<span class="number">100</span>];</span><br><span class="line">cin.<span class="built_in">getline</span>(s1,<span class="built_in"><span class="keyword">sizeof</span></span>(s1));</span><br><span class="line">cin.<span class="built_in">getline</span>(s2,<span class="built_in"><span class="keyword">sizeof</span></span>(s2));</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; d==<span class="number">0</span>||i&lt;<span class="number">100</span>; i++)&#123;</span><br><span class="line"><span class="keyword">if</span>(s1[i]==s2[i])</span><br><span class="line">d=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">d=s1[i]-s2[i];</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">cout&lt;&lt;d&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月8号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 A: C语言7.19</title>
+      <link href="/posts/726b46a7/"/>
+      <url>/posts/726b46a7/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>读入两个字符串，并将其连接起来的新字符串输出。要求不要使用strcat函数。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>两行不包含空格的字符串。保证每个字符串的长度不超过100。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>将第2行的字符串连接在第1行字符串之后的新字符串。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">I am a program.</span><br><span class="line">This is a program.</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">I am a program.This is a program.</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string str1,str2;</span><br><span class="line">    <span class="built_in">getline</span>(cin, str1);</span><br><span class="line">    <span class="built_in">getline</span>(cin, str2);</span><br><span class="line">    cout&lt;&lt;str1+str2&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月8号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 A: C语言8.3</title>
+      <link href="/posts/861974c8/"/>
+      <url>/posts/861974c8/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>用递归的方法求出n!的值。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>一个正整数n，保证n不超过10。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>n!的值。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">120</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fac</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(x==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">return</span> x*<span class="built_in">fac</span>(x<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">cin&gt;&gt;n;</span><br><span class="line">cout&lt;&lt;<span class="built_in">fac</span>(n)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月11号12节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 B: C语言8.21</title>
+      <link href="/posts/739fa8db/"/>
+      <url>/posts/739fa8db/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>编写一个函数，由实参传来一个字符串，统计这个字符串中字母、数字、空格和其他字符的个数。在主函数中输入字符串，并在主函数中输出上述结果。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>一行字符，可能包含空格。保证字符串的长度不超过100。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>分别输出这行字符中的英文字母、空格、数字和其他字符的个数，用空格隔开。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">What are you doing? 123456</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">15 6 4 1</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">count</span><span class="params">(string str)</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">a</span><span class="params">(<span class="number">0</span>)</span>,<span class="title">b</span><span class="params">(<span class="number">0</span>)</span>,<span class="title">c</span><span class="params">(<span class="number">0</span>)</span>,<span class="title">d</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;str.<span class="built_in">length</span>();i++)&#123;</span><br><span class="line"><span class="keyword">if</span>(str[i]&gt;=<span class="string">&#x27;A&#x27;</span>&amp;&amp;str[i]&lt;=<span class="string">&#x27;z&#x27;</span>) a++;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(str[i]&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;str[i]&lt;=<span class="string">&#x27;9&#x27;</span>) b++;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(str[i]==<span class="string">&#x27; &#x27;</span>) c++;</span><br><span class="line"><span class="keyword">else</span> d++;</span><br><span class="line">&#125;</span><br><span class="line">cout&lt;&lt;a&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;b&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;c&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;d&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">string s;</span><br><span class="line"><span class="built_in">getline</span>(cin,s);</span><br><span class="line"><span class="built_in">count</span>(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月11号12节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 C: C语言8.30</title>
+      <link href="/posts/808c487a/"/>
+      <url>/posts/808c487a/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给出年、月、日，使用一个函数计算出该日是该年的第几天。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>只有一行，包含三个正整数分别表示年、月、日。保证年份在0至3000之间，且月、日信息符合规则。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出该日是该年的第几天。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2013 2 10</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">41</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">coutDays</span><span class="params">(<span class="keyword">int</span> y,<span class="keyword">int</span> m,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> days[]=&#123;<span class="number">31</span>,<span class="number">28</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>&#125;;</span><br><span class="line"><span class="keyword">if</span>(y%<span class="number">4</span>==<span class="number">0</span>&amp;&amp;y%<span class="number">100</span>!=<span class="number">0</span>||y%<span class="number">400</span>==<span class="number">0</span>)</span><br><span class="line">days[<span class="number">1</span>]=<span class="number">29</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m<span class="number">-1</span>;i++)</span><br><span class="line">sum+=days[i];</span><br><span class="line">cout&lt;&lt;sum+d&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> y,m,d;</span><br><span class="line">cin&gt;&gt;y&gt;&gt;m&gt;&gt;d;</span><br><span class="line"><span class="built_in">coutDays</span>(y,m,d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月11号12节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 D: C语言10.18</title>
+      <link href="/posts/61620fdc/"/>
+      <url>/posts/61620fdc/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有n个人围成一圈，顺序从1开始排号。从第1个人开始报数（从1到3报数），凡报到3的人退出圈子，问最后留下的是原来第几号的那位。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>只有一个正整数n，保证n不超过1000。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出最后留下的人的原始编号。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> n,m=<span class="number">0</span>,i=<span class="number">1</span>,k=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">cin&gt;&gt;n;</span><br><span class="line"><span class="keyword">int</span> a[n];</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">a[i]=i+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(m&lt;n<span class="number">-1</span>)&#123;</span><br><span class="line"><span class="keyword">if</span>(a[i]!=<span class="number">0</span>) k++;</span><br><span class="line"><span class="keyword">if</span>(k==<span class="number">3</span>) &#123;</span><br><span class="line">a[i]=<span class="number">0</span>;</span><br><span class="line">k=<span class="number">0</span>;</span><br><span class="line">m++;</span><br><span class="line">&#125;</span><br><span class="line">i++;</span><br><span class="line"><span class="keyword">if</span>(i==n+<span class="number">1</span>) i=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line"><span class="keyword">if</span>(a[i]!=<span class="number">0</span>)</span><br><span class="line">cout&lt;&lt;a[i]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月11号12节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 E: C语言10.30</title>
+      <link href="/posts/e4743e84/"/>
+      <url>/posts/e4743e84/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>写一个函数，实现两个字符串的比较过程。即自己写一个strcmp函数，函数的原型为：int strcmp(char *p1, char *p2)。设p1指向字符串s1，p2指向字符串s2。要求当s1=s2时，返回值为0；若s1≠s2，返回它们二者第一个不同字符的ASCII码差值（例如”BOY”与”BAD”，第二个字母不同，’O’与’A’之差为79-65=14）。如果s1&gt;s2，则输出正值；如果s1&lt;s2，则输出负值。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>有两行，每行有一个不包含空格的字符串，即参与比较的两个字符串。保证每个字符串的长度都不超过200。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>只有一个整数，即strcmp比较两个字符串的返回值。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ThisisLarger.</span><br><span class="line">ThisissMALLER.</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-39</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strcmp</span><span class="params">(<span class="keyword">char</span> *p1,<span class="keyword">char</span> *p2)</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> a,b;</span><br><span class="line"><span class="keyword">for</span>(;*p1==*p2&amp;&amp;(*p1!=<span class="string">&#x27;\0&#x27;</span>||*p2!=<span class="string">&#x27;\0&#x27;</span>);p1++,p2++);</span><br><span class="line">a=*p1-*p2;</span><br><span class="line">a==<span class="number">0</span>?b=<span class="number">0</span>:b=*p1-*p2;</span><br><span class="line"><span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">char</span> s1[<span class="number">200</span>],s2[<span class="number">200</span>];</span><br><span class="line">cin&gt;&gt;s1&gt;&gt;s2;</span><br><span class="line">cout&lt;&lt;<span class="built_in">strcmp</span>(s1,s2)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月11号12节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git教程</title>
       <link href="/posts/22d36175/"/>
       <url>/posts/22d36175/</url>
