@@ -3707,6 +3707,9 @@ h1.page-title + .tag-cloud-list {
 #nav .menus_items .menus_item .menus_item_child li:hover {
   background: var(--text-bg-hover);
 }
+#nav .menus_items .menus_item .menus_item_child li:hover * {
+  color: var(--white);
+}
 #nav .menus_items .menus_item .menus_item_child li:first-child {
   border-radius: 5px 5px 0 0;
 }
