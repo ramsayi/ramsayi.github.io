@@ -2755,11 +2755,15 @@ h1.page-title + .tag-cloud-list {
   -o-transition: all 0.4s;
   -ms-transition: all 0.4s;
   transition: all 0.4s;
+  border-radius: 10px;
 }
 #aside-content .card-archives ul.card-archive-list > .card-archive-list-item a:hover,
 #aside-content .card-categories ul.card-category-list > .card-category-list-item a:hover {
   padding: 3px 17px;
   background-color: var(--text-bg-hover);
+  color: var(--white);
+  -webkit-box-shadow: 2px 5px 10px #5972fe;
+  box-shadow: 2px 5px 10px #5972fe;
 }
 #aside-content .card-archives ul.card-archive-list > .card-archive-list-item a span:first-child,
 #aside-content .card-categories ul.card-category-list > .card-category-list-item a span:first-child {
@@ -4258,6 +4262,7 @@ h1.page-title + .tag-cloud-list {
 }
 #sidebar #sidebar-menus .menus_items .site-page:hover {
   background: var(--text-bg-hover);
+  color: var(--white);
 }
 #sidebar #sidebar-menus .menus_items .site-page i:first-child {
   width: 15%;
