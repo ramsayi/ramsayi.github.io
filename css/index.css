@@ -2662,6 +2662,8 @@ h1.page-title + .tag-cloud-list {
   text-align: center;
   line-height: 2.4;
   border-radius: 25px;
+  -webkit-box-shadow: 2px 5px 10px #5972fe;
+  box-shadow: 2px 5px 10px #5972fe;
 }
 #aside-content .card-info #card-info-btn:hover {
   background-color: var(--btn-hover-color);
@@ -2961,6 +2963,10 @@ h1.page-title + .tag-cloud-list {
 #aside-content #card-toc .toc-content .toc-link.active {
   background: #304ffe;
   color: #fff;
+  padding: 5px 0 5px 15px;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 10px #5972fe;
+  box-shadow: 2px 5px 10px #5972fe;
 }
 #aside-content :only-child > .card-widget {
   margin-top: 0;
@@ -4227,6 +4233,8 @@ h1.page-title + .tag-cloud-list {
   text-align: center;
   font-size: 16px;
   line-height: 35px;
+  -webkit-box-shadow: 0 5px 7px #5972fe;
+  box-shadow: 0 5px 7px #5972fe;
 }
 #rightside > div > button:hover,
 #rightside > div > a:hover {
@@ -4296,6 +4304,10 @@ h1.page-title + .tag-cloud-list {
   font-size: 1.15em;
 }
 #sidebar #sidebar-menus .menus_items .site-page:hover {
+  padding: 5px 0 5px 25px;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 10px #5972fe;
+  box-shadow: 2px 5px 10px #5972fe;
   background: var(--text-bg-hover);
   color: var(--white);
 }
