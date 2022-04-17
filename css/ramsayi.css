@@ -38,38 +38,59 @@
         --global-font-size: 12px;
     }
 
-    /* 文章块大小 */
+    /* 文章块 宽度 */
     .layout>div:first-child {
-        width: 95% !important;
+        width: 92% !important;
         margin: 0 auto;
+    }
+
+    /* 底部侧栏 宽度 */
+    #aside-content {
+        width: 92%;
+        margin: 0 auto;
+    }
+
+    /* 文章块 图片 高度 */
+    #recent-posts>.recent-post-item .post_cover {
+        height: 175px;
+    }
+
+    /* 首页 右下角固定按钮 */
+    #rightside {
+        right: -55px;
     }
 }
 
-/* 手机版侧栏宽度 */
+/* 手机版 侧栏 宽度 */
 #sidebar #sidebar-menus {
     right: -250px;
     width: 250px;
 }
 
-/* 手机版侧栏圆角阴影 */
+/* 手机版 侧栏 圆角阴影 */
 #sidebar #sidebar-menus .menus_items .site-page:hover {
     color: white;
     padding: 5px 0 5px 25px;
     border-radius: 8px;
-    box-shadow: 2px 5px 10px var(--btn-bg);
+    box-shadow: 2px 5px 10px var(--btn-hover-color);
 }
 
-/* 首页黑色遮罩 */
+/* 首页 黑色遮罩 */
 #page-header:not(.not-top-img):before {
     background-color: transparent;
 }
 
-/* 顶部导航栏白色悬停字体 */
+/* 首页 顶部导航栏 白色悬停字体 */
 #nav .menus_items .menus_item .menus_item_child li:hover * {
     color: white;
 }
 
-/* 首页关注按钮 */
+/* 首页 快捷分类 字体大小 */
+.magnet_link_context {
+    font-size: 14px;
+}
+
+/* 首页 关注按钮 */
 #aside-content .card-info #card-info-btn {
     border-radius: 25px;
     box-shadow: 2px 5px 10px var(--btn-bg);
@@ -82,7 +103,7 @@
     transition: .5s;
 }
 
-/* 右下角固定按钮 */
+/* 首页 右下角固定按钮 */
 #rightside>div>button,
 #rightside>div>a {
     box-shadow: 0px 5px 7px var(--btn-bg);
@@ -95,12 +116,12 @@
     transform: scale(1.1);
 }
 
-/* 首页最新文章圆角图片 */
+/* 首页 最新文章 圆角图片 */
 #aside-content .aside-list>.aside-list-item .thumbnail {
     border-radius: 8px;
 }
 
-/* 首页分类悬停圆角阴影 */
+/* 首页 分类 悬停圆角阴影 */
 #aside-content .card-archives ul.card-archive-list>.card-archive-list-item a,
 #aside-content .card-categories ul.card-category-list>.card-category-list-item a {
     border-radius: 8px;
@@ -113,7 +134,17 @@
     box-shadow: 2px 5px 10px var(--btn-bg);
 }
 
-/* 文章页目录悬停阴影 */
+/* 首页 分页器 圆角 */
+#pagination .page-number,
+.layout>.recent-posts .pagination>*:not(.space) {
+    border-radius: 20px;
+}
+
+#pagination .page-number.current {
+    box-shadow: 0px 5px 7px var(--btn-hover-color);
+}
+
+/* 文章页 目录 悬停阴影 */
 #aside-content #card-toc .toc-content .toc-link.active {
     padding: 5px 0 5px 15px;
     border-radius: 8px;
@@ -154,7 +185,7 @@
     border-radius: 8px;
 }
 
-/* valine评论按钮阴影 */
+/* 文章页 valine评论 按钮阴影 */
 #vcomment .vbtn {
     box-shadow: 0px 5px 7px var(--btn-bg);
 }
@@ -164,19 +195,9 @@
     box-shadow: 0px 5px 7px var(--btn-hover-color);
 }
 
-/* 归档图片圆角 */
+/* 归档 图片 圆角 */
 .article-sort-item-img {
     border-radius: 8px;
-}
-
-/* 分页器圆角 */
-#pagination .page-number,
-.layout>.recent-posts .pagination>*:not(.space) {
-    border-radius: 20px;
-}
-
-#pagination .page-number.current {
-    box-shadow: 0px 5px 7px var(--btn-hover-color);
 }
 
 /* 友链页 悬停白色 */
