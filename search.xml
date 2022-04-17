@@ -12,6 +12,12 @@
       
       
       
+        <tags>
+            
+            <tag> 4月18号12节 </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -24,6 +30,12 @@
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>编写一个函数，输入一行字符，将此字符串中最长的单词输出。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>一行字符，只包含英文字符和空格。保证字符串的长度不超过100。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出读入的最长单词。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">This is not a program</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">program</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">longword</span><span class="params">(<span class="keyword">char</span> s[])</span></span>&#123;</span><br><span class="line"><span class="keyword">char</span> s1[<span class="number">100</span>],s2[<span class="number">100</span>];</span><br><span class="line">s1[<span class="number">0</span>]=<span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">strlen</span>(s);i++)&#123;</span><br><span class="line"><span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(s[i]&gt;=<span class="string">&#x27;A&#x27;</span>&amp;&amp;s[i]&lt;=<span class="string">&#x27;Z&#x27;</span>||s[i]&gt;=<span class="string">&#x27;a&#x27;</span>&amp;&amp;s[i]&lt;=<span class="string">&#x27;z&#x27;</span>)</span><br><span class="line">s2[count++]=s[i++];</span><br><span class="line">s2[count]=<span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">strlen</span>(s1)&lt;<span class="built_in">strlen</span>(s2))</span><br><span class="line"><span class="built_in">strcpy</span>(s1,s2);</span><br><span class="line">&#125;</span><br><span class="line">cout&lt;&lt;s1&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">char</span> chars[<span class="number">100</span>];</span><br><span class="line"><span class="built_in">gets</span>(chars);</span><br><span class="line"><span class="built_in">longword</span>(chars);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> 4月18号12节 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -38,6 +50,12 @@
       
       
       
+        <tags>
+            
+            <tag> 4月18号12节 </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -51,6 +69,12 @@
       
       
       
+        <tags>
+            
+            <tag> 4月18号12节 </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -63,6 +87,12 @@
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个一维数组，包含10个学生的成绩，求出平均分、最高分和最低分。要求使用将数组传至函数进行操作的方法。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>只有一行，包含10个用空格隔开的实数，表示10个学生的成绩。保证所有成绩不小于0，不大于100。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出平均分、最高分和最低分，用空格隔开，小数点后保留2位小数。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">100 56 78 98.5 76 87 99 67.5 75 97</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">83.40 100.00 56.00</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">(<span class="keyword">float</span> a[<span class="number">10</span>])</span></span>&#123;</span><br><span class="line">    cout.<span class="built_in">precision</span>(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">float</span> average=<span class="number">0</span>,sum=<span class="number">0</span>,max=<span class="number">0</span>,min=<span class="number">100</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        sum+=a[i];</span><br><span class="line">        average=sum/<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;max)</span><br><span class="line">        max=a[i];</span><br><span class="line">        <span class="keyword">if</span>(a[i]&lt;min)</span><br><span class="line">        min=a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;fixed&lt;&lt;average&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;fixed&lt;&lt;max&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;fixed&lt;&lt;min&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> a[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    <span class="built_in">calc</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> 4月18号12节 </tag>
+            
+        </tags>
       
     </entry>
     
