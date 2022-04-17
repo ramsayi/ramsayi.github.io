@@ -80,6 +80,10 @@
     background-color: transparent;
 }
 
+#page-header.post-bg:before {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 /* 首页 顶部导航栏 白色悬停字体 */
 #nav .menus_items .menus_item .menus_item_child li:hover * {
     color: white;
@@ -87,7 +91,7 @@
 
 /* 首页 快捷分类 字体大小 */
 .magnet_link_context {
-    font-size: 14px;
+    font-size: 14px !important;
 }
 
 /* 首页 关注按钮 */
