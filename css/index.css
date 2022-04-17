@@ -1371,7 +1371,7 @@ body {
   background: var(--global-bg);
   color: var(--font-color);
   font-size: var(--global-font-size);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: 霞鹜文楷;
   line-height: 2;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -2661,9 +2661,6 @@ h1.page-title + .tag-cloud-list {
   color: var(--btn-color);
   text-align: center;
   line-height: 2.4;
-  border-radius: 25px;
-  -webkit-box-shadow: 2px 5px 10px #5972fe;
-  box-shadow: 2px 5px 10px #5972fe;
 }
 #aside-content .card-info #card-info-btn:hover {
   background-color: var(--btn-hover-color);
@@ -2792,15 +2789,11 @@ h1.page-title + .tag-cloud-list {
   -o-transition: all 0.4s;
   -ms-transition: all 0.4s;
   transition: all 0.4s;
-  border-radius: 10px;
 }
 #aside-content .card-archives ul.card-archive-list > .card-archive-list-item a:hover,
 #aside-content .card-categories ul.card-category-list > .card-category-list-item a:hover {
   padding: 3px 17px;
   background-color: var(--text-bg-hover);
-  color: var(--white);
-  -webkit-box-shadow: 2px 5px 10px #5972fe;
-  box-shadow: 2px 5px 10px #5972fe;
 }
 #aside-content .card-archives ul.card-archive-list > .card-archive-list-item a span:first-child,
 #aside-content .card-categories ul.card-category-list > .card-category-list-item a span:first-child {
@@ -2843,6 +2836,9 @@ h1.page-title + .tag-cloud-list {
   -o-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
+}
+#aside-content .card-categories .card-category-list > .parent > .child {
+  display: none;
 }
 #aside-content .card-webinfo .webinfo .webinfo-item {
   display: -webkit-box;
@@ -2963,10 +2959,6 @@ h1.page-title + .tag-cloud-list {
 #aside-content #card-toc .toc-content .toc-link.active {
   background: #304ffe;
   color: #fff;
-  padding: 5px 0 5px 15px;
-  border-radius: 10px;
-  -webkit-box-shadow: 2px 5px 10px #5972fe;
-  box-shadow: 2px 5px 10px #5972fe;
 }
 #aside-content :only-child > .card-widget {
   margin-top: 0;
@@ -3381,6 +3373,7 @@ h1.page-title + .tag-cloud-list {
   position: absolute;
   width: 100%;
   height: 100%;
+  background-color: rgba(0,0,0,0.3);
   content: '';
 }
 #page-header.full_page {
@@ -3751,9 +3744,6 @@ h1.page-title + .tag-cloud-list {
 }
 #nav .menus_items .menus_item .menus_item_child li:hover {
   background: var(--text-bg-hover);
-}
-#nav .menus_items .menus_item .menus_item_child li:hover * {
-  color: var(--white);
 }
 #nav .menus_items .menus_item .menus_item_child li:first-child {
   border-radius: 5px 5px 0 0;
@@ -4233,8 +4223,6 @@ h1.page-title + .tag-cloud-list {
   text-align: center;
   font-size: 16px;
   line-height: 35px;
-  -webkit-box-shadow: 0 5px 7px #5972fe;
-  box-shadow: 0 5px 7px #5972fe;
 }
 #rightside > div > button:hover,
 #rightside > div > a:hover {
@@ -4304,12 +4292,7 @@ h1.page-title + .tag-cloud-list {
   font-size: 1.15em;
 }
 #sidebar #sidebar-menus .menus_items .site-page:hover {
-  padding: 5px 0 5px 25px;
-  border-radius: 10px;
-  -webkit-box-shadow: 2px 5px 10px #5972fe;
-  box-shadow: 2px 5px 10px #5972fe;
   background: var(--text-bg-hover);
-  color: var(--white);
 }
 #sidebar #sidebar-menus .menus_items .site-page i:first-child {
   width: 15%;
