@@ -148,6 +148,15 @@
     box-shadow: 0px 5px 7px var(--btn-hover-color);
 }
 
+/* 文章页 代码块 展开按钮 */
+#article-container .code-expand-btn {
+    font-size: 20px;
+}
+
+#article-container .code-expand-btn i {
+    color: var(--white);
+}
+
 /* 文章页 目录 悬停阴影 */
 #aside-content #card-toc .toc-content .toc-link.active {
     padding: 5px 0 5px 15px;
