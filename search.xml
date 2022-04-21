@@ -4,6 +4,114 @@
   
     
     <entry>
+      <title>问题 D: 奇数求和</title>
+      <link href="/posts/84b0f900/"/>
+      <url>/posts/84b0f900/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>计算非负整数 m 到 n（包括m 和 n ）之间的所有奇数的和，其中，m 不大于 n，且n 不大于300。例如 m=3, n=12, 其和则为：3+5+7+9+11=35。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>两个数 m 和 n，两个数以一个空格分开，其中 0 &lt;= m &lt;= n &lt;= 300 。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出一行，包含一个整数，表示m 到 n（包括m 和 n ）之间的所有奇数的和。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7 15</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">55</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> m,n,<span class="built_in">sum</span>(<span class="number">0</span>);</span><br><span class="line">cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=m;i&lt;=n;i++)</span><br><span class="line"><span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">1</span>)</span><br><span class="line">sum+=i;</span><br><span class="line">cout&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月22号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 C: 奥运奖牌计数</title>
+      <link href="/posts/55b2a1a5/"/>
+      <url>/posts/55b2a1a5/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>2008年北京奥运会，A国的运动员参与了n天的决赛项目(1≤n≤17)。现在要统计一下A国所获得的金、银、铜牌数目及总奖牌数。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>输入n＋1行，第1行是A国参与决赛项目的天数n，其后n行，每一行是该国某一天获得的金、银、铜牌数目，以一个空格分开。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出1行，包括4个整数，为A国所获得的金、银、铜牌总数及总奖牌数，以一个空格分开。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3</span><br><span class="line">1 0 3</span><br><span class="line">3 1 0</span><br><span class="line">0 3 0</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4 4 3 11</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> x,<span class="built_in">gol</span>(<span class="number">0</span>),<span class="built_in">sil</span>(<span class="number">0</span>),<span class="built_in">cop</span>(<span class="number">0</span>),<span class="built_in">sum</span>(<span class="number">0</span>);</span><br><span class="line">cin&gt;&gt;x;</span><br><span class="line"><span class="keyword">int</span> a[x][<span class="number">3</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;x;i++)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;j++)</span><br><span class="line">cin&gt;&gt;a[i][j];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;x;i++)&#123;</span><br><span class="line">gol+=a[i][<span class="number">0</span>];</span><br><span class="line">sil+=a[i][<span class="number">1</span>];</span><br><span class="line">cop+=a[i][<span class="number">2</span>];</span><br><span class="line">&#125;</span><br><span class="line">sum=gol+sil+cop;</span><br><span class="line">cout&lt;&lt;gol&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;sil&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;cop&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月22号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 B: 求N以内的素数</title>
+      <link href="/posts/fea9501a/"/>
+      <url>/posts/fea9501a/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>求N以内（包括N）的素数。(N&lt;=100000)</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>N</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>N以内的所有素数，一个素数占一行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">100</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2</span><br><span class="line">3</span><br><span class="line">5</span><br><span class="line">7</span><br><span class="line">11</span><br><span class="line">13</span><br><span class="line">17</span><br><span class="line">19</span><br><span class="line">23</span><br><span class="line">29</span><br><span class="line">31</span><br><span class="line">37</span><br><span class="line">41</span><br><span class="line">43</span><br><span class="line">47</span><br><span class="line">53</span><br><span class="line">59</span><br><span class="line">61</span><br><span class="line">67</span><br><span class="line">71</span><br><span class="line">73</span><br><span class="line">79</span><br><span class="line">83</span><br><span class="line">89</span><br><span class="line">97</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">outPrime</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i,j;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=a;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(j=<span class="number">2</span>;j&lt;=<span class="built_in">sqrt</span>(i);j++)</span><br><span class="line"><span class="keyword">if</span>(i%j==<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">if</span>(j&gt;<span class="built_in">sqrt</span>(i))</span><br><span class="line">cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">cin&gt;&gt;n;</span><br><span class="line"><span class="built_in">outPrime</span>(n);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月22号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>问题 A: C语言8.17</title>
+      <link href="/posts/cdb07bf6/"/>
+      <url>/posts/cdb07bf6/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>写一个函数，使输入的一个字符串按反序存放，在主函数中输入和输出字符串。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>只有一行，表示输入的字符串。请注意输入的字符串可能有空格。保证字符串的长度不超过100。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>将读入的字符串反序后的字符串。<br>请注意行尾输出换行。</p><h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">This is a program.</span><br></pre></td></tr></table></figure><h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.margorp a si sihT</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">char</span> a[])</span></span>&#123;</span><br><span class="line"><span class="keyword">char</span> b[<span class="number">101</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="built_in">strlen</span>(a);j&gt;<span class="number">0</span>;i++,j--)</span><br><span class="line">b[j<span class="number">-1</span>]=a[i];   </span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">strlen</span>(a);i++)</span><br><span class="line">a[i]=b[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">char</span> a[<span class="number">101</span>];</span><br><span class="line"><span class="built_in">gets</span>(a);</span><br><span class="line"><span class="built_in">reverse</span>(a);</span><br><span class="line"><span class="built_in">puts</span>(a);</span><br><span class="line">cout&lt;&lt;endl;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> C++ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 4月22号78节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>前端工程化与webpack</title>
       <link href="/posts/87137f47/"/>
       <url>/posts/87137f47/</url>
