@@ -61,6 +61,11 @@
     }
 }
 
+/* 手机版 搜索按钮 */
+#nav #search-button {
+    padding: 0 10px 0 14px;
+}
+
 /* 手机版 侧栏 宽度 */
 #sidebar #sidebar-menus {
     right: -250px;
@@ -146,6 +151,11 @@
 
 #pagination .page-number.current {
     box-shadow: 0px 5px 7px var(--btn-hover-color);
+}
+
+/* 文章页 代码块 复制按钮 */
+#article-container figure.highlight .highlight-tools .expand~.copy-button {
+    right: 2.5em;
 }
 
 /* 文章页 代码块 展开按钮 */
