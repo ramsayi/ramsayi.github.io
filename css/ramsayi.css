@@ -158,6 +158,12 @@
     right: 2.5em;
 }
 
+/* 文章页 行内代码 背景样式 */
+#article-container code {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 /* 文章页 代码块 展开按钮 */
 #article-container .code-expand-btn {
     font-size: 20px;
