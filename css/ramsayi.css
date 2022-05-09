@@ -162,6 +162,7 @@
 #article-container code {
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin: 3px;
 }
 
 /* 文章页 代码块 展开按钮 */
