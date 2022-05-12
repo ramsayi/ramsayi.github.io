@@ -1371,7 +1371,7 @@ body {
   background: var(--global-bg);
   color: var(--font-color);
   font-size: var(--global-font-size);
-  font-family: 霞鹜文楷;
+  font-family: Harmony;
   line-height: 2;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -1663,7 +1663,7 @@ figure.highlight pre .javascript .function {
 #article-container code {
   padding: 2px 4px;
   background: rgba(27,31,35,0.05);
-  color: #ff5722;
+  color: #ff69b4;
 }
 #article-container pre {
   padding: 10px 20px;
@@ -4409,6 +4409,7 @@ mjx-container[display],
 .has-jax {
   overflow-x: auto;
   overflow-y: hidden;
+  line-height: normal !important;
 }
 .aplayer {
   color: #4c4948;
@@ -5676,7 +5677,7 @@ blockquote.pullquote.right {
 }
 .search-dialog {
   position: fixed;
-  top: 100px;
+  top: 10%;
   left: 50%;
   z-index: 1001;
   display: none;
@@ -5783,7 +5784,7 @@ blockquote.pullquote.right {
   color: #304ffe;
 }
 #local-search .search-dialog .local-search__hit-item .search-result {
-  margin: 0 0 8px;
+  margin: 0 8px 8px 0;
   word-break: break-all;
 }
 #local-search .search-dialog .local-search__hit-item .search-keyword {
@@ -5792,7 +5793,7 @@ blockquote.pullquote.right {
 }
 #local-search .search-dialog .search-result-list {
   overflow-y: auto;
-  max-height: 210px;
+  max-height: calc(80vh - 130px);
 }
 @media screen and (max-width: 768px) {
   #local-search .search-dialog .search-result-list {
