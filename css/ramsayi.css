@@ -25,9 +25,14 @@
     src: url('https://cdn.jsdelivr.net/gh/ramsayi/src/fonts/Consola/consola.ttf');
 }
 
-@font-face {
+/* @font-face {
     font-family: '霞鹜文楷';
     src: url('https://cdn.jsdelivr.net/gh/ramsayi/src/fonts/LXGWWenKai/LXGWWenKaiLite-Bold.ttf');
+} */
+
+@font-face {
+    font-family: 'Harmony';
+    src: url('https://cdn.jsdelivr.net/gh/ramsayi/src/fonts/HarmonyOS/HarmonyOS_Sans_SC_Regular.ttf');
 }
 
 /* 手机版 媒体查询 */
@@ -102,7 +107,7 @@
 /* 首页 关注按钮 */
 #aside-content .card-info #card-info-btn {
     border-radius: 25px;
-    box-shadow: 2px 5px 10px var(--btn-bg);
+    /* box-shadow: 2px 5px 10px var(--btn-bg); */
 }
 
 #aside-content .card-info #card-info-btn:hover {
