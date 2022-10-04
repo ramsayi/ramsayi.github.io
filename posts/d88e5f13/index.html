@@ -1,0 +1,462 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>react好租客项目Day03-城市选择功能&amp;react-virtualized组件使用 | 𝙍𝙖𝙢𝙨𝙖𝙮𝙞'𝙨 𝘽𝙡𝙤𝙜</title><meta name="keywords" content="React"><meta name="author" content="Ramsayi"><meta name="copyright" content="Ramsayi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="城市选择模块目标 能够实现顶部导航栏 能够获取城市列表数据，热门城市数据，当前定位城市数据，并且对数据进行重新封装 知道什么是长列表，以及带来的缺陷 说出长列表性能优化的两种方式 能够使用 react-virtualized进行城市列表的渲染 能够渲染右侧索引列表  功能分析 切换城市，查看该城市下的房源信息 功能 顶部导航栏 城市列表展示 使用索引快速切换城市 点击城市名称切换城市    顶部导">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react好租客项目Day03-城市选择功能&amp;react-virtualized组件使用">
+<meta property="og:url" content="https://ramsayi.github.io/posts/d88e5f13/index.html">
+<meta property="og:site_name" content="𝙍𝙖𝙢𝙨𝙖𝙮𝙞&#39;𝙨 𝘽𝙡𝙤𝙜">
+<meta property="og:description" content="城市选择模块目标 能够实现顶部导航栏 能够获取城市列表数据，热门城市数据，当前定位城市数据，并且对数据进行重新封装 知道什么是长列表，以及带来的缺陷 说出长列表性能优化的两种方式 能够使用 react-virtualized进行城市列表的渲染 能够渲染右侧索引列表  功能分析 切换城市，查看该城市下的房源信息 功能 顶部导航栏 城市列表展示 使用索引快速切换城市 点击城市名称切换城市    顶部导">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp">
+<meta property="article:published_time" content="2022-07-23T08:59:00.000Z">
+<meta property="article:modified_time" content="2022-09-26T14:20:18.000Z">
+<meta property="article:author" content="Ramsayi">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/ramsayi/src/img/logo/logo_1.png"><link rel="canonical" href="https://ramsayi.github.io/posts/d88e5f13/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"这篇文章已经","messageNext":"天未更新了，其中的内容可能已经不再适用了。"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":1000},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#304ffe","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'react好租客项目Day03-城市选择功能&react-virtualized组件使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-26 22:20:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/ramsayi.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/logo/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">135</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">36</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 前端</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://dart.cn/guides"><i class="fa-fw fas fa-book"></i><span> Dart中文文档</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://doc.flutterchina.club/docs/"><i class="fa-fw fas fa-book"></i><span> Flutter中文文档</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://book.flutterchina.club/"><i class="fa-fw fas fa-book"></i><span> Flutter实战</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 后端</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="//www.liaoxuefeng.com/wiki/1016959663602400"><i class="fa-fw fas fa-book"></i><span> Python教程 - 廖雪峰</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="//www.liaoxuefeng.com/wiki/1177760294764384"><i class="fa-fw fas fa-book"></i><span> SQL教程 - 廖雪峰</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-chevron-circle-down"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="//scabet.github.io/"><i class="fa-fw fas fa-compass"></i><span> Scabet</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="//aabbk.github.io/"><i class="fa-fw fas fa-compass"></i><span> 网址导航</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="//aabbs.github.io/"><i class="fa-fw fas fa-compass"></i><span> 花里胡哨</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="//aabbt.github.io/"><i class="fa-fw fas fa-compass"></i><span> Aabbt</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="//swclub.github.io/"><i class="fa-fw fas fa-compass"></i><span> SWClub</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">𝙍𝙖𝙢𝙨𝙖𝙮𝙞'𝙨 𝘽𝙡𝙤𝙜</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 前端</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://dart.cn/guides"><i class="fa-fw fas fa-book"></i><span> Dart中文文档</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://doc.flutterchina.club/docs/"><i class="fa-fw fas fa-book"></i><span> Flutter中文文档</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://book.flutterchina.club/"><i class="fa-fw fas fa-book"></i><span> Flutter实战</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 后端</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="//www.liaoxuefeng.com/wiki/1016959663602400"><i class="fa-fw fas fa-book"></i><span> Python教程 - 廖雪峰</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="//www.liaoxuefeng.com/wiki/1177760294764384"><i class="fa-fw fas fa-book"></i><span> SQL教程 - 廖雪峰</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-chevron-circle-down"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="//scabet.github.io/"><i class="fa-fw fas fa-compass"></i><span> Scabet</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="//aabbk.github.io/"><i class="fa-fw fas fa-compass"></i><span> 网址导航</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="//aabbs.github.io/"><i class="fa-fw fas fa-compass"></i><span> 花里胡哨</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="//aabbt.github.io/"><i class="fa-fw fas fa-compass"></i><span> Aabbt</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="//swclub.github.io/"><i class="fa-fw fas fa-compass"></i><span> SWClub</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">react好租客项目Day03-城市选择功能&amp;react-virtualized组件使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-23T08:59:00.000Z" title="发表于 2022-07-23 16:59:00">2022-07-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-26T14:20:18.000Z" title="更新于 2022-09-26 22:20:18">2022-09-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">技术学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/React/">React</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/d88e5f13/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/posts/d88e5f13/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="城市选择模块"><a href="#城市选择模块" class="headerlink" title="城市选择模块"></a>城市选择模块</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
+<li>能够实现顶部导航栏</li>
+<li>能够获取城市列表数据，热门城市数据，当前定位城市数据，并且对数据进行重新封装</li>
+<li>知道什么是长列表，以及带来的缺陷</li>
+<li>说出长列表性能优化的两种方式</li>
+<li>能够使用 react-virtualized进行城市列表的渲染</li>
+<li>能够渲染右侧索引列表</li>
+</ul>
+<h2 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h2><ul>
+<li>切换城市，查看该城市下的房源信息</li>
+<li>功能<ul>
+<li>顶部导航栏</li>
+<li>城市列表展示</li>
+<li>使用索引快速切换城市</li>
+<li>点击城市名称切换城市</li>
+</ul>
+</li>
+</ul>
+<h2 id="顶部导航栏（★★★）"><a href="#顶部导航栏（★★★）" class="headerlink" title="顶部导航栏（★★★）"></a>顶部导航栏（★★★）</h2><ul>
+<li>打开antd-mobile 组件库的NavBar 导航栏组件 文档</li>
+<li>从文档中拷贝组件示例代码到项目中，让其正确运行</li>
+<li>修改导航栏样式和结构</li>
+</ul>
+<p><strong>示例</strong></p>
+<ul>
+<li>引入 组件库</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123;NavBar, Icon&#125; from &#x27;antd-mobile&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>拷贝代码结构</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;NavBar</span><br><span class="line">        // 模式 默认值是 dark</span><br><span class="line">        mode=&quot;light&quot;</span><br><span class="line">        // 左侧小图片</span><br><span class="line">        icon=&#123;&lt;Icon type=&quot;left&quot; /&gt;&#125;</span><br><span class="line">        // 左侧按钮的点击事件</span><br><span class="line">        onLeftClick=&#123;() =&gt; console.log(&#x27;onLeftClick&#x27;)&#125;</span><br><span class="line">        // 右侧按按钮图标</span><br><span class="line">        rightContent=&#123;[</span><br><span class="line">            &lt;Icon key=&quot;0&quot; type=&quot;search&quot; style=&#123;&#123; marginRight: &#x27;16px&#x27; &#125;&#125; /&gt;,</span><br><span class="line">            &lt;Icon key=&quot;1&quot; type=&quot;ellipsis&quot; /&gt;,</span><br><span class="line">        ]&#125;</span><br><span class="line">    &gt;城市列表&lt;/NavBar&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改结构代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;NavBar</span><br><span class="line">        // 模式 默认值是 dark</span><br><span class="line">        mode=&quot;light&quot;</span><br><span class="line">        // 左侧小图片</span><br><span class="line">        icon=&#123;&lt;i className=&#x27;iconfont icon-back&#x27; /&gt;&#125;</span><br><span class="line">        // 左侧按钮的点击事件</span><br><span class="line">        onLeftClick=&#123;() =&gt; this.props.history.go(-1)&#125;</span><br><span class="line">    &gt;城市列表&lt;/NavBar&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置相应的样式</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.citylist</span> &#123;</span><br><span class="line">    <span class="selector-class">.navbar</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#f6f5f6</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// navbar 标题颜色</span></span><br><span class="line">    <span class="selector-class">.am-navbar-title</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取处理数据（★★★）"><a href="#获取处理数据（★★★）" class="headerlink" title="获取处理数据（★★★）"></a>获取处理数据（★★★）</h2><ul>
+<li>页面加载时候，根据接口获取到城市列表数据</li>
+<li>分析当前数据格式以及该功能需要的数据格式</li>
+<li>转换当前数据格式为所需要的数据格式‘</li>
+</ul>
+<h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><ul>
+<li>根据接口文档提供的url进行网络请求</li>
+<li>获取到相应的数据信息</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 当组件被挂载的时候调用</span><br><span class="line">componentDidMount() &#123;</span><br><span class="line">   this.getCityList()</span><br><span class="line">&#125;</span><br><span class="line">async getCityList() &#123;</span><br><span class="line">    let &#123;data:res&#125; = await axios.get(&#x27;http://localhost:8080/area/city?level=1&#x27;)</span><br><span class="line">    console.log(res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="处理数据格式"><a href="#处理数据格式" class="headerlink" title="处理数据格式"></a>处理数据格式</h3><p>我们需要把服务器返回的数据进行格式化处理，我们可以通过首字母来进行城市的定位，所以我们需要把格式转换成以下格式</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/article/citylist.png"></p>
+<ul>
+<li>我们需要遍历  list数组</li>
+<li>获取到每一个城市的首字母</li>
+<li>判断我们定义的数组中是否有这个分类，如果有，那么直接push数据进来，如果没有，添加这个分类</li>
+<li>当城市列表数据按照首字母分好类了之后，还需要实现热门城市数据和定位城市数据</li>
+<li>获取热门城市数据，添加到<code>cityList</code> 列表数据中，将索引数据添加到 <code>cityIndex</code> 索引数据中</li>
+<li>获取当前城市数据，添加到<code>cityList</code> 列表数据中，将索引数据添加到 <code>cityIndex</code> 索引数据中</li>
+</ul>
+<p>封装一个函数，来处理这个数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 格式化返回的数据</span><br><span class="line"> * @param &#123;*&#125; list </span><br><span class="line"> */</span><br><span class="line">function formatCityData(list) &#123;</span><br><span class="line">    // 键是首字母，值是一个数组：对应首字母的城市信息</span><br><span class="line">    let cityList = &#123;&#125;</span><br><span class="line">    list.forEach(item =&gt; &#123;</span><br><span class="line">        // 通过简写获取到第一个首字母</span><br><span class="line">        let first = item.short.substr(0, 1)</span><br><span class="line">        // 判断对象中是否有这个key 我们可以利用对象取值的第二种方式 中括号的方式</span><br><span class="line">        if(cityList[first])&#123;</span><br><span class="line">            // 如果进入if 代表有这个值，我们只需要直接push进去</span><br><span class="line">            cityList[first].push(item)</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            // 如果进入else 代表没有这个值，我们初始化这个属性，并且把当前数据设置进去</span><br><span class="line">            cityList[first] = [item]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    // 接下来我们需要把 cityList里面所有的key取出来，放在数组中，充当城市列表右侧的首字母导航条</span><br><span class="line">    let cityIndex = Object.keys(cityList).sort() </span><br><span class="line">    return &#123;</span><br><span class="line">        cityList,</span><br><span class="line">        cityIndex</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>getCityList()</code>方法中调用这个函数，来格式化数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">async getCityList() &#123;</span><br><span class="line">    let &#123; data: res &#125; = await axios.get(&#x27;http://localhost:8080/area/city?level=1&#x27;)</span><br><span class="line">    // 格式化返回的数据</span><br><span class="line">    let &#123; cityList, cityIndex &#125; = formatCityData(res.body)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>获取热门数据</strong>，并且添加到 <code>cityList</code>和<code>cityListIndex</code>中，注意，对象里面的属性是无序的，可以直接插入，但是数组是有序的，我们需要添加到前面</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 获取热门城市数据</span><br><span class="line">let &#123;data: hotRes&#125; = await axios.get(&#x27;http://localhost:8080/area/hot&#x27;)</span><br><span class="line">// 将热门数据添加到 cityList</span><br><span class="line">cityList[&#x27;hot&#x27;] = hotRes.body</span><br><span class="line">// 将热门数据添加到 cityIndex </span><br><span class="line">cityIndex.unshift(&#x27;hot&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>获取当前城市信息</strong>，我们将获取定位城市的代码封装到一个函数中，哪个页面需要获取定位城市，直接调用该方法即可</p>
+<ul>
+<li>在utils目录中，创建一个文件，在这个文件中进行封装</li>
+<li>创建并且导出获取定位城市的函数 getCurrentCity</li>
+<li>判断localStorage中是否有定位信息</li>
+<li>如果没有，我们通过获取定位信息来获取当前定位城市，获取完了需要存到本地存储中</li>
+<li>如果有，直接使用就好</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import axios from &#x27;axios&#x27;</span><br><span class="line">export const getCurrentCity = () =&gt; &#123;</span><br><span class="line">    // 获取本地存储中是否有</span><br><span class="line">    let localCity = JSON.parse(localStorage.getItem(&#x27;localCity&#x27;))</span><br><span class="line">    if (!localCity) &#123;</span><br><span class="line">        // 如果没有，就需要获取当前定位城市</span><br><span class="line">        // 利用 promis 来解决异步数据的返回</span><br><span class="line">        return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                // 获取当前城市信息</span><br><span class="line">                var myCity = new window.BMap.LocalCity();</span><br><span class="line">                myCity.get(async res =&gt; &#123;</span><br><span class="line">                    // 当获取到对应的城市信息了后，我们需要请求我们自己的服务器</span><br><span class="line">                    const &#123; data: infoRes &#125; = await axios.get(&#x27;http://localhost:8080/area/info&#x27;, &#123;</span><br><span class="line">                        params: &#123;</span><br><span class="line">                            name: res.name</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                    if (infoRes.status != 200) &#123;</span><br><span class="line">                        console.error(infoRes.description)</span><br><span class="line">                        return</span><br><span class="line">                    &#125;</span><br><span class="line">                    console.log(infoRes);</span><br><span class="line"></span><br><span class="line">                    // res.data.body</span><br><span class="line">                    // 保存在本地存储中</span><br><span class="line">                    localStorage.setItem(&#x27;localCity&#x27;, JSON.stringify(infoRes.body))</span><br><span class="line">                        // 返回城市的数据</span><br><span class="line">                    resolve(infoRes.body)</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125; catch (error) &#123;</span><br><span class="line">                // 进入到catch代码块 说明调用失败了</span><br><span class="line">                reject(error)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    // 如果有，我们直接返回城市信息就好,返回一个成功的promis对象即可</span><br><span class="line">    return Promise.resolve(localCity)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将定位的城市信息添加到 <code>cityList</code>和<code>cityIndex</code>中</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 获取当前城市定位信息</span><br><span class="line">let curCity = await getCurrentCity()</span><br><span class="line">// 将当前城市数据添加到 cityList</span><br><span class="line">cityList[&#x27;#&#x27;] = curCity</span><br><span class="line">// 将当前城市数据添加到 cityIndex </span><br><span class="line">cityIndex.unshift(&#x27;#&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="长列表性能优化（★★）"><a href="#长列表性能优化（★★）" class="headerlink" title="长列表性能优化（★★）"></a>长列表性能优化（★★）</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在展示大型列表和表格数据的时候（城市列表、通讯录、微博等），会导致页面卡顿，滚动不流畅等性能问题，这样就会导致移动设备耗电加快，影响移动设备的电池寿命</p>
+<p>产生性能问题的元素：大量DOM节点的重绘和重排</p>
+<p>优化方案：</p>
+<ul>
+<li>懒渲染</li>
+<li>可视区域渲染</li>
+</ul>
+<h3 id="懒渲染"><a href="#懒渲染" class="headerlink" title="懒渲染"></a>懒渲染</h3><ul>
+<li>懒加载，常见的长列表优化方案，常见于移动端</li>
+<li>原理：每次只渲染一部分，等渲染的数据即将滚动完时，再渲染下面部分</li>
+<li>优点：每次渲染一部分数据，速度快</li>
+<li>缺点：数据量大时，页面中依然存在大量DOM节点，占用内存过多，降低浏览器渲染性能，导致页面卡顿</li>
+<li>使用场景：数据量不大的情况下</li>
+</ul>
+<h3 id="可视区渲染（React-virtualized）"><a href="#可视区渲染（React-virtualized）" class="headerlink" title="可视区渲染（React-virtualized）"></a>可视区渲染（React-virtualized）</h3><p>原理： 只渲染页面可视区域的列表项，非可视区域的数据 <strong>完全不渲染(预加载前面几项和后面几项)</strong> ，在滚动列表时动态更新列表项</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/article/%E5%8F%AF%E8%A7%86%E5%8C%BA%E6%B8%B2%E6%9F%93.png"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/article/%E9%A2%84%E5%8A%A0%E8%BD%BD.png"></p>
+<p><strong>使用场景：</strong> 一次性展示大量数据的情况</p>
+<h2 id="react-virtualized（★★★）"><a href="#react-virtualized（★★★）" class="headerlink" title="react-virtualized（★★★）"></a>react-virtualized（★★★）</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>在项目中的应用：实现城市选择列表页面的渲染</li>
+<li>react-virtualized 是React组件，用来高效渲染大型列表和表格数据</li>
+<li>GitHub地址： <a target="_blank" rel="noopener" href="https://github.com/bvaughn/react-virtualized">react-virtualized</a></li>
+</ul>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ul>
+<li>安装： yarn add react-virtualized</li>
+<li>在项目入口文件 index.js 中导入样式文件</li>
+<li>打开 <a target="_blank" rel="noopener" href="https://github.com/bvaughn/react-virtualized/blob/master/docs">文档</a>， 点击List组件，进入List的文档中</li>
+<li>拷贝示例代码到我们项目中，分析示例代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">import ReactDOM from &#x27;react-dom&#x27;;</span><br><span class="line">import &#123; List &#125; from &#x27;react-virtualized&#x27;;</span><br><span class="line"></span><br><span class="line">// 列表数据</span><br><span class="line">const list = [</span><br><span class="line">  &#x27;Brian Vaughn&#x27;</span><br><span class="line">  // And so on...</span><br><span class="line">];</span><br><span class="line">// 渲染每一行的内容</span><br><span class="line">function rowRenderer (&#123;</span><br><span class="line">  key,         // Unique key within array of rows</span><br><span class="line">  index,       // 索引号</span><br><span class="line">  isScrolling, // 当前项是否正在滚动中</span><br><span class="line">  isVisible,   // 当前项在List中是可见的</span><br><span class="line">  style        // 重点属性：一定要给每一个行数添加该样式</span><br><span class="line">&#125;) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div</span><br><span class="line">      key=&#123;key&#125;</span><br><span class="line">      style=&#123;style&#125;</span><br><span class="line">    &gt;</span><br><span class="line">      &#123;list[index]&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 渲染list列表</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;List</span><br><span class="line">    // 组件的宽度</span><br><span class="line">    width=&#123;300&#125;</span><br><span class="line">    // 组件的高度</span><br><span class="line">    height=&#123;300&#125;</span><br><span class="line">    rowCount=&#123;list.length&#125;</span><br><span class="line">    // 每行的高度</span><br><span class="line">    rowHeight=&#123;20&#125;</span><br><span class="line">    rowRenderer=&#123;rowRenderer&#125;</span><br><span class="line">  /&gt;,</span><br><span class="line">  document.getElementById(&#x27;example&#x27;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="渲染城市列表（★★★）"><a href="#渲染城市列表（★★★）" class="headerlink" title="渲染城市列表（★★★）"></a>渲染城市列表（★★★）</h2><h3 id="让List组件占满屏幕"><a href="#让List组件占满屏幕" class="headerlink" title="让List组件占满屏幕"></a>让List组件占满屏幕</h3><ul>
+<li>利用 <code>AutoSizer</code> 组件来调整子元素的宽高</li>
+<li>导入 <code>AutoSizer</code> 组件</li>
+<li>通过 render-props 模式，获取到<code>AutoSizer</code> 组件暴露的 width 和 height 属性</li>
+<li>设置List组件的 width  和 height 属性</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/article/autosizer.png"></p>
+<ul>
+<li>设置城市选择页面根元素高度 100%，让List组件占满整个页面</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.citylist</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">45px</span>;</span><br><span class="line">    <span class="selector-class">.navbar</span> &#123;</span><br><span class="line">        <span class="attribute">margin-top</span>: -<span class="number">45px</span>;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#f6f5f6</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// navbar 标题颜色</span></span><br><span class="line">    <span class="selector-class">.am-navbar-title</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="渲染城市列表"><a href="#渲染城市列表" class="headerlink" title="渲染城市列表"></a>渲染城市列表</h3><ul>
+<li>将获取到的cityList和cityIndex添加为组建的状态数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">state = &#123;</span><br><span class="line">    cityList: null,</span><br><span class="line">    cityIndex: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改List组件的rowCount为cityIndex数组的长度</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;/* 城市列表 */&#125;</span><br><span class="line">&lt;AutoSizer&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        (&#123; width, height &#125;) =&gt; &#123;</span><br><span class="line">            return &lt;List</span><br><span class="line">                // 组件的宽度</span><br><span class="line">                width=&#123;width&#125;</span><br><span class="line">                // 组件的高度</span><br><span class="line">                height=&#123;height&#125;</span><br><span class="line">                rowCount=&#123;this.state.cityIndex.length&#125;</span><br><span class="line">                // 每行的高度</span><br><span class="line">                rowHeight=&#123;this.getRowHeight&#125;</span><br><span class="line">                rowRenderer=&#123;this.rowRenderer&#125;</span><br><span class="line">            /&gt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/AutoSizer&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改List组件的rowRender方法中渲染的结构和样式</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 渲染每一行的内容</span><br><span class="line">rowRenderer(&#123;</span><br><span class="line">    key,         // Unique key within array of rows</span><br><span class="line">    index,       // 索引号</span><br><span class="line">    isScrolling, // 当前项是否正在滚动中</span><br><span class="line">    isVisible,   // 当前项在List中是可见的</span><br><span class="line">    style        // 重点属性：一定要给每一个行数添加该样式</span><br><span class="line">&#125;) &#123;</span><br><span class="line">    let letter = this.state.cityIndex[index]</span><br><span class="line">    let citys = this.state.cityList[letter]</span><br><span class="line">    return (</span><br><span class="line">        &lt;div</span><br><span class="line">            key=&#123;key&#125;</span><br><span class="line">            style=&#123;style&#125;</span><br><span class="line">            className=&quot;city&quot;</span><br><span class="line">        &gt;</span><br><span class="line">            &lt;div className=&quot;title&quot;&gt;&#123;this.formatCityIndex(letter)&#125;&lt;/div&gt;</span><br><span class="line">            &#123;citys.map(item =&gt; &#123;</span><br><span class="line">                return (</span><br><span class="line">                    &lt;div className=&quot;name&quot; key=&#123;item.value&#125;&gt;&#123;item.label&#125;&lt;/div&gt;</span><br><span class="line">                )</span><br><span class="line">            &#125;)&#125;&lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改List的rowHeight为函数，动态计算每行的高度</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 动态计算高度</span><br><span class="line">getRowHeight = (&#123; index &#125;) =&gt; &#123;</span><br><span class="line">    // 索引的高度 + 数量 * 每个城市的高度</span><br><span class="line">    let &#123; cityIndex, cityList &#125; = this.state;</span><br><span class="line"></span><br><span class="line">    return cityList[cityIndex[index]].length * NAME_HEIGHT + TITLE_HEIGHT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="渲染右侧索引列表"><a href="#渲染右侧索引列表" class="headerlink" title="渲染右侧索引列表"></a>渲染右侧索引列表</h3><ul>
+<li>封装<code>renderCityIndex</code>方法，用来渲染城市索引列表</li>
+<li>在方法中，获取到索引数组 <code>cityIndex</code>，遍历<code>cityIndex</code>，渲染索引列表</li>
+<li>将索引hot替换成 热</li>
+<li>在state中添加状态 activeIndex，用来指定当前高亮的索引</li>
+<li>在遍历cityIndex时，添加当前字母索引是否是高亮</li>
+</ul>
+<p>结构代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;/* 右侧索引列表 */&#125;</span><br><span class="line">&lt;ul className=&quot;city-index&quot;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        this.renderCityIndex()</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>样式代码</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.city-index</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">90%</span>;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">    <span class="selector-class">.city-index-item</span> &#123;</span><br><span class="line">        <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.index-active</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#21b97a</span>;</span><br><span class="line">        <span class="attribute">border-radius</span>: <span class="number">100%</span>;</span><br><span class="line">        <span class="attribute">display</span>: inline-block;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">15px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">15px</span>;</span><br><span class="line">        <span class="attribute">line-height</span>: <span class="number">15px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>渲染右侧索引的函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">renderCityIndex() &#123;</span><br><span class="line">    return this.state.cityIndex.map((item,index) =&gt; &#123;</span><br><span class="line">        console.log(item,index);</span><br><span class="line">        </span><br><span class="line">        return (</span><br><span class="line">            &lt;li className=&quot;city-index-item&quot; key=&#123;item&#125;&gt;</span><br><span class="line">                &#123;/*判断一下，如果高亮状态的索引等于当前索引，那么就设置高亮样式*/&#125;</span><br><span class="line">                &lt;span className=&#123;this.state.activeIndex == index? &#x27;index-active&#x27; : &#x27;&#x27;&#125;&gt;&#123;item == &#x27;hot&#x27; ? &#x27;热&#x27; : item.toUpperCase()&#125;&lt;/span&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://ramsayi.github.io">Ramsayi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://ramsayi.github.io/posts/d88e5f13/">https://ramsayi.github.io/posts/d88e5f13/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ramsayi.github.io" target="_blank">𝙍𝙖𝙢𝙨𝙖𝙮𝙞'𝙨 𝘽𝙡𝙤𝙜</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/React/">React</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/e76ad977/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">react好租客项目Day04-城市列表索引列相关功能&amp;封装NavHeader&amp;CSS IN JS</div></div></a></div><div class="next-post pull-right"><a href="/posts/283efcd9/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">react好租客项目Day02</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/3fa2fffe/" title="react基础Day01-React概述&amp;脚手架搭建&amp;JSX&amp;组件"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-13</div><div class="title">react基础Day01-React概述&amp;脚手架搭建&amp;JSX&amp;组件</div></div></a></div><div><a href="/posts/c6d7328c/" title="react基础Day02-受控组件&amp;评论案例&amp;props&amp;context"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-28</div><div class="title">react基础Day02-受控组件&amp;评论案例&amp;props&amp;context</div></div></a></div><div><a href="/posts/a4cc445e/" title="react基础Day04-React原理揭秘&amp;React路由基础"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-23</div><div class="title">react基础Day04-React原理揭秘&amp;React路由基础</div></div></a></div><div><a href="/posts/61aec8f/" title="react基础Day03-生命周期&amp;render props模式&amp;高阶组件&amp;原理揭秘"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-23</div><div class="title">react基础Day03-生命周期&amp;render props模式&amp;高阶组件&amp;原理揭秘</div></div></a></div><div><a href="/posts/3f476402/" title="react好租客项目Day01-项目演示&amp;项目搭建&amp;antd-mobile的TabBar使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-23</div><div class="title">react好租客项目Day01-项目演示&amp;项目搭建&amp;antd-mobile的TabBar使用</div></div></a></div><div><a href="/posts/283efcd9/" title="react好租客项目Day02"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-23</div><div class="title">react好租客项目Day02</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%8E%E5%B8%82%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9D%97"><span class="toc-text">城市选择模块</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-text">功能分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B6%E9%83%A8%E5%AF%BC%E8%88%AA%E6%A0%8F%EF%BC%88%E2%98%85%E2%98%85%E2%98%85%EF%BC%89"><span class="toc-text">顶部导航栏（★★★）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%88%E2%98%85%E2%98%85%E2%98%85%EF%BC%89"><span class="toc-text">获取处理数据（★★★）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-text">获取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="toc-text">处理数据格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%95%BF%E5%88%97%E8%A1%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%EF%BC%88%E2%98%85%E2%98%85%EF%BC%89"><span class="toc-text">长列表性能优化（★★）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%87%92%E6%B8%B2%E6%9F%93"><span class="toc-text">懒渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%BA%E6%B8%B2%E6%9F%93%EF%BC%88React-virtualized%EF%BC%89"><span class="toc-text">可视区渲染（React-virtualized）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react-virtualized%EF%BC%88%E2%98%85%E2%98%85%E2%98%85%EF%BC%89"><span class="toc-text">react-virtualized（★★★）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">基本使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E5%9F%8E%E5%B8%82%E5%88%97%E8%A1%A8%EF%BC%88%E2%98%85%E2%98%85%E2%98%85%EF%BC%89"><span class="toc-text">渲染城市列表（★★★）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A9List%E7%BB%84%E4%BB%B6%E5%8D%A0%E6%BB%A1%E5%B1%8F%E5%B9%95"><span class="toc-text">让List组件占满屏幕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E5%9F%8E%E5%B8%82%E5%88%97%E8%A1%A8"><span class="toc-text">渲染城市列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E5%8F%B3%E4%BE%A7%E7%B4%A2%E5%BC%95%E5%88%97%E8%A1%A8"><span class="toc-text">渲染右侧索引列表</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/ramsayi/src/img/post/react.webp')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By Ramsayi</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://www.gushici.com/t_782">满堂花醉三千客，一剑霜寒十四州</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'hYhAkaCoGek8gsKP8H2vLfmS-gzGzoHsz',
+      appKey: '8Cxp5qHQuHTnuUIsOuPqWoQk',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="//code.tidio.co/fxk9glqedvgfb9eqhzyajcc3o4oupxbo.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/bg/hexo-theme-butterfly.webp" alt="https://cdn.jsdelivr.net/gh/ramsayi/src/img/bg/hexo-theme-butterfly.webp"/></div><div class="blog-slider__content"><span class="blog-slider__code">2021-09-08</span><a class="blog-slider__title" href="posts/23ce82cf/">Butterfly主题配置</a><div class="blog-slider__text">Butterfly主题配置</div><a class="blog-slider__button" href="posts/23ce82cf/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/src/img/bg/hexo.webp" alt="https://cdn.jsdelivr.net/gh/ramsayi/src/img/bg/hexo.webp"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-07-07</span><a class="blog-slider__title" href="posts/b8f4bd70/">Hexo博客搭建</a><div class="blog-slider__text">Hexo博客搭建</div><a class="blog-slider__button" href="posts/b8f4bd70/">详情</a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://ramsayi.github.io/categories/踩坑记录/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 Ramsayiの踩坑记录 (12)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://ramsayi.github.io/categories/参考手册/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 Ramsayiの参考手册 (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://ramsayi.github.io/categories/技术学习/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎉 Ramsayiの技术学习 (103)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://ramsayi.github.io/categories/建站博客/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 Ramsayiの建站博客 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://ramsayi.github.io/categories/逆向破解/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 Ramsayiの逆向破解 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://ramsayi.github.io/categories/效率办公/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 Ramsayiの效率办公 (3)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://ramsayi.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #304ffe}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style>
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?ramsayi";
+            var git_color =['#f3f5ff', '#ccd4ff', '#a5b3ff', '#7e91fe', '#5770fe', '#304ffe', '#092efe', '#0122de', '#011cb7', '#011690', '#011069'];
+            var git_user ="ramsayi";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
