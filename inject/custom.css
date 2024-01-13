@@ -5,7 +5,6 @@
 .category-lists a[id="/categories/逆向破解/"],
 .category-lists a[id="/categories/项目规范/"],
 .category-lists a[id="/categories/效率办公/"] {
-  /* CSS规则 */
   background-color: rgb(219, 255, 217) !important;
 }
 
@@ -16,6 +15,15 @@
 .category-lists #\2F categories\2F 逆向破解\2F:hover,
 .category-lists #\2F categories\2F 项目规范\2F:hover,
 .category-lists #\2F categories\2F 效率办公\2F:hover {
-  /* CSS规则 */
   background-color: rgb(87, 189, 106) !important;
+}
+
+/* 天气 */
+#he-plugin-simple a {
+  background-color: transparent !important;
+}
+
+/* 安知鱼 上班 下班 */
+#workboard .workSituationImg {
+  display: none !important;
 }
