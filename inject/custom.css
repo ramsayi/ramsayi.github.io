@@ -1,0 +1,21 @@
+.category-lists a[id="/categories/踩坑记录/"],
+.category-lists a[id="/categories/参考手册/"],
+.category-lists a[id="/categories/技术学习/"],
+.category-lists a[id="/categories/建站博客/"],
+.category-lists a[id="/categories/逆向破解/"],
+.category-lists a[id="/categories/项目规范/"],
+.category-lists a[id="/categories/效率办公/"] {
+  /* CSS规则 */
+  background-color: rgb(219, 255, 217) !important;
+}
+
+.category-lists #\2F categories\2F 踩坑记录\2F:hover,
+.category-lists #\2F categories\2F 参考手册\2F:hover,
+.category-lists #\2F categories\2F 技术学习\2F:hover,
+.category-lists #\2F categories\2F 建站博客\2F:hover,
+.category-lists #\2F categories\2F 逆向破解\2F:hover,
+.category-lists #\2F categories\2F 项目规范\2F:hover,
+.category-lists #\2F categories\2F 效率办公\2F:hover {
+  /* CSS规则 */
+  background-color: rgb(87, 189, 106) !important;
+}
