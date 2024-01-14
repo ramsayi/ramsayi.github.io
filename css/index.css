@@ -5938,6 +5938,8 @@ body[data-type='about'] #web_bg {
   }
 }
 .category-lists .category-list {
+  font-size: 1.2em;
+  font-weight: 600;
   margin-bottom: 0;
 }
 .category-lists .category-list a {
@@ -5983,9 +5985,9 @@ body[data-type='about'] #web_bg {
   -o-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  background-color: #faf8ff;
-  -webkit-box-shadow: 0 5px 80px -20px #e4daff;
-  box-shadow: 0 5px 80px -20px #e4daff;
+  background-color: #f8faff;
+  -webkit-box-shadow: 0 5px 80px -20px #dae0ff;
+  box-shadow: 0 5px 80px -20px #dae0ff;
 }
 .category-lists ul ul {
   padding-left: 4px;
