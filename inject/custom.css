@@ -29,16 +29,8 @@
   display: none !important;
 }
 
-/* 卡片高斯模糊 */
-.sticky_layout .card-widget,
-.recent-post-item,
-#post {
-  background-color: #ffffff33 !important;
-  backdrop-filter: blur(20px) !important;
-}
-
 /* 代码悬停 */
 code:hover {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out !important;
   background-color: rgb(87, 189, 106) !important;
 }

@@ -18,16 +18,3 @@ document.addEventListener('click', function (e) {
     document.body.removeChild(textarea)
   }
 })
-
-// 监听路由是包含/categories，包含就执行
-if (location.pathname.includes('/categories')) {
-  // 获取category-lists元素
-  const categoryLists = document.querySelector('.category-lists')
-  // 自定义要插入的html
-  const html = `
-    <a href="https://www.baidu.com" target="_blank">百度一下</a>
-    <a href="https://www.google.com" target="_blank">谷歌一下</a>
-  `
-  // 为category-lists添加子元素
-  categoryLists.innerHTML = html + categoryLists.innerHTML
-}

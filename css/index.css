@@ -5926,6 +5926,9 @@ body[data-type='about'] #web_bg {
 .article-sort-item-info .article-meta-wrap .article-sort-item-time {
   font-size: 12px;
 }
+.category-lists {
+  background-color: transparent !important;
+}
 .category-lists .category-title {
   font-size: 2.57em;
 }
@@ -5940,29 +5943,70 @@ body[data-type='about'] #web_bg {
 .category-lists .category-list a {
   color: var(--font-color);
 }
-.category-lists .category-list a:hover {
-  color: #425aef;
-}
 .category-lists .category-list .category-list-count {
   margin-left: 8px;
+  padding: 0 6px;
+  border: var(--style-border-always);
+  border-radius: 3px;
+  background-color: var(--anzhiyu-secondbg);
+  font-size: 0.8em;
   color: var(--anzhiyu-fontcolor);
 }
-.category-lists .category-list .category-list-count:before {
-  content: '(';
-}
-.category-lists .category-list .category-list-count:after {
-  content: ')';
-}
 .category-lists ul {
-  padding: 0 0 0 20px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0;
+}
+.category-lists ul li {
+  border: var(--style-border-always);
+  border-radius: 10px;
+  position: relative;
+  margin: 6px 6px;
+  padding: 0.3em 0.8em;
+}
+.category-lists ul li:before {
+  content: none;
+}
+.category-lists ul li:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #faf8ff;
+  -webkit-box-shadow: 0 5px 80px -20px #e4daff;
+  box-shadow: 0 5px 80px -20px #e4daff;
 }
 .category-lists ul ul {
   padding-left: 4px;
 }
-.category-lists ul li {
-  position: relative;
-  margin: 6px 0;
-  padding: 0.12em 0.4em 0.12em 1.4em;
+.category-lists ul ul li:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transform: translateY(-3px);
+  -moz-transform: translateY(-3px);
+  -o-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  transform: translateY(-3px);
+  background-color: var(--anzhiyu-theme);
+  -webkit-box-shadow: 0 5px 30px -10px var(--anzhiyu-theme);
+  box-shadow: 0 5px 30px -10px var(--anzhiyu-theme);
+}
+.category-lists ul ul li:hover a {
+  color: var(--anzhiyu-white) !important;
 }
 @media screen and (max-width: 768px) {
   .post .layout#content-inner {
