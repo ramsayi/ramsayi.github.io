@@ -5999,7 +5999,7 @@ body[data-type='about'] #web_bg {
   -o-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  background-color: #f8faff;
+  background-color: var(--global-bg);
   -webkit-box-shadow: 0 5px 80px 0px #b3bfff;
   box-shadow: 0 5px 80px 0px #b3bfff;
 }
