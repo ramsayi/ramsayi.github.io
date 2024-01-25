@@ -25,6 +25,9 @@ code:hover {
   overflow: scroll !important;
   overflow-x: hidden !important;
 }
+#card-toc {
+  overflow: scroll !important;
+}
 /* Logo 组合元素 */
 .logo-div {
   display: inline-block !important;
