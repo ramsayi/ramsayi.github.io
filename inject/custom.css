@@ -70,3 +70,11 @@ code:hover {
   z-index: 1 !important;
   box-shadow: 0 5px 20px 0px #ccc !important;
 }
+/* 目录 悬停 */
+.toc-item {
+  border-radius: 5px !important;
+}
+.toc-item:hover {
+  transition: all 0.3s ease-in-out !important;
+  background-color: #dfe5ff !important;
+}
