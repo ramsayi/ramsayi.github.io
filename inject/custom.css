@@ -71,10 +71,6 @@ code:hover {
   box-shadow: 0 5px 20px 0px #ccc !important;
 }
 /* 目录 悬停 */
-.toc-item {
-  border-radius: 5px !important;
-}
-.toc-item:hover {
-  transition: all 0.3s ease-in-out !important;
+.toc-link:hover {
   background-color: #dfe5ff !important;
 }
