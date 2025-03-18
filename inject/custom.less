@@ -33,7 +33,10 @@ code:hover {
 
 // 目录滚动条
 #card-toc {
-  overflow: scroll !important;
+  overflow-y: scroll !important;
+  .toc-content {
+    overflow: hidden !important;
+  }
 }
 
 /* Logo 组合元素 */
@@ -75,7 +78,7 @@ code:hover {
     background-color: #ffffff !important;
     top: -153px !important;
     z-index: 1 !important;
-    box-shadow: 0 5px 20px 0px #ccc !important;
+    box-shadow: 0 5px 20px 0 #ccc !important;
   }
 }
 
