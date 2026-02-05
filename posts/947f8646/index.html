@@ -1,0 +1,637 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>虚幻5 - 入门教程 - GenJi 欧酱 | Ramsayi</title><meta name="keywords" content="虚幻5"><meta name="author" content="Ramsayi"><meta name="copyright" content="Ramsayi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="虚幻5 - 入门教程 - GenJi 欧酱"><meta name="application-name" content="虚幻5 - 入门教程 - GenJi 欧酱"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="虚幻5 - 入门教程 - GenJi 欧酱"><meta property="og:url" content="https://ramsayi.github.io/posts/947f8646/index.html"><meta property="og:site_name" content="Ramsayi"><meta property="og:description" content="s01-虚幻引擎安装及创建工程说明讲解修改缓存： C:\Users\你的用户名\AppData\Local\UnrealEngine\Common\DerivedDataCache接看使用记事本打开：引擎版本 Engine\Config\BaseEngine.iniCtrl+F 查找ENGINEVE"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/ue5.jpg"><meta property="article:author" content="Ramsayi"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/ue5.jpg"><meta name="description" content="s01-虚幻引擎安装及创建工程说明讲解修改缓存： C:\Users\你的用户名\AppData\Local\UnrealEngine\Common\DerivedDataCache接看使用记事本打开：引擎版本 Engine\Config\BaseEngine.iniCtrl+F 查找ENGINEVE"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://ramsayi.github.io/posts/947f8646/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: undefined,
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://twikoo-h131i132g-ramsayi.vercel.app/',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: undefined,
+  friends_vue_info: {"apiurl":"https://friends.anheyu.com/"},
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"这篇文章已发布","messageNext":"天，极有可能过时了，内容仅供参考。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Ramsayi","link":"链接: ","source":"来源: Ramsayi","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'Ramsayi',
+  title: '虚幻5 - 入门教程 - GenJi 欧酱',
+  postAI: '',
+  pageFillDescription: 's01-虚幻引擎安装及创建工程说明讲解, s02-用户操作界面介绍及操作, 1. 虚幻 UI 界面基本介绍, 2. 视口操作及基本介绍, 3. 内容浏览器界面介绍, s03-创建和移动物体, 1. 放置及旋转位移缩放物体操作讲解, 2. 物体创建操作讲解, 3. 利用新手资产搭建简单环境, s04-1 导入模型资产, 1. 坐标轴归于原点讲解, 2. 模型导出前在 Maya 中的导出设置讲解, s04-2 导入贴图资产, 1. 贴图获取及置入虚幻引擎讲解, 2. 贴图格式及文件读取逻辑讲解, s04-3 导入资产包, 1. Content 文件夹说明, 2. Epic 商城导入, 3. 导入其他工程 Content 文件, 4. 迁移其他工程资产讲解, s04-4 导入 bridge 资产包, 1. Bridge 模块使用准备讲解, 2. 下载及导出讲解, s05-材质基础认知, 1. 作用讲解, 2. 材质编辑器界面, 3. 简单调节基础的 pbr 材质球, 4. 贴图介绍及贴图基础调节参数调节, s06-光照系统介绍, 1. 照明系统初步介绍, 2. 后期盒介绍, 3. Lumens 使用介绍, s07-地形系统介绍, 1. 地形的创建及常用模块介绍, 2. 简单地形材质创建及使用, s08-植被系统介绍, 1. 植被导入及界面基本介绍讲解, 2. 简单地表植物地表制作, s09-Nanite 网络体介绍, 1. Nanite 模型概念及 LOD 概念解析, 2. 获取 Nanite 模型及设置导入讲解, 3. Nanite 植被使用, s10-Megascans 材质球讲解及调整, 1. Megascans 岩石材质球讲解, 2. Megascans 植被材质球讲解, 3. Decals 材质讲解, s11-实战：搭建分析及基础环境关卡创建, 1. 参考图寻找途径及资产, 2. 创建关卡场景及摄像机架设, 3. 构图调整及岩石资产运用讲解, 4. 山洞岩石壁搭建讲解, s12-实战：洞内大致环境搭建讲解, 1. 场景关卡整理及初始化比例调整, 2. 基础场景搭建过程演示, 3. 提醒大家并且解决一些出现的问题, s13-实战：搭建基础环境（纯操作）, 1. 岩石搭建演示, 2. 山洞前景岩石搭建演示, s14-实战：细化山洞内部结构, 1. 结构, 2. 山洞内岩石细节补充演示, 3. 欧酱虚幻模型边财宝搭建, s15-实战：增加场景氛围细化材质细节, s16-实战：搭建最终效果制作虚幻引擎安装及创建工程说明讲解修改缓存你的用户名接看使用记事本打开引擎版本查找替换为用户操作界面介绍及操作虚幻界面基本介绍是的本地管理器利用它可以从下载从城市到自然环境的写实材质和扫描模型年收购了并且对所有用户免费除了从下载资产还支持一键导入等常用的引擎和建模软件中大大提高了效率在中利用混合材质实例制作超级混合材质丰富了材质效果降低的制作门槛提高了工作效率世界场景设置每个关卡都有独立的世界场景设置面板以及对应的设置你可以用该面板完成各种操作包括启用正确的游戏模式调整该关卡的全局光照效果视口操作及基本介绍鼠标右键旋转头部鼠标右键在环境中移动调整摄像机速度右上角摄像机图片可以调整摄像机速度鼠标按住右键时并按等按键移动摄像机时滑动滚轮内容浏览器界面介绍空格内容浏览器创建和移动物体放置及旋转位移缩放物体操作讲解放置物体的方式在模块模式下可以通过获取界面进行选择在内容浏览器中点击过滤器可以快速检索想要创建的物体模型快速对齐到地面我们可以通过按键盘上的键来把物体模型快速对齐到地面上键通常在我们键盘键的右边位置快速切换选择对象选择并平移对象选择并旋转对象选择并缩放对象在平时的操作中我们可以通过按键快速的切换到我们想要模式上去进行操作物体创建操作讲解模型复制的方法键拖拽模型进行复制键键进行复制模型加选减选的方法键点击模型进行加选减选同理加选完成后按键可以对模型进行批量复制利用新手资产搭建简单环境轴向移动小技巧关于轴向移动当我们同时选中两个模型时我们可以按住鼠标中键将原本物体的坐标轴拖动到两个物体轴中心的位置这样我们在旋转这两个物体时会发现物体是沿着我们改变后的轴向进行的整体移动导入模型资产坐标轴归于原点讲解如果导入引擎当中的物体模型的坐标轴不在世界中心那么坐标轴的位置可能会影响后续物体的摆放缩放调整等一系列精确操作进阶吸附操作按住键去拖动模型吸附点的轴向这样可以针对一些模型的角点进行对齐方便我们进行更精确的对齐操作注意当我们对一些建筑类结构模型例如地面墙面屋顶等进行归轴操作时需要将模型的轴点归到合适的模型边角并且要将当前的角点位置也设为的世界原点位置方便我们进行后续的操作模型导出前在中的导出设置讲解格式是三维通用模型格式包含动画材质特性贴图骨骼动画灯光摄像机等信息格式支持多边形游戏模型曲线表面点组材质调整轴选项中文界面高级选项轴转换上方向轴英文界面静态网格体是用于在虚幻引擎中创建关卡世界场景几何体的基础单元它们是在第三方建模软件如等中创建的模型可通过内容浏览器将之导入虚幻编辑器保存到包内然后通过多种方式来使用它们创建可渲染的元素游戏中使用虚幻引擎制作的绝大多数地图都包含静态网格体其形式通常为静态网格体模型名称模型名称导入贴图资产贴图获取及置入虚幻引擎讲解当我们导入贴图素材时要注意及时保存以免后续素材的丢失是一种通用色彩标准是由影像巨擘共同开发的一种彩色语言协议微软联合爱普生惠普等提供一种标准方法来定义色彩让显示打印和扫描等各种计算机外部设备与应用软件对于色彩有一个共通的语言虚幻贴图黑白要取消贴图格式及文件读取逻辑讲解法线贴图俗称凹凸贴图是在某些情况一般在里是使用特殊光影给人一种错觉一种的幻觉让方块出现层次感更加真实中使用统一的格式存储资源每个对应一个包存储一个对象时会将该包下的所有对象都存到中导入资产包在工程中读取资产方法从虚幻商城获取将资产迁移到当前工程的工作目录文件夹说明内容文件夹属于工程的基本文件夹大部分资产都是存放在内容文件夹目录下的要注意在我们内容文件夹下不能同时出现两个名为内容的文件夹否则在读取文件时可能会出现错误商城导入导入其他工程文件直接复制文件夹地图材料材质球网格体粒子材图迁移其他工程资产讲解右键资产操作迁移选择文件夹如果有问题右键文件夹修复重定向器导入资产包模块使用准备讲解是的本地管理器利用它可以从下载从城市到自然环境的写实材质和扫描模型年收购了并且对所有用户免费除了从下载资产还支持一键导入等常用的引擎和建模软件中大大提高了效率在中利用混合材质实例制作超级混合材质丰富了材质效果降低的制作门槛提高了工作效率下载及导出讲解低质量中等质量高质量是一套的尺寸面片高模场景的纳米级品质实时渲染方案推荐或者材质基础认知作用讲解材质球是贴图和模型之间的媒介贴图需要通过着色器中原有的光照算法将贴图中的数字信息和颜色信息转化为视觉效果并进行渲染实现模型的表面纹理需要先将贴图贴附到材质球表面再把材质球拖到模型的表面进行渲染所以说材质球是贴图和模型之间的媒介材质编辑器界面译为基于物理属性的引擎渲染指通过特殊的光照算法模拟光线射到物体表面时所展示出的类似真实世界的金属度粗糙度等物理属性的引擎渲染方法简单调节基础的材质球按住键鼠标左键一维常量按住键鼠标左键二维向量按住键鼠标左键三位向量基础颜色三维金属度粗糙度一维灰度贴图可以视为一个遮罩表示金属成分的占比表示的存金属表示的非金属在材质设计时你可以通过这个材质是否导电来判断是否为它添加金属度如果渲染木头等不导电的材质那么金属度接近如果渲染钢铁等可以导电的材质那么金属度接近贴图介绍及贴图基础调节参数调节按点击管线可以断开连接按拖拽可以更改连接四方连续指由一个纹样或几个纹样组成一个单位向四周重复地连续和延伸扩展而成的图案形式它的特点是可以和自身的复制图案上下左右无缝拼接在起底色贴图尾缀一般为的缩写底色贴图指没有任何光照条件下材质自身的颜色其他指代底色贴图的文件名尾缀还有置换贴图尾缀一般为工作原理为储存物体表面纹理的凹凸信息用于增加模型的细节粗糙度贴图尾缀一般为是一张灰度贴图工作原理是为每个纹理像素指定了其粗糙度一个较粗糙的表面会得到更宽阔更模糊的镜面反射而一个比较光滑的表面则会得到集中而清晰的镜面反射法线贴图尾缀一般为工作原理是是在原物体的凹凸表面的每个点上均作法线通过颜色通道来标记法线的方向你可以把它理解成与原凹凸表面平行的另一个不同的表面但实际上它又只是一个光滑的平面对于视觉效果而言它的效率比原有的凹凸表面更高若在特定位置上应用光源可以让细节程度较低的表面生成高细节程度的精确光照方向和反射效果除了正常普通也有法线的意思在本教程中一般指法线贴图按住键鼠标左键乘法将粗糙度贴图和一维常量进行相乘将常量暴露在外面右键转换为参数然后保存右键母材质创建材质实例实例材质继承于母材质的所有属性和功能只是在实例材质中暴露了可调节参数但是屏蔽了编辑着色器的能力假设某些模型材质相同只是上面的颜色或者细节有些差异那只要创建实例材质进行参数的修改这样就可以产生想要的差异而且当修改了母材质的内容时候由于实例材质是继承关系也会同时修改母材质是一个但是基础相同的母材质可以生成多个实例材质纹理贴图坐标的简称这里可以理解为贴图空间大小值越大贴图密度越高按住键鼠标左键创建光照系统介绍照明系统初步介绍源半径影像影子的虚实环境光源混合器是个编辑器窗口你可以在其中创建和编辑关卡的天空云大气光源和天空光照的环境光照组件对于设计师和美术师而言只需通过这一个窗口即可快速编辑这些组件并选择你要访问的属性细节的数量选中太阳光可以看到太阳角度模型编辑插件后期盒介绍是提供给创作者的一个非常有用的功能不仅仅可以进行颜色的调制也可以进行特效的混合或者是视频输出时的电影效果处理又或者是输出单帧照片时镜头的焦距调节是一种非常特殊的体积可以在场景中的任何地方放置关闭自动曝光选中后期盒将和改成后期处理材质使你能够设置与后期处理一起使用的材质以创建破坏的视觉屏幕效果区域类型效果或只能通过后置处理材质才能实现的游戏整体外观使用介绍首先什么是是虚幻引擎中的全动态全局光照和反射系统它高质量的解决了我们的全局动态光的一个问题然后包括全动态的色彩溢出还有像间接照明间接阴影的个效果并且支持无限的漫反射地形系统介绍地形的创建及常用模块介绍地形制作软件或缩小或放大左键斜坡简单地形材质创建及使用右键搜索建立材质属性节点用于定义主材质节点上的标准材质属性将其集合然后在一个输出进行传送你可以调出该节点后同时按住查看官网对该节点的完整说明右键搜索你可以使用节点将多个纹理或材质网络混合在一起以便用作地形图层使用数组来存储有关地形图层的信息你可以调出该节点后同时按住查看官网对该节点的完整说明主材质渲染器需要勾选使用材质属性按住鼠标左键快速创建已经转为参数的一维常量选中地形后将新创建的材质实例拖拽到右侧的地形材质上如果直接拖到地形上是没用的植被系统介绍植被导入及界面基本介绍讲解选择选择选择单独的植被实例你可以按住键来选择多个植被网格体全部全部选择所有植被实例取消选择取消选择清除当前选中项无效无效选择所有无效的植被实例套索在使用笔刷绘制时选中所有与当前所选植被类型相同的植被实例绘制绘制所选植被类型的实例在绘制时按住键来擦除所选植被类型的实例重新应用简单地表植物地表制作技术是的简称意为多细节层次技术指根据物体模型的节点在显示环境中所处的位置和重要度决定物体渲染的资源分配降低非重要物体的面数和细节度从而获得高效率的渲染运算在第九节课会具体讲解双击模型数量改为关闭或者启用支持保护区域保护区域调节帧率使画面流畅增加或减弱会使素材缺失一般来说能启用时应该尽量启用启用了静态网格体通常可以更快地渲染占用的内存和磁盘空间会更少网络体介绍模型概念及概念解析是虚幻引擎全新推出的虚拟几何体系统它采用全新的内部网格体格式和渲染技术来渲染像素级别的细节以及海量的物体对象它足够智能可以仅处理能够观察到的细节采用高度压缩的数据格式并且支持高细节流送和自动编辑网格体的内容和传统网格体没太大不同区别就在于相比使用传统方法渲染的几何体能够渲染的三角形和实例要多出数个数量级将摄像机移到足够近的位置后就会绘制出导入的原始源三角形获取模型及设置导入讲解拖入内容浏览器时开启编译不生成光照贴图虚拟阴影贴图是一种全新的阴影贴图方法可以提供稳定的高分辨率阴影通过与虚幻引擎的虚拟几何体全局光照和反射以及世界分区功能结合使用它能够实现电影级的品质效果为大型开放场景提供光照编辑项目设置引擎渲染阴影阴影贴图方法植被使用如果开启了光线追踪可能导致模型出现黑斑编辑项目设置引擎渲染支持硬件光线追踪材质球讲解及调整岩石材质球讲解表示贴图的大小表示贴图的偏移量旋转角度到即到勾选后可以调整材质的贴图属性次表面材质用来描述光线穿过透明半透明表面时发生散射的照明现象虚幻引擎提供了称为次表面的特殊着色模型专门用于需要此类互动的材质例如皮肤或蜡状物底图颜色反射控制金属度高光度粗糙度法线强度凹凸效果植被材质球讲解次表面散射透光性强弱随风飘动材质讲解岩石贴花直接拖到窗口中实战搭建分析及基础环境关卡创建参考图寻找途径及资产创建关卡场景及摄像机架设构图调整及岩石资产运用讲解山洞岩石壁搭建讲解实战洞内大致环境搭建讲解场景关卡整理及初始化比例调整基础场景搭建过程演示提醒大家并且解决一些出现的问题实战搭建基础环境纯操作岩石搭建演示山洞前景岩石搭建演示实战细化山洞内部结构结构山洞内岩石细节补充演示欧酱虚幻模型边财宝搭建实战增加场景氛围细化材质细节实战搭建最终效果制作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-21 23:31:43',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/inject/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://ramsayi.github.io/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbk.github.io" title="网址导航"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="网址导航"/><span class="back-menu-item-text">网址导航</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://scabet.github.io" title="Scabet"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="Scabet"/><span class="back-menu-item-text">Scabet</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbt.github.io/" title="Aabbt"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="Aabbt"/><span class="back-menu-item-text">Aabbt</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://swclub.github.io/" title="SWClub"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="SWClub"/><span class="back-menu-item-text">SWClub</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbs.github.io/" title="花里胡哨"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blog.anheyu.com/favicon.ico" alt="花里胡哨"/><span class="back-menu-item-text">花里胡哨</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">Ramsayi</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/technology-stack/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 技术栈</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ramsayi/assets/others/wechat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/others/wechat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ramsayi/assets/others/alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/others/alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Axios/" style="font-size: 1.05rem;">Axios<sup>1</sup></a><a href="/tags/Bilibili/" style="font-size: 1.05rem;">Bilibili<sup>1</sup></a><a href="/tags/C/" style="font-size: 1.05rem;">C++<sup>39</sup></a><a href="/tags/CSS/" style="font-size: 1.05rem;">CSS<sup>9</sup></a><a href="/tags/Curl/" style="font-size: 1.05rem;">Curl<sup>1</sup></a><a href="/tags/Dart/" style="font-size: 1.05rem;">Dart<sup>114</sup></a><a href="/tags/ECharts/" style="font-size: 1.05rem;">ECharts<sup>4</sup></a><a href="/tags/ENVI/" style="font-size: 1.05rem;">ENVI<sup>1</sup></a><a href="/tags/ESLint/" style="font-size: 1.05rem;">ESLint<sup>1</sup></a><a href="/tags/Excel/" style="font-size: 1.05rem;">Excel<sup>1</sup></a><a href="/tags/FFmpeg/" style="font-size: 1.05rem;">FFmpeg<sup>1</sup></a><a href="/tags/Flutter/" style="font-size: 1.05rem;">Flutter<sup>114</sup></a><a href="/tags/Getx/" style="font-size: 1.05rem;">Getx<sup>1</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>2</sup></a><a href="/tags/GitKraken/" style="font-size: 1.05rem;">GitKraken<sup>1</sup></a><a href="/tags/HTML/" style="font-size: 1.05rem;">HTML<sup>9</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem;">Hexo<sup>3</sup></a><a href="/tags/Husky/" style="font-size: 1.05rem;">Husky<sup>1</sup></a><a href="/tags/JavaScript/" style="font-size: 1.05rem;">JavaScript<sup>7</sup></a><a href="/tags/Jupyter/" style="font-size: 1.05rem;">Jupyter<sup>1</sup></a><a href="/tags/Markdown/" style="font-size: 1.05rem;">Markdown<sup>1</sup></a><a href="/tags/OneDrive/" style="font-size: 1.05rem;">OneDrive<sup>1</sup></a><a href="/tags/Preitter/" style="font-size: 1.05rem;">Preitter<sup>1</sup></a><a href="/tags/Python/" style="font-size: 1.05rem;">Python<sup>33</sup></a><a href="/tags/SARscape/" style="font-size: 1.05rem;">SARscape<sup>1</sup></a><a href="/tags/Ubuntu/" style="font-size: 1.05rem;">Ubuntu<sup>2</sup></a><a href="/tags/VMware/" style="font-size: 1.05rem;">VMware<sup>1</sup></a><a href="/tags/VSCode/" style="font-size: 1.05rem;">VSCode<sup>1</sup></a><a href="/tags/Vim/" style="font-size: 1.05rem;">Vim<sup>1</sup></a><a href="/tags/Windows/" style="font-size: 1.05rem;">Windows<sup>3</sup></a><a href="/tags/You-Get/" style="font-size: 1.05rem;">You-Get<sup>1</sup></a><a href="/tags/npm/" style="font-size: 1.05rem;">npm<sup>1</sup></a><a href="/tags/%E4%B8%96%E7%95%8C%E5%8D%A1%E8%BD%A6%E6%A8%A1%E6%8B%9F/" style="font-size: 1.05rem;">世界卡车模拟<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.05rem;">博客<sup>5</sup></a><a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 1.05rem;">快捷键<sup>1</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.05rem;">测试<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 1.05rem;">游戏<sup>1</sup></a><a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 1.05rem;">爬虫<sup>1</sup></a><a href="/tags/%E7%BB%88%E7%AB%AF/" style="font-size: 1.05rem;">终端<sup>6</sup></a><a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 1.05rem;">虚拟机<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/08/"><span class="card-archive-list-date">八月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/03/"><span class="card-archive-list-date">三月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" itemprop="url">技术学习</a><i class="anzhiyufont anzhiyu-icon-angle-right post-meta-separator"></i><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/Unreal-Engine/" itemprop="url">Unreal Engine</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E8%99%9A%E5%B9%BB5/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>虚幻5</span></a></span></div></div><h1 class="post-title" itemprop="name headline">虚幻5 - 入门教程 - GenJi 欧酱</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2023-11-21T15:31:43.000Z" title="发表于 2023-11-21 23:31:43">2023-11-21</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2023-11-21T15:31:43.000Z" title="更新于 2023-11-21 23:31:43">2023-11-21</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">4.9k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="虚幻5 - 入门教程 - GenJi 欧酱"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为江苏"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>江苏</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/947f8646/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/posts/947f8646/" itemprop="commentCount"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/ue5.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://ramsayi.github.io/posts/947f8646/"><header><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" itemprop="url">技术学习</a><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/Unreal-Engine/" itemprop="url">Unreal Engine</a><a href="/tags/%E8%99%9A%E5%B9%BB5/" tabindex="-1" itemprop="url">虚幻5</a><h1 id="CrawlerTitle" itemprop="name headline">虚幻5 - 入门教程 - GenJi 欧酱</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Ramsayi</span><time itemprop="dateCreated datePublished" datetime="2023-11-21T15:31:43.000Z" title="发表于 2023-11-21 23:31:43">2023-11-21</time><time itemprop="dateCreated datePublished" datetime="2023-11-21T15:31:43.000Z" title="更新于 2023-11-21 23:31:43">2023-11-21</time></header><h1 id="s01-虚幻引擎安装及创建工程说明讲解"><a href="#s01-虚幻引擎安装及创建工程说明讲解" class="headerlink" title="s01-虚幻引擎安装及创建工程说明讲解"></a>s01-虚幻引擎安装及创建工程说明讲解</h1><p>修改缓存：</p>
+<p>C:\Users\你的用户名\AppData\Local\UnrealEngine\Common\DerivedDataCache<br>接看使用记事本打开：引擎版本 Engine\Config\BaseEngine.ini<br>Ctrl+F 查找<br><code>ENGINEVERSIONAGNOSTICUSERDIR%DerivedDataCache</code><br>替换为<br><code>GAMEDIR%DerivedDataCache</code></p>
+<h1 id="s02-用户操作界面介绍及操作"><a href="#s02-用户操作界面介绍及操作" class="headerlink" title="s02-用户操作界面介绍及操作"></a>s02-用户操作界面介绍及操作</h1><h2 id="1-虚幻-UI-界面基本介绍"><a href="#1-虚幻-UI-界面基本介绍" class="headerlink" title="1. 虚幻 UI 界面基本介绍"></a>1. 虚幻 UI 界面基本介绍</h2><p>Quixel Bridge：</p>
+<ol>
+<li>Bridge 是 Quixel Megascans 的本地管理器，利用它可以从 Quixel Megascans 下载从城市到自然环境的写实材质和 3D 扫描模型。</li>
+<li>2019 年 Epic Games 收购了 Quixel，并且对所有 UE 用户免费，除了从 Megascans 下载资产，还支持一键导入 UE、Unity、3DmaX、Maya 等常用的引擎和建模软件中，大大提高了效率，在 UE 中利用 Brigde 混合 Megascans 材质实例，制作超级混合材质，丰富了材质效果，降低的制作门槛，提高了工作效率。</li>
+</ol>
+<p>世界场景设置：</p>
+<p>每个关卡都有独立的**世界场景设置(World Settings)**面板以及对应的设置。你可以用该面板完成各种操作，包括启用正确的游戏模式，调整该关卡的全局光照效果。</p>
+<h2 id="2-视口操作及基本介绍"><a href="#2-视口操作及基本介绍" class="headerlink" title="2. 视口操作及基本介绍"></a>2. 视口操作及基本介绍</h2><p><code>鼠标右键</code>，旋转头部</p>
+<p><code>鼠标右键 + W, A, S, D, Q, E</code>，在环境中移动</p>
+<p>调整摄像机速度：</p>
+<ol>
+<li>右上角摄像机图片，可以调整摄像机速度</li>
+<li>鼠标按住右键时并按 Q,W,E,A,S,D 等按键移动摄像机时<strong>滑动滚轮</strong>。</li>
+</ol>
+<h2 id="3-内容浏览器界面介绍"><a href="#3-内容浏览器界面介绍" class="headerlink" title="3. 内容浏览器界面介绍"></a>3. 内容浏览器界面介绍</h2><p><code>Ctrl + 空格</code>，内容浏览器</p>
+<h1 id="s03-创建和移动物体"><a href="#s03-创建和移动物体" class="headerlink" title="s03-创建和移动物体"></a>s03-创建和移动物体</h1><h2 id="1-放置及旋转位移缩放物体操作讲解"><a href="#1-放置及旋转位移缩放物体操作讲解" class="headerlink" title="1. 放置及旋转位移缩放物体操作讲解"></a>1. 放置及旋转位移缩放物体操作讲解</h2><p>放置物体的方式：</p>
+<ol>
+<li>在<strong>模块模式</strong>下可以通过获取界面进行选择。</li>
+<li>在<strong>内容浏览器</strong>中点击过滤器，可以快速检索想要创建的物体。</li>
+</ol>
+<p>模型快速对齐到地面：</p>
+<p>我们可以通过按键盘上的<code>End</code>键来把物体模型快速对齐到地面上，<code>End</code>键通常在我们键盘 Delete 键的右边位置。</p>
+<p>快速切换：</p>
+<p><strong>选择对象(Q)</strong><br><strong>选择并平移对象(W)</strong><br><strong>选择并旋转对象(E)</strong><br><strong>选择并缩放对象(R)</strong><br>在平时的操作中我们可以通过按键，快速的切换到我们想要模式上去进行操作。</p>
+<h2 id="2-物体创建操作讲解"><a href="#2-物体创建操作讲解" class="headerlink" title="2. 物体创建操作讲解"></a>2. 物体创建操作讲解</h2><p>模型复制的方法：</p>
+<ol>
+<li><code>Alt键+拖拽</code>模型进行复制</li>
+<li><code>Ctrl键+D键</code>进行复制</li>
+</ol>
+<p>模型加选减选的方法：</p>
+<ol>
+<li><p><code>Ctrl键+点击模型</code>进行加选（减选同理）</p>
+</li>
+<li><p>加选完成后按<code>Alt键</code>可以对模型进行批量复制</p>
+</li>
+</ol>
+<h2 id="3-利用新手资产搭建简单环境"><a href="#3-利用新手资产搭建简单环境" class="headerlink" title="3. 利用新手资产搭建简单环境"></a>3. 利用新手资产搭建简单环境</h2><p>轴向移动小技巧：关于轴向移动，当我们<strong>同时选中两个模型</strong>时，我们可以按住<code>鼠标中键</code>，将原本物体的<strong>坐标轴拖动</strong>到两个物体轴中心的位置，这样我们在旋转这两个物体时会发现，物体是沿着我们改变后的轴向进行的整体移动。</p>
+<h1 id="s04-1-导入模型资产"><a href="#s04-1-导入模型资产" class="headerlink" title="s04-1 导入模型资产"></a>s04-1 导入模型资产</h1><h2 id="1-坐标轴归于原点讲解"><a href="#1-坐标轴归于原点讲解" class="headerlink" title="1. 坐标轴归于原点讲解"></a>1. 坐标轴归于原点讲解</h2><p>如果导入引擎当中的物体模型的坐标轴不在世界中心，那么坐标轴的位置可能会影响后续物体的摆放、缩放调整等一系列精确操作</p>
+<p>进阶吸附操作：按住<code>V键</code>去拖动模型吸附点的轴向，这样可以针对一些模型的角点进行对齐，方便我们进行更精确的对齐操作</p>
+<p>注意：当我们对一些<strong>建筑类结构模型例如：地面、墙面、屋顶等进行归轴操作时</strong>，需要将模型的轴点归到合适的模型边角，并且要将当前的角点位置也设为 maya 的世界原点位置，方便我们进行后续的操作</p>
+<h2 id="2-模型导出前在-Maya-中的导出设置讲解"><a href="#2-模型导出前在-Maya-中的导出设置讲解" class="headerlink" title="2. 模型导出前在 Maya 中的导出设置讲解"></a>2. 模型导出前在 Maya 中的导出设置讲解</h2><p>FBX 格式：FBX 是三维通用模型格式。包含动画、材质特性、贴图、骨骼动画、灯光、摄像机等信息。FBX 格式支持多边形游戏模型、曲线、表面、点组材质。</p>
+<p>调整轴选项：</p>
+<p>中文界面：高级选项 - 轴转换 - 上方向轴<br>英文界面：Advanced Options - Axis Conversion - Up Axis</p>
+<p>静态网格体：是用于在虚幻引擎中创建关卡世界场景几何体的基础单元。它们是在第三方建模软件（如 3dsMax、Maya、Softimage 等）中创建的 3D 模型。可通过内容浏览器(Content Browser)将之导入虚幻编辑器、保存到包内，然后通过多种方式来使用它们，创建可渲染的元素。游戏中使用虚幻引擎制作的绝大多数地图都包含静态网格体，其形式通常为”静态网格体 Actor’</p>
+<p><code>SM_模型名称</code> Static Mesh</p>
+<p><code>NM_模型名称</code> Nanite Mesh</p>
+<h1 id="s04-2-导入贴图资产"><a href="#s04-2-导入贴图资产" class="headerlink" title="s04-2 导入贴图资产"></a>s04-2 导入贴图资产</h1><h2 id="1-贴图获取及置入虚幻引擎讲解"><a href="#1-贴图获取及置入虚幻引擎讲解" class="headerlink" title="1. 贴图获取及置入虚幻引擎讲解"></a>1. 贴图获取及置入虚幻引擎讲解</h2><p><a target="_blank" rel="noopener" href="https://polyhaven.com/">https://polyhaven.com</a></p>
+<p>当我们导入贴图素材时，要注意及时保存，以免后续素材的丢失。</p>
+<p>SRGB：sRGB 是一种通用色彩标准。sRGB(standard Red Green Blue)是由 Microsoft 影像巨擘共同开发的一种彩色语言协议，微软联合爱普生、HP 惠普等提供一种标准方法来定义色彩，让显示、打印和扫描等各种计算机外部设备与应用软件对于色彩有一个共通的语言。</p>
+<p>虚幻贴图黑白要取消 sRGB</p>
+<h2 id="2-贴图格式及文件读取逻辑讲解"><a href="#2-贴图格式及文件读取逻辑讲解" class="headerlink" title="2. 贴图格式及文件读取逻辑讲解"></a>2. 贴图格式及文件读取逻辑讲解</h2><p>法线贴图：俗称“凹凸贴图”，是在某些情况（一般在 minecraft!里是使用特殊光影）给人一种错觉，一种 3D 的幻觉，让方块出现层次感，更加真实。</p>
+<p>uasset：UE 中使用统一的格式存储资源(uasset, umap)，每个 uasset 对应一个包(package)，存储一个 UPackage 对象时，会将该包下的所有对象都存到 uasset 中。</p>
+<h1 id="s04-3-导入资产包"><a href="#s04-3-导入资产包" class="headerlink" title="s04-3 导入资产包"></a>s04-3 导入资产包</h1><p>在工程中读取资产方法：1、从虚幻商城获取 2、将资产迁移到当前工程的工作目录</p>
+<h2 id="1-Content-文件夹说明"><a href="#1-Content-文件夹说明" class="headerlink" title="1. Content 文件夹说明"></a>1. Content 文件夹说明</h2><p>内容文件夹属于工程的基本文件夹，大部分资产都是存放在内容文件夹目录下的，要注意在我们内容文件夹下不能同时出现两个名为内容的文件夹，否则在读取文件时可能会出现错误。</p>
+<h2 id="2-Epic-商城导入"><a href="#2-Epic-商城导入" class="headerlink" title="2. Epic 商城导入"></a>2. Epic 商城导入</h2><p><code>Megascan</code></p>
+<h2 id="3-导入其他工程-Content-文件"><a href="#3-导入其他工程-Content-文件" class="headerlink" title="3. 导入其他工程 Content 文件"></a>3. 导入其他工程 Content 文件</h2><ol>
+<li>直接复制 Content 文件夹</li>
+<li>Maps → 地图<br>Materials → 材料&#x2F;材质球<br>Meshes → 网格体<br>Particles → 粒子<br>Textures → 材图</li>
+</ol>
+<h2 id="4-迁移其他工程资产讲解"><a href="#4-迁移其他工程资产讲解" class="headerlink" title="4. 迁移其他工程资产讲解"></a>4. 迁移其他工程资产讲解</h2><p>右键 - 资产操作 - 迁移 - 选择 Content 文件夹</p>
+<p>如果有问题，右键文件夹 - 修复重定向器</p>
+<h1 id="s04-4-导入-bridge-资产包"><a href="#s04-4-导入-bridge-资产包" class="headerlink" title="s04-4 导入 bridge 资产包"></a>s04-4 导入 bridge 资产包</h1><h2 id="1-Bridge-模块使用准备讲解"><a href="#1-Bridge-模块使用准备讲解" class="headerlink" title="1. Bridge 模块使用准备讲解"></a>1. Bridge 模块使用准备讲解</h2><p>是 Quixel Megascans 的本地管理器，利用它可以从 Quixel Megascans 下载从城市到自然环境的写实材质和 3D 扫描模型。</p>
+<p>2019 年 Epic Games 收购了 Quixel，并且对所有 UE 用户免费，除了从 Megascans 下载资产，还支持一键导入 UE,Unity、3Dmax、Maya 等常用的引擎和建模软件中，大大提高了效率，在 UE 中利用 Brigde 混合 Megascans 材质实例，制作超级混合材质，丰富了材质效果，降低的制作门槛，提高了工作效率。</p>
+<h2 id="2-下载及导出讲解"><a href="#2-下载及导出讲解" class="headerlink" title="2. 下载及导出讲解"></a>2. 下载及导出讲解</h2><p>Low Quality → 低质量<br>Medium Quality → 中等质量<br>High Quality → 高质量<br>Nanite: Nanite 是一套 GPU-Driven 的 sub-pixel 尺寸面片高模场景的纳米级品质实时渲染方案。</p>
+<p>推荐 Nanite 或者 Medium</p>
+<h1 id="s05-材质基础认知"><a href="#s05-材质基础认知" class="headerlink" title="s05-材质基础认知"></a>s05-材质基础认知</h1><h2 id="1-作用讲解"><a href="#1-作用讲解" class="headerlink" title="1. 作用讲解"></a>1. 作用讲解</h2><p>材质球(Materials)是贴图和模型之间的媒介，贴图需要通过着色器中原有的光照算法，将贴图中的数字信息和颜色信息转化为视觉效果并进行渲染。</p>
+<p>实现模型的表面纹理，需要先将贴图贴附到材质球表面，再把材质球拖到模型的表面进行渲染。所以说，材质球是贴图和模型之间的媒介。</p>
+<h2 id="2-材质编辑器界面"><a href="#2-材质编辑器界面" class="headerlink" title="2. 材质编辑器界面"></a>2. 材质编辑器界面</h2><p><strong>PBR(Physically-Based Rendering)</strong>，译为”基于物理属性的引擎渲染”。指通过特殊的光照算法，模拟光线射到物体表面时所展示出的类似真实世界的金属度、粗糙度等物理属性的引擎渲染方法。</p>
+<h2 id="3-简单调节基础的-pbr-材质球"><a href="#3-简单调节基础的-pbr-材质球" class="headerlink" title="3. 简单调节基础的 pbr 材质球"></a>3. 简单调节基础的 pbr 材质球</h2><p><code>按住1键 + 鼠标左键</code>：一维常量</p>
+<p><code>按住2键 + 鼠标左键</code>：二维向量</p>
+<p><code>按住3键 + 鼠标左键</code>：三位向量</p>
+<p>基础颜色：三维</p>
+<p>金属度、粗糙度：一维</p>
+<p><strong>Metallic</strong>，灰度贴图，可以视为一个遮罩，表示金属成分的占比：1 表示 100%的存金属，0 表示 100%的非金属。在材质设计时，你可以通过这个材质是否“导电”来判断是否为它添加金属度，如果渲染木头等不导电的材质，那么金属度(Metallic)接近 0；如果渲染钢铁等可以导电的材质，那么金属度接近 1。</p>
+<h2 id="4-贴图介绍及贴图基础调节参数调节"><a href="#4-贴图介绍及贴图基础调节参数调节" class="headerlink" title="4. 贴图介绍及贴图基础调节参数调节"></a>4. 贴图介绍及贴图基础调节参数调节</h2><p>按<code>Alt + 点击管线</code>，可以断开连接</p>
+<p>按<code>Ctrl + 拖拽</code>，可以更改连接</p>
+<p><strong>四方连续</strong>，指由一个纹样或几个纹样组成一个单位向四周重复地连续和延伸扩展而成的图案形式。它的特点是可以和自身的复制图案上下左右无缝拼接在起。</p>
+<p><strong>底色贴图尾缀一般为 diff(Diffuse 的缩写)</strong>，底色贴图，指没有任何光照条件下，材质自身的颜色。其他指代底色贴图的文件名尾缀还有 BaseColor、Alebedo</p>
+<p><strong>置换贴图</strong>尾缀一般为 disp，工作原理为储存物体表面纹理的凹凸信息，用于增加模型的细节</p>
+<p><strong>粗糙度贴图</strong>尾缀一般为 rough，是一张灰度贴图工作原理是为每个纹理像素指定了其粗糙度。一个较粗糙的表面会得到更宽阔更模糊的镜面反射。而一个比较光滑的表面则会得到集中而清晰的镜面反射</p>
+<p><strong>法线贴图</strong>尾缀一般为 or，工作原理是是在原物体的凹凸表面的每个点上均作法线，通过 RGB 颜色通道来标记法线的方向，你可以把它理解成与原凹凸表面平行的另一个不同的表面，但实际上它又只是一个光滑的平面。对于视觉效果而言，它的效率比原有的凹凸表面更高，若在特定位置上应用光源，可以让细节程度较低的表面生成高细节程度的精确光照方向和反射效果。</p>
+<p><strong>Normal</strong>：除了“正常”“普通”，也有“法线”的意思，在本教程中 Normal 一般指法线贴图</p>
+<p><code>按住M键 + 鼠标左键</code>：乘法</p>
+<p>将粗糙度贴图和一维常量进行相乘</p>
+<p><strong>将常量暴露在外面</strong>：右键 - 转换为参数，然后保存，右键母材质 - 创建材质实例</p>
+<p><strong>实例材质</strong>继承于母材质的所有属性和功能，只是在实例材质中暴露了可调节参数，但是屏蔽了编辑着色器的能力，假设某些模型材质相同，只是上面的颜色或者细节有些差异，那只要创建实例材质进行参数的修改，这样就可以产生想要的差异。而且当修改了母材质的内容时候，由于实例材质是继承关系也会同时修改，母材质是一个，但是基础相同的母材质可以生成多个实例材质</p>
+<p><strong>UV</strong>，纹理贴图坐标的简称。这里可以理解为贴图空间大小，UV 值越大，贴图密度越高。</p>
+<p><code>按住U键 + 鼠标左键</code>：创建 UV</p>
+<h1 id="s06-光照系统介绍"><a href="#s06-光照系统介绍" class="headerlink" title="s06-光照系统介绍"></a>s06-光照系统介绍</h1><h2 id="1-照明系统初步介绍"><a href="#1-照明系统初步介绍" class="headerlink" title="1. 照明系统初步介绍"></a>1. 照明系统初步介绍</h2><p>源半径：影像影子的虚实</p>
+<p><strong>环境光源混合器</strong>(Environment Light Mixer)是个编辑器窗口，你可以在其中创建和编辑关卡的天空云、大气光源和天空光照的环境光照组件。对于设计师和美术师而言，只需通过这一个窗口即可快速编辑这些组件，并选择你要访问的属性细节的数量。</p>
+<p>选中太阳光，Ctrl + L，可以看到太阳角度模型</p>
+<p>编辑 - 插件 - HDR</p>
+<h2 id="2-后期盒介绍"><a href="#2-后期盒介绍" class="headerlink" title="2. 后期盒介绍"></a>2. 后期盒介绍</h2><p><strong>Post Process Volume 是 Unreal</strong>提供给创作者的一个非常有用的功能，不仅仅可以进行颜色的调制，也可以进行特效的混合，或者是视频输出时的电影效果处理，又或者是输出单帧照片时镜头的焦距调节，是一种非常特殊的体积，可以在场景中的任何地方放置。</p>
+<p><strong>关闭自动曝光</strong>：选中后期盒，将 MaxEV 和 MinEV 改成 0</p>
+<p><strong>后期处理材质</strong>使你能够设置与后期处理一起使用的材质，以创建破坏的视觉屏幕效果、区域类型效果或只能通过后置处理材质才能实现的游戏整体外观</p>
+<h2 id="3-Lumens-使用介绍"><a href="#3-Lumens-使用介绍" class="headerlink" title="3. Lumens 使用介绍"></a>3. Lumens 使用介绍</h2><p>首先什么是<strong>Lumen</strong>: Lumen 是虚幻 5 引擎中的<strong>全动态全局光照</strong>和<strong>反射系统</strong>，它高质量的解决了我们的全局动态光的一个问题然后包括全动态的色彩溢出还有像间接照明，间接阴影的个效果并且支持无限的漫反射。</p>
+<h1 id="s07-地形系统介绍"><a href="#s07-地形系统介绍" class="headerlink" title="s07-地形系统介绍"></a>s07-地形系统介绍</h1><h2 id="1-地形的创建及常用模块介绍"><a href="#1-地形的创建及常用模块介绍" class="headerlink" title="1. 地形的创建及常用模块介绍"></a>1. 地形的创建及常用模块介绍</h2><p>地形制作软件：Worldcreator、Worldmachine、houdini、Gaea</p>
+<p><code>[</code> 或 <code>]</code>：缩小或放大</p>
+<p><code>Ctrl + 左键</code>：斜坡</p>
+<h2 id="2-简单地形材质创建及使用"><a href="#2-简单地形材质创建及使用" class="headerlink" title="2. 简单地形材质创建及使用"></a>2. 简单地形材质创建及使用</h2><p><code>右键 - 搜索Make</code></p>
+<p>**建立材质属性(Make Material Attributes)**节点用于定义主材质节点上的标准材质属性，将其集合，然后在一个输出进行传送。</p>
+<p>你可以调出该节点后，同时按住 Alt+Ctrl 查看官网对该节点的完整说明。</p>
+<p><code>右键 - 搜索landscape</code></p>
+<p>你可以使用<strong>LandscapeLayerBlend</strong>节点将多个纹理或材质网络混合在一起，以便用作地形图层 LandscapeLayerBlend 使用数组来存储有关地形图层的信息<br>你可以调出该节点后，同时按住 Alt+Ctrl 查看官网对该节点的完整说明。</p>
+<p>主材质渲染器需要勾选 <code>使用材质属性</code></p>
+<p><code>按住S + 鼠标左键</code>：快速创建已经转为参数的一维常量</p>
+<p>选中地形后，将新创建的材质实例拖拽到右侧的地形材质上，如果直接拖到地形上是没用的。</p>
+<h1 id="s08-植被系统介绍"><a href="#s08-植被系统介绍" class="headerlink" title="s08-植被系统介绍"></a>s08-植被系统介绍</h1><h2 id="1-植被导入及界面基本介绍讲解"><a href="#1-植被导入及界面基本介绍讲解" class="headerlink" title="1. 植被导入及界面基本介绍讲解"></a>1. 植被导入及界面基本介绍讲解</h2><p>选择（选择）<br>选择单独的植被实例。你可以按住 Ctrl 键来选择多个植被网格体。<br>全部（全部）选择所有植被实例。<br>取消选择（取消选择）清除当前选中项。<br>无效（无效）<br>选择所有无效的植被实例。<br>套索(Lasso)<br>在使用笔刷绘制时，选中所有与当前所选植被类型相同的植被实例。<br>绘制(Paint)<br>绘制所选植被类型的实例。在绘制时按住 Shift 键来擦除所选植被类型的实例。<br>重新应用(reapply)</p>
+<h2 id="2-简单地表植物地表制作"><a href="#2-简单地表植物地表制作" class="headerlink" title="2. 简单地表植物地表制作"></a>2. 简单地表植物地表制作</h2><p><strong>LOD</strong>技术是<strong>Levels of Detail</strong>的简称，意为多细节层次。LOD 技术指根据物体模型的节点在显示环境中所处的位置和重要度，决定物体渲染的资源分配，降低非重要物体的面数和细节度，从而获得高效率的渲染运算。在第九节课会具体讲解</p>
+<p><code>双击模型 - LOD数量改为1</code> 关闭 LOD 或者 <code>启用Nanite支持 + 保护区域</code></p>
+<p>Nanite 保护区域：调节帧率，使画面流畅增加或减弱，会使素材缺失，一般来说，能启用时应该尽量启用。启用了静态网格体通常可以更快地渲染，占用的内存和磁盘空间会更少。</p>
+<h1 id="s09-Nanite-网络体介绍"><a href="#s09-Nanite-网络体介绍" class="headerlink" title="s09-Nanite 网络体介绍"></a>s09-Nanite 网络体介绍</h1><h2 id="1-Nanite-模型概念及-LOD-概念解析"><a href="#1-Nanite-模型概念及-LOD-概念解析" class="headerlink" title="1. Nanite 模型概念及 LOD 概念解析"></a>1. Nanite 模型概念及 LOD 概念解析</h2><p>Nanite 是虚幻引擎 5 全新推出的虚拟几何体系统(Virtualized Geometry System)。它采用全新的内部网格体格式和渲染技术来渲染像素级别的细节以及海量的物体对象。它足够智能，可以仅处理能够观察到的细节。Nanite 采用高度压缩的数据格式，并且支持高细节流送和自动 LOD</p>
+<p>编辑 Nanite 网格体的内容和传统网格体没太大不同，区别就在于相比使用传统方法渲染的几何体，Nanite 能够渲染的三角形和实例要多出数个数量级。将摄像机移到足够近的位置后，Nanite 就会绘制出导入的原始源三角形</p>
+<h2 id="2-获取-Nanite-模型及设置导入讲解"><a href="#2-获取-Nanite-模型及设置导入讲解" class="headerlink" title="2. 获取 Nanite 模型及设置导入讲解"></a>2. 获取 Nanite 模型及设置导入讲解</h2><p>拖入内容浏览器时开启 <code>编译Nanite</code>，不生成光照贴图 UV</p>
+<p>**虚拟阴影贴图(VSM)**是一种全新的阴影贴图方法，可以提供稳定的高分辨率阴影。通过与虚幻引擎 5 的 Nanite 虚拟几何体、Lumen 全局光照和反射以及世界分区功能结合使用，它能够实现电影级的品质效果，为大型开放场景提供光照。</p>
+<p>编辑 - 项目设置 - 引擎 - 渲染 - 阴影 - 阴影贴图方法</p>
+<h2 id="3-Nanite-植被使用"><a href="#3-Nanite-植被使用" class="headerlink" title="3. Nanite 植被使用"></a>3. Nanite 植被使用</h2><p>如果开启了光线追踪，可能导致模型出现黑斑</p>
+<p>编辑 - 项目设置 - 引擎 - 渲染 - Hardware Ray Tracing - 支持硬件光线追踪 - False</p>
+<h1 id="s10-Megascans-材质球讲解及调整"><a href="#s10-Megascans-材质球讲解及调整" class="headerlink" title="s10-Megascans 材质球讲解及调整"></a>s10-Megascans 材质球讲解及调整</h1><h2 id="1-Megascans-岩石材质球讲解"><a href="#1-Megascans-岩石材质球讲解" class="headerlink" title="1. Megascans 岩石材质球讲解"></a>1. Megascans 岩石材质球讲解</h2><p><strong>00 - Global</strong></p>
+<p><code>Tiling/Offset</code> Tiling 表示贴图的大小，Offset 表示贴图的偏移量</p>
+<p><code>Rotation Angle</code> 旋转角度 0 到 1 即 0 到 360</p>
+<p><code>Use Adjusted Maps</code> 勾选后可以调整材质的贴图属性</p>
+<p><code>Enable SSS Parameters</code> “次表面材质”用来描述光线穿过透明&#x2F;半透明表面时发生散射的照明现象。虚幻引擎 5(UE5)提供了称为次表面的特殊着色模型，专门用于需要此类互动的材质，例如皮肤或蜡状物。</p>
+<p><strong>01 - Albedo</strong></p>
+<p><code>Albedo Tint</code> 底图颜色 RGB</p>
+<p><code>Albedo Controls</code> 反射控制 HSV</p>
+<p><strong>02 - Metallic</strong> 金属度</p>
+<p><strong>03 - Specular</strong> 高光度</p>
+<p>**04 - Roughness **粗糙度</p>
+<p><strong>05 - Normal</strong> 法线强度 凹凸效果</p>
+<h2 id="2-Megascans-植被材质球讲解"><a href="#2-Megascans-植被材质球讲解" class="headerlink" title="2. Megascans 植被材质球讲解"></a>2. Megascans 植被材质球讲解</h2><p><strong>06 - Translucency</strong> 次表面散射 透光性强弱</p>
+<p><strong>07 - Wind</strong> 随风飘动</p>
+<h2 id="3-Decals-材质讲解"><a href="#3-Decals-材质讲解" class="headerlink" title="3. Decals 材质讲解"></a>3. Decals 材质讲解</h2><p>Decals 岩石贴花 直接拖到窗口中</p>
+<h1 id="s11-实战：搭建分析及基础环境关卡创建"><a href="#s11-实战：搭建分析及基础环境关卡创建" class="headerlink" title="s11-实战：搭建分析及基础环境关卡创建"></a>s11-实战：搭建分析及基础环境关卡创建</h1><h2 id="1-参考图寻找途径及资产"><a href="#1-参考图寻找途径及资产" class="headerlink" title="1. 参考图寻找途径及资产"></a>1. 参考图寻找途径及资产</h2><h2 id="2-创建关卡场景及摄像机架设"><a href="#2-创建关卡场景及摄像机架设" class="headerlink" title="2. 创建关卡场景及摄像机架设"></a>2. 创建关卡场景及摄像机架设</h2><h2 id="3-构图调整及岩石资产运用讲解"><a href="#3-构图调整及岩石资产运用讲解" class="headerlink" title="3. 构图调整及岩石资产运用讲解"></a>3. 构图调整及岩石资产运用讲解</h2><h2 id="4-山洞岩石壁搭建讲解"><a href="#4-山洞岩石壁搭建讲解" class="headerlink" title="4. 山洞岩石壁搭建讲解"></a>4. 山洞岩石壁搭建讲解</h2><h1 id="s12-实战：洞内大致环境搭建讲解"><a href="#s12-实战：洞内大致环境搭建讲解" class="headerlink" title="s12-实战：洞内大致环境搭建讲解"></a>s12-实战：洞内大致环境搭建讲解</h1><h2 id="1-场景关卡整理及初始化比例调整"><a href="#1-场景关卡整理及初始化比例调整" class="headerlink" title="1. 场景关卡整理及初始化比例调整"></a>1. 场景关卡整理及初始化比例调整</h2><h2 id="2-基础场景搭建过程演示"><a href="#2-基础场景搭建过程演示" class="headerlink" title="2. 基础场景搭建过程演示"></a>2. 基础场景搭建过程演示</h2><h2 id="3-提醒大家并且解决一些出现的问题"><a href="#3-提醒大家并且解决一些出现的问题" class="headerlink" title="3. 提醒大家并且解决一些出现的问题"></a>3. 提醒大家并且解决一些出现的问题</h2><h1 id="s13-实战：搭建基础环境（纯操作）"><a href="#s13-实战：搭建基础环境（纯操作）" class="headerlink" title="s13-实战：搭建基础环境（纯操作）"></a>s13-实战：搭建基础环境（纯操作）</h1><h2 id="1-岩石搭建演示"><a href="#1-岩石搭建演示" class="headerlink" title="1. 岩石搭建演示"></a>1. 岩石搭建演示</h2><h2 id="2-山洞前景岩石搭建演示"><a href="#2-山洞前景岩石搭建演示" class="headerlink" title="2. 山洞前景岩石搭建演示"></a>2. 山洞前景岩石搭建演示</h2><h1 id="s14-实战：细化山洞内部结构"><a href="#s14-实战：细化山洞内部结构" class="headerlink" title="s14-实战：细化山洞内部结构"></a>s14-实战：细化山洞内部结构</h1><h2 id="1-结构"><a href="#1-结构" class="headerlink" title="1. 结构"></a>1. 结构</h2><h2 id="2-山洞内岩石细节补充演示"><a href="#2-山洞内岩石细节补充演示" class="headerlink" title="2. 山洞内岩石细节补充演示"></a>2. 山洞内岩石细节补充演示</h2><h2 id="3-欧酱虚幻模型边财宝搭建"><a href="#3-欧酱虚幻模型边财宝搭建" class="headerlink" title="3. 欧酱虚幻模型边财宝搭建"></a>3. 欧酱虚幻模型边财宝搭建</h2><h1 id="s15-实战：增加场景氛围细化材质细节"><a href="#s15-实战：增加场景氛围细化材质细节" class="headerlink" title="s15-实战：增加场景氛围细化材质细节"></a>s15-实战：增加场景氛围细化材质细节</h1><h1 id="s16-实战：搭建最终效果制作"><a href="#s16-实战：搭建最终效果制作" class="headerlink" title="s16-实战：搭建最终效果制作"></a>s16-实战：搭建最终效果制作</h1></article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/avatar/avatar.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/avatar/avatar.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Ramsayi</div><div class="post-copyright__author_desc">这个人很懒，什么都填了</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://ramsayi.github.io/posts/947f8646/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://ramsayi.github.io/posts/947f8646/')">虚幻5 - 入门教程 - GenJi 欧酱</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ramsayi/assets/others/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/others/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ramsayi/assets/others/alipay.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/others/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://ramsayi.github.io/posts/947f8646/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=虚幻5 - 入门教程 - GenJi 欧酱&amp;url=https://ramsayi.github.io/posts/947f8646/&amp;pic=https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/ue5.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ramsayi.github.io" target="_blank">Ramsayi</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__category-list"><a class="post-meta__box__categoryes" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>技术学习<span class="categoryesPageCount">242</span></a><a class="post-meta__box__categoryes" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/Unreal-Engine/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>Unreal Engine<span class="categoryesPageCount">1</span></a></div><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E8%99%9A%E5%B9%BB5/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>虚幻5<span class="tagsPageCount">2</span></a></div></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/b2d509e5/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/bg/wallhaven-x6w9vl.jpg?_r_=74bb7339-8512-1f0f-4b94-e6256b9499d7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">OneDrive自定义云同步文件夹</div></div></a></div><div class="next-post pull-right"><a href="/posts/fc876b88/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/bg/wallhaven-85p82o.jpg?_r_=10768782-1487-f1af-6e9a-9494201d3679" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GitKraken简体中文</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/posts/b9223ce3/" title="UE5+Cesium智慧城市&amp;园区全流程开发"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/bg/wallhaven-7pmv93.jpg?_r_=cc98f8c6-2d39-c7d9-7079-f7bab40b073a" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-07-31</div><div class="title">UE5+Cesium智慧城市&amp;园区全流程开发</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/avatar/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">Ramsayi</h1><div class="author-info__desc">这个人很懒，什么都填了</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/ramsayi" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/354247938" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#s01-%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E5%AE%89%E8%A3%85%E5%8F%8A%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B%E8%AF%B4%E6%98%8E%E8%AE%B2%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">s01-虚幻引擎安装及创建工程说明讲解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s02-%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C%E7%95%8C%E9%9D%A2%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">s02-用户操作界面介绍及操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%99%9A%E5%B9%BB-UI-%E7%95%8C%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.1.</span> <span class="toc-text">1. 虚幻 UI 界面基本介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A7%86%E5%8F%A3%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.2.</span> <span class="toc-text">2. 视口操作及基本介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%86%85%E5%AE%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E7%95%8C%E9%9D%A2%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.3.</span> <span class="toc-text">3. 内容浏览器界面介绍</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s03-%E5%88%9B%E5%BB%BA%E5%92%8C%E7%A7%BB%E5%8A%A8%E7%89%A9%E4%BD%93"><span class="toc-number">3.</span> <span class="toc-text">s03-创建和移动物体</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%94%BE%E7%BD%AE%E5%8F%8A%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E7%BC%A9%E6%94%BE%E7%89%A9%E4%BD%93%E6%93%8D%E4%BD%9C%E8%AE%B2%E8%A7%A3"><span class="toc-number">3.1.</span> <span class="toc-text">1. 放置及旋转位移缩放物体操作讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%89%A9%E4%BD%93%E5%88%9B%E5%BB%BA%E6%93%8D%E4%BD%9C%E8%AE%B2%E8%A7%A3"><span class="toc-number">3.2.</span> <span class="toc-text">2. 物体创建操作讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%A9%E7%94%A8%E6%96%B0%E6%89%8B%E8%B5%84%E4%BA%A7%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E7%8E%AF%E5%A2%83"><span class="toc-number">3.3.</span> <span class="toc-text">3. 利用新手资产搭建简单环境</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s04-1-%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9E%8B%E8%B5%84%E4%BA%A7"><span class="toc-number">4.</span> <span class="toc-text">s04-1 导入模型资产</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9D%90%E6%A0%87%E8%BD%B4%E5%BD%92%E4%BA%8E%E5%8E%9F%E7%82%B9%E8%AE%B2%E8%A7%A3"><span class="toc-number">4.1.</span> <span class="toc-text">1. 坐标轴归于原点讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%89%8D%E5%9C%A8-Maya-%E4%B8%AD%E7%9A%84%E5%AF%BC%E5%87%BA%E8%AE%BE%E7%BD%AE%E8%AE%B2%E8%A7%A3"><span class="toc-number">4.2.</span> <span class="toc-text">2. 模型导出前在 Maya 中的导出设置讲解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s04-2-%E5%AF%BC%E5%85%A5%E8%B4%B4%E5%9B%BE%E8%B5%84%E4%BA%A7"><span class="toc-number">5.</span> <span class="toc-text">s04-2 导入贴图资产</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%B4%B4%E5%9B%BE%E8%8E%B7%E5%8F%96%E5%8F%8A%E7%BD%AE%E5%85%A5%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E8%AE%B2%E8%A7%A3"><span class="toc-number">5.1.</span> <span class="toc-text">1. 贴图获取及置入虚幻引擎讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B4%B4%E5%9B%BE%E6%A0%BC%E5%BC%8F%E5%8F%8A%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E9%80%BB%E8%BE%91%E8%AE%B2%E8%A7%A3"><span class="toc-number">5.2.</span> <span class="toc-text">2. 贴图格式及文件读取逻辑讲解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s04-3-%E5%AF%BC%E5%85%A5%E8%B5%84%E4%BA%A7%E5%8C%85"><span class="toc-number">6.</span> <span class="toc-text">s04-3 导入资产包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Content-%E6%96%87%E4%BB%B6%E5%A4%B9%E8%AF%B4%E6%98%8E"><span class="toc-number">6.1.</span> <span class="toc-text">1. Content 文件夹说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Epic-%E5%95%86%E5%9F%8E%E5%AF%BC%E5%85%A5"><span class="toc-number">6.2.</span> <span class="toc-text">2. Epic 商城导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AF%BC%E5%85%A5%E5%85%B6%E4%BB%96%E5%B7%A5%E7%A8%8B-Content-%E6%96%87%E4%BB%B6"><span class="toc-number">6.3.</span> <span class="toc-text">3. 导入其他工程 Content 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%BF%81%E7%A7%BB%E5%85%B6%E4%BB%96%E5%B7%A5%E7%A8%8B%E8%B5%84%E4%BA%A7%E8%AE%B2%E8%A7%A3"><span class="toc-number">6.4.</span> <span class="toc-text">4. 迁移其他工程资产讲解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s04-4-%E5%AF%BC%E5%85%A5-bridge-%E8%B5%84%E4%BA%A7%E5%8C%85"><span class="toc-number">7.</span> <span class="toc-text">s04-4 导入 bridge 资产包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Bridge-%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E5%87%86%E5%A4%87%E8%AE%B2%E8%A7%A3"><span class="toc-number">7.1.</span> <span class="toc-text">1. Bridge 模块使用准备讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%AF%BC%E5%87%BA%E8%AE%B2%E8%A7%A3"><span class="toc-number">7.2.</span> <span class="toc-text">2. 下载及导出讲解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s05-%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80%E8%AE%A4%E7%9F%A5"><span class="toc-number">8.</span> <span class="toc-text">s05-材质基础认知</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%9C%E7%94%A8%E8%AE%B2%E8%A7%A3"><span class="toc-number">8.1.</span> <span class="toc-text">1. 作用讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9D%90%E8%B4%A8%E7%BC%96%E8%BE%91%E5%99%A8%E7%95%8C%E9%9D%A2"><span class="toc-number">8.2.</span> <span class="toc-text">2. 材质编辑器界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%80%E5%8D%95%E8%B0%83%E8%8A%82%E5%9F%BA%E7%A1%80%E7%9A%84-pbr-%E6%9D%90%E8%B4%A8%E7%90%83"><span class="toc-number">8.3.</span> <span class="toc-text">3. 简单调节基础的 pbr 材质球</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%B4%B4%E5%9B%BE%E4%BB%8B%E7%BB%8D%E5%8F%8A%E8%B4%B4%E5%9B%BE%E5%9F%BA%E7%A1%80%E8%B0%83%E8%8A%82%E5%8F%82%E6%95%B0%E8%B0%83%E8%8A%82"><span class="toc-number">8.4.</span> <span class="toc-text">4. 贴图介绍及贴图基础调节参数调节</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s06-%E5%85%89%E7%85%A7%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D"><span class="toc-number">9.</span> <span class="toc-text">s06-光照系统介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%85%A7%E6%98%8E%E7%B3%BB%E7%BB%9F%E5%88%9D%E6%AD%A5%E4%BB%8B%E7%BB%8D"><span class="toc-number">9.1.</span> <span class="toc-text">1. 照明系统初步介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%90%8E%E6%9C%9F%E7%9B%92%E4%BB%8B%E7%BB%8D"><span class="toc-number">9.2.</span> <span class="toc-text">2. 后期盒介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Lumens-%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D"><span class="toc-number">9.3.</span> <span class="toc-text">3. Lumens 使用介绍</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s07-%E5%9C%B0%E5%BD%A2%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D"><span class="toc-number">10.</span> <span class="toc-text">s07-地形系统介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9C%B0%E5%BD%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D"><span class="toc-number">10.1.</span> <span class="toc-text">1. 地形的创建及常用模块介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%AE%80%E5%8D%95%E5%9C%B0%E5%BD%A2%E6%9D%90%E8%B4%A8%E5%88%9B%E5%BB%BA%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="toc-number">10.2.</span> <span class="toc-text">2. 简单地形材质创建及使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s08-%E6%A4%8D%E8%A2%AB%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D"><span class="toc-number">11.</span> <span class="toc-text">s08-植被系统介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A4%8D%E8%A2%AB%E5%AF%BC%E5%85%A5%E5%8F%8A%E7%95%8C%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D%E8%AE%B2%E8%A7%A3"><span class="toc-number">11.1.</span> <span class="toc-text">1. 植被导入及界面基本介绍讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%AE%80%E5%8D%95%E5%9C%B0%E8%A1%A8%E6%A4%8D%E7%89%A9%E5%9C%B0%E8%A1%A8%E5%88%B6%E4%BD%9C"><span class="toc-number">11.2.</span> <span class="toc-text">2. 简单地表植物地表制作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s09-Nanite-%E7%BD%91%E7%BB%9C%E4%BD%93%E4%BB%8B%E7%BB%8D"><span class="toc-number">12.</span> <span class="toc-text">s09-Nanite 网络体介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Nanite-%E6%A8%A1%E5%9E%8B%E6%A6%82%E5%BF%B5%E5%8F%8A-LOD-%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90"><span class="toc-number">12.1.</span> <span class="toc-text">1. Nanite 模型概念及 LOD 概念解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%8E%B7%E5%8F%96-Nanite-%E6%A8%A1%E5%9E%8B%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%AF%BC%E5%85%A5%E8%AE%B2%E8%A7%A3"><span class="toc-number">12.2.</span> <span class="toc-text">2. 获取 Nanite 模型及设置导入讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Nanite-%E6%A4%8D%E8%A2%AB%E4%BD%BF%E7%94%A8"><span class="toc-number">12.3.</span> <span class="toc-text">3. Nanite 植被使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s10-Megascans-%E6%9D%90%E8%B4%A8%E7%90%83%E8%AE%B2%E8%A7%A3%E5%8F%8A%E8%B0%83%E6%95%B4"><span class="toc-number">13.</span> <span class="toc-text">s10-Megascans 材质球讲解及调整</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Megascans-%E5%B2%A9%E7%9F%B3%E6%9D%90%E8%B4%A8%E7%90%83%E8%AE%B2%E8%A7%A3"><span class="toc-number">13.1.</span> <span class="toc-text">1. Megascans 岩石材质球讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Megascans-%E6%A4%8D%E8%A2%AB%E6%9D%90%E8%B4%A8%E7%90%83%E8%AE%B2%E8%A7%A3"><span class="toc-number">13.2.</span> <span class="toc-text">2. Megascans 植被材质球讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Decals-%E6%9D%90%E8%B4%A8%E8%AE%B2%E8%A7%A3"><span class="toc-number">13.3.</span> <span class="toc-text">3. Decals 材质讲解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s11-%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%88%86%E6%9E%90%E5%8F%8A%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E5%85%B3%E5%8D%A1%E5%88%9B%E5%BB%BA"><span class="toc-number">14.</span> <span class="toc-text">s11-实战：搭建分析及基础环境关卡创建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8F%82%E8%80%83%E5%9B%BE%E5%AF%BB%E6%89%BE%E9%80%94%E5%BE%84%E5%8F%8A%E8%B5%84%E4%BA%A7"><span class="toc-number">14.1.</span> <span class="toc-text">1. 参考图寻找途径及资产</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E5%85%B3%E5%8D%A1%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%91%84%E5%83%8F%E6%9C%BA%E6%9E%B6%E8%AE%BE"><span class="toc-number">14.2.</span> <span class="toc-text">2. 创建关卡场景及摄像机架设</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9E%84%E5%9B%BE%E8%B0%83%E6%95%B4%E5%8F%8A%E5%B2%A9%E7%9F%B3%E8%B5%84%E4%BA%A7%E8%BF%90%E7%94%A8%E8%AE%B2%E8%A7%A3"><span class="toc-number">14.3.</span> <span class="toc-text">3. 构图调整及岩石资产运用讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%B1%B1%E6%B4%9E%E5%B2%A9%E7%9F%B3%E5%A3%81%E6%90%AD%E5%BB%BA%E8%AE%B2%E8%A7%A3"><span class="toc-number">14.4.</span> <span class="toc-text">4. 山洞岩石壁搭建讲解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s12-%E5%AE%9E%E6%88%98%EF%BC%9A%E6%B4%9E%E5%86%85%E5%A4%A7%E8%87%B4%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AE%B2%E8%A7%A3"><span class="toc-number">15.</span> <span class="toc-text">s12-实战：洞内大致环境搭建讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9C%BA%E6%99%AF%E5%85%B3%E5%8D%A1%E6%95%B4%E7%90%86%E5%8F%8A%E5%88%9D%E5%A7%8B%E5%8C%96%E6%AF%94%E4%BE%8B%E8%B0%83%E6%95%B4"><span class="toc-number">15.1.</span> <span class="toc-text">1. 场景关卡整理及初始化比例调整</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9F%BA%E7%A1%80%E5%9C%BA%E6%99%AF%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E6%BC%94%E7%A4%BA"><span class="toc-number">15.2.</span> <span class="toc-text">2. 基础场景搭建过程演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%8F%90%E9%86%92%E5%A4%A7%E5%AE%B6%E5%B9%B6%E4%B8%94%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BA%9B%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">15.3.</span> <span class="toc-text">3. 提醒大家并且解决一些出现的问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s13-%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%EF%BC%88%E7%BA%AF%E6%93%8D%E4%BD%9C%EF%BC%89"><span class="toc-number">16.</span> <span class="toc-text">s13-实战：搭建基础环境（纯操作）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%B2%A9%E7%9F%B3%E6%90%AD%E5%BB%BA%E6%BC%94%E7%A4%BA"><span class="toc-number">16.1.</span> <span class="toc-text">1. 岩石搭建演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B1%B1%E6%B4%9E%E5%89%8D%E6%99%AF%E5%B2%A9%E7%9F%B3%E6%90%AD%E5%BB%BA%E6%BC%94%E7%A4%BA"><span class="toc-number">16.2.</span> <span class="toc-text">2. 山洞前景岩石搭建演示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s14-%E5%AE%9E%E6%88%98%EF%BC%9A%E7%BB%86%E5%8C%96%E5%B1%B1%E6%B4%9E%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84"><span class="toc-number">17.</span> <span class="toc-text">s14-实战：细化山洞内部结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BB%93%E6%9E%84"><span class="toc-number">17.1.</span> <span class="toc-text">1. 结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B1%B1%E6%B4%9E%E5%86%85%E5%B2%A9%E7%9F%B3%E7%BB%86%E8%8A%82%E8%A1%A5%E5%85%85%E6%BC%94%E7%A4%BA"><span class="toc-number">17.2.</span> <span class="toc-text">2. 山洞内岩石细节补充演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%AC%A7%E9%85%B1%E8%99%9A%E5%B9%BB%E6%A8%A1%E5%9E%8B%E8%BE%B9%E8%B4%A2%E5%AE%9D%E6%90%AD%E5%BB%BA"><span class="toc-number">17.3.</span> <span class="toc-text">3. 欧酱虚幻模型边财宝搭建</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s15-%E5%AE%9E%E6%88%98%EF%BC%9A%E5%A2%9E%E5%8A%A0%E5%9C%BA%E6%99%AF%E6%B0%9B%E5%9B%B4%E7%BB%86%E5%8C%96%E6%9D%90%E8%B4%A8%E7%BB%86%E8%8A%82"><span class="toc-number">18.</span> <span class="toc-text">s15-实战：增加场景氛围细化材质细节</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#s16-%E5%AE%9E%E6%88%98%EF%BC%9A%E6%90%AD%E5%BB%BA%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C%E5%88%B6%E4%BD%9C"><span class="toc-number">19.</span> <span class="toc-text">s16-实战：搭建最终效果制作</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/9daba997/" title="测试"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/bg/wallhaven-85p82o.jpg?_r_=440859e5-e9b1-813e-9c16-1bbdd296ad1c" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="测试"/></a><div class="content"><a class="title" href="/posts/9daba997/" title="测试">测试</a><time datetime="2025-08-11T02:22:33.000Z" title="发表于 2025-08-11 10:22:33">2025-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4e290ddc/" title="Neo4j图数据库"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/bg/wallhaven-p95m1e.jpg?_r_=b04b2214-9fef-0a8c-e906-5c18ebc94d19" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Neo4j图数据库"/></a><div class="content"><a class="title" href="/posts/4e290ddc/" title="Neo4j图数据库">Neo4j图数据库</a><time datetime="2025-03-26T03:59:19.000Z" title="发表于 2025-03-26 11:59:19">2025-03-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c6f5a50c/" title="Cesium入门到精通"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/cesium.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cesium入门到精通"/></a><div class="content"><a class="title" href="/posts/c6f5a50c/" title="Cesium入门到精通">Cesium入门到精通</a><time datetime="2025-03-18T01:42:41.000Z" title="发表于 2025-03-18 09:42:41">2025-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/261ddbfa/" title="Windows系统重装优化指南"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/windows11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows系统重装优化指南"/></a><div class="content"><a class="title" href="/posts/261ddbfa/" title="Windows系统重装优化指南">Windows系统重装优化指南</a><time datetime="2024-08-14T05:35:56.000Z" title="发表于 2024-08-14 13:35:56">2024-08-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b9223ce3/" title="UE5+Cesium智慧城市&amp;园区全流程开发"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/bg/wallhaven-7pmv93.jpg?_r_=cc98f8c6-2d39-c7d9-7079-f7bab40b073a" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UE5+Cesium智慧城市&amp;园区全流程开发"/></a><div class="content"><a class="title" href="/posts/b9223ce3/" title="UE5+Cesium智慧城市&amp;园区全流程开发">UE5+Cesium智慧城市&amp;园区全流程开发</a><time datetime="2024-07-31T11:24:51.000Z" title="发表于 2024-07-31 19:24:51">2024-07-31</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:anzhiyu-c@qq.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://weibo.com/u/6378063631" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.facebook.com/profile.php?id=100092208016287&amp;sk=about" title="facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/avatar/avatar.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/372204786" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://v.douyin.com/DwCpMEy/" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i></a></div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-上班摸鱼中.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" href="/docs/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="更新日志" href="/update/">更新日志</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://hexo.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://www.dogecloud.com/" style="margin-inline:5px" data-title="本站使用多吉云为静态资源提供CDN加速" title="本站使用多吉云为静态资源提供CDN加速"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/CDN-多吉云-3693F3.svg" alt="本站使用多吉云为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2018 - 2026 By <a class="footer-bar-link" href="/" title="Ramsayi" target="_blank">Ramsayi</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  getScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js').then(() => {
+    jinrishici.load(result =>{
+      if (true) {
+        const sub = []
+        const content = result.data.content
+        sub.unshift(content)
+        window.typed = new Typed('#footer-type-tips', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('footer-type-tips').innerHTML = result.data.content
+      }
+    })
+  })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://image.anheyu.com" title="图床">图床</a><a class="footer-bar-link cc" href="/copyright" title="CC协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">267</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">50</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">26</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://ramsayi.github.io/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbk.github.io" title="网址导航"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="网址导航"/><span class="back-menu-item-text">网址导航</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://scabet.github.io" title="Scabet"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="Scabet"/><span class="back-menu-item-text">Scabet</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbt.github.io/" title="Aabbt"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="Aabbt"/><span class="back-menu-item-text">Aabbt</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://swclub.github.io/" title="SWClub"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="SWClub"/><span class="back-menu-item-text">SWClub</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbs.github.io/" title="花里胡哨"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blog.anheyu.com/favicon.ico" alt="花里胡哨"/><span class="back-menu-item-text">花里胡哨</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/technology-stack/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 技术栈</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Axios/" style="font-size: 0.88rem;">Axios<sup>1</sup></a><a href="/tags/Bilibili/" style="font-size: 0.88rem;">Bilibili<sup>1</sup></a><a href="/tags/C/" style="font-size: 0.88rem;">C++<sup>39</sup></a><a href="/tags/CSS/" style="font-size: 0.88rem;">CSS<sup>9</sup></a><a href="/tags/Curl/" style="font-size: 0.88rem;">Curl<sup>1</sup></a><a href="/tags/Dart/" style="font-size: 0.88rem;">Dart<sup>114</sup></a><a href="/tags/ECharts/" style="font-size: 0.88rem;">ECharts<sup>4</sup></a><a href="/tags/ENVI/" style="font-size: 0.88rem;">ENVI<sup>1</sup></a><a href="/tags/ESLint/" style="font-size: 0.88rem;">ESLint<sup>1</sup></a><a href="/tags/Excel/" style="font-size: 0.88rem;">Excel<sup>1</sup></a><a href="/tags/FFmpeg/" style="font-size: 0.88rem;">FFmpeg<sup>1</sup></a><a href="/tags/Flutter/" style="font-size: 0.88rem;">Flutter<sup>114</sup></a><a href="/tags/Getx/" style="font-size: 0.88rem;">Getx<sup>1</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>2</sup></a><a href="/tags/GitKraken/" style="font-size: 0.88rem;">GitKraken<sup>1</sup></a><a href="/tags/HTML/" style="font-size: 0.88rem;">HTML<sup>9</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem;">Hexo<sup>3</sup></a><a href="/tags/Husky/" style="font-size: 0.88rem;">Husky<sup>1</sup></a><a href="/tags/JavaScript/" style="font-size: 0.88rem;">JavaScript<sup>7</sup></a><a href="/tags/Jupyter/" style="font-size: 0.88rem;">Jupyter<sup>1</sup></a><a href="/tags/Markdown/" style="font-size: 0.88rem;">Markdown<sup>1</sup></a><a href="/tags/OneDrive/" style="font-size: 0.88rem;">OneDrive<sup>1</sup></a><a href="/tags/Preitter/" style="font-size: 0.88rem;">Preitter<sup>1</sup></a><a href="/tags/Python/" style="font-size: 0.88rem;">Python<sup>33</sup></a><a href="/tags/SARscape/" style="font-size: 0.88rem;">SARscape<sup>1</sup></a><a href="/tags/Ubuntu/" style="font-size: 0.88rem;">Ubuntu<sup>2</sup></a><a href="/tags/VMware/" style="font-size: 0.88rem;">VMware<sup>1</sup></a><a href="/tags/VSCode/" style="font-size: 0.88rem;">VSCode<sup>1</sup></a><a href="/tags/Vim/" style="font-size: 0.88rem;">Vim<sup>1</sup></a><a href="/tags/Windows/" style="font-size: 0.88rem;">Windows<sup>3</sup></a><a href="/tags/You-Get/" style="font-size: 0.88rem;">You-Get<sup>1</sup></a><a href="/tags/npm/" style="font-size: 0.88rem;">npm<sup>1</sup></a><a href="/tags/%E4%B8%96%E7%95%8C%E5%8D%A1%E8%BD%A6%E6%A8%A1%E6%8B%9F/" style="font-size: 0.88rem;">世界卡车模拟<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 0.88rem;">博客<sup>5</sup></a><a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 0.88rem;">快捷键<sup>1</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem;">测试<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 0.88rem;">游戏<sup>1</sup></a><a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 0.88rem;">爬虫<sup>1</sup></a><a href="/tags/%E7%BB%88%E7%AB%AF/" style="font-size: 0.88rem;">终端<sup>6</sup></a><a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 0.88rem;">虚拟机<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("01/01/2018 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-下班啦.svg";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'hYhAkaCoGek8gsKP8H2vLfmS-gzGzoHsz',
+      appKey: '8Cxp5qHQuHTnuUIsOuPqWoQk',
+      avatar: 'mp',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.cbd.int/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script src="https://cdn.cbd.int/blueimp-md5@2.19.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=mp'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://hYhAkaCo.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'hYhAkaCoGek8gsKP8H2vLfmS-gzGzoHsz',
+        "X-LC-Key": '8Cxp5qHQuHTnuUIsOuPqWoQk',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://cdn.cbd.int/qrcodejs@1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script src="/inject/custom.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

@@ -1,0 +1,79 @@
+/* 天气 */
+#he-plugin-simple a {
+  background-color: transparent !important;
+}
+/* 安知鱼 上班 下班 */
+#workboard .workSituationImg {
+  display: none !important;
+}
+/* 代码悬停 */
+code:hover {
+  transition: all 0.3s ease-in-out !important;
+  background-color: #57bd6a !important;
+}
+/* SVG Logo */
+#skills-tags-group-all .tags-group-icon img {
+  width: 90px !important;
+}
+/* SVG 小Logo */
+.skills .skill-icon img {
+  width: 22px !important;
+  height: 22px !important;
+}
+/* SVG 小Logo 滚动条 */
+.author-content-item.skills .skills-style-group {
+  overflow: scroll !important;
+  overflow-x: hidden !important;
+}
+#card-toc {
+  overflow-y: scroll !important;
+}
+#card-toc .toc-content {
+  overflow: hidden !important;
+}
+/* Logo 组合元素 */
+.logo-div {
+  display: inline-block !important;
+  overflow: visible !important;
+  margin-right: 15px !important;
+  width: 110px !important;
+  height: 110px !important;
+}
+.logo-div a {
+  display: flex !important;
+  width: 80px !important;
+  height: 80px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 2 !important;
+  position: relative !important;
+  margin: 15px !important;
+}
+.logo-div a img {
+  margin: 0 !important;
+  object-fit: contain !important;
+  max-width: 80px !important;
+  max-height: 80px !important;
+}
+.logo-div p {
+  font-size: small !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+.logo-div .logo-round {
+  position: relative !important;
+  float: left !important;
+  width: 110px !important;
+  height: 110px !important;
+  border-radius: 20% !important;
+  background-color: #ffffff !important;
+  top: -153px !important;
+  z-index: 1 !important;
+  box-shadow: 0 5px 20px 0 #ccc !important;
+}
+/* 目录 悬停 */
+.toc-link:hover {
+  background-color: #dfe5ff !important;
+}
