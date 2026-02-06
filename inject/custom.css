@@ -78,3 +78,11 @@ code:hover {
   background-color: #899fff4e;
   font-size: unset;
 }
+/* 目录 高度 */
+#aside-content #card-toc .toc-content {
+  max-height: calc(-170px + 100vh);
+}
+/* PDF 嵌入 */
+embed[type="application/pdf"] {
+  height: 100vh;
+}
