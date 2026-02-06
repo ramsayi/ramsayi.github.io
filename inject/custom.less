@@ -8,36 +8,36 @@
   display: none !important;
 }
 
-/* 代码悬停 */
+/* 行内代码悬停 */
 code:hover {
   transition: all 0.3s ease-in-out !important;
   background-color: rgb(87, 189, 106) !important;
 }
 
-/* SVG Logo */
+/* 关于本人页面的技能 SVG Logo */
 #skills-tags-group-all .tags-group-icon img {
-  width: 90px !important;
+  width: 90px;
 }
 
-/* SVG 小Logo */
+/* 关于本人页面的技能 SVG 小Logo */
 .skills .skill-icon img {
-  width: 22px !important;
-  height: 22px !important;
+  width: 22px;
+  height: 22px;
 }
 
-/* SVG 小Logo 滚动条 */
+/* 关于本人页面的技能 SVG 小Logo 滚动条 */
 .author-content-item.skills .skills-style-group {
-  overflow: scroll !important;
-  overflow-x: hidden !important;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 // 目录滚动条
-#card-toc {
-  overflow-y: scroll !important;
-  .toc-content {
-    overflow: hidden !important;
-  }
-}
+// #card-toc {
+//   overflow-y: scroll !important;
+//   .toc-content {
+//     overflow: hidden !important;
+//   }
+// }
 
 /* Logo 组合元素 */
 .logo-div {
@@ -84,5 +84,13 @@ code:hover {
 
 /* 目录 悬停 */
 .toc-link:hover {
-  background-color: #dfe5ff !important;
+  background-color: #899fff4e;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* 目录 选中 */
+#aside-content #card-toc .toc-content .toc-link.active {
+  background-color: #899fff4e;
+  font-size: unset;
 }
