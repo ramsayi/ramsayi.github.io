@@ -1,0 +1,714 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2） | Ramsayi</title><meta name="keywords" content="ENVI,SARscape"><meta name="author" content="Ramsayi"><meta name="copyright" content="Ramsayi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）"><meta name="application-name" content="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）"><meta property="og:url" content="https://ramsayi.github.io/posts/17d71d05/index.html"><meta property="og:site_name" content="Ramsayi"><meta property="og:description" content="反演第一步Inversion：First Step工具路径：&amp;#x2F;SARscape&amp;#x2F;Interferometric Stacking&amp;#x2F;SBAS&amp;#x2F;3 - Inversion: First Step  这一步是 SBAS 反演的核心，第一次估算形变速率和残余地形。这一步也会做二次解缠，用来对输入的干涉图进行"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/sarscape-01.webp"><meta property="article:author" content="Ramsayi"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/sarscape-01.webp"><meta name="description" content="反演第一步Inversion：First Step工具路径：&amp;#x2F;SARscape&amp;#x2F;Interferometric Stacking&amp;#x2F;SBAS&amp;#x2F;3 - Inversion: First Step  这一步是 SBAS 反演的核心，第一次估算形变速率和残余地形。这一步也会做二次解缠，用来对输入的干涉图进行"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://ramsayi.github.io/posts/17d71d05/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: undefined,
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://twikoo-h131i132g-ramsayi.vercel.app/',
+  commentBarrageConfig:undefined,
+  music_page_default: "custom",
+  root: '/',
+  preloader: undefined,
+  friends_vue_info: {"apiurl":"https://friends.anheyu.com/"},
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: {"appId":"PJ89P3CT4E","apiKey":"b8dbf819d8a897bdfdfe7068f45588d9","indexName":"hexo","hits":{"per_page":6},"languages":{"input_placeholder":"输入关键词后按下回车查找","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"这篇文章已发布","messageNext":"天，极有可能过时了，内容仅供参考。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Ramsayi","link":"链接: ","source":"来源: Ramsayi","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.2.0/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'Ramsayi',
+  title: 'SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）',
+  postAI: '',
+  pageFillDescription: '反演第一步Inversion：First Step, 导入设置, optional file, 控制点文件可选, parameters参数设置, 查看输出结果, 反演第二步Inversion：Second Step, 输入auxiliary.sml文件, Parameters 参数设置, 查看输出结果, 地理编码Geocoding, 输入auxiliary.sml数据, 在 DEMx2FCartographic System 面板中选择 DEM 文件。, Parameters参数设置, 输出文件, 形变结果时序分析反演第一步工具路径这一步是反演的核心第一次估算形变速率和残余地形这一步也会做二次解缠用来对输入的干涉图进行优化以便进行下一步处理程序可以在二次解缠之前停止一下让用户能分析第一次的结果在文件夹中导入设置在连接图中输出的文件这个文件在后续的处理中会被更新控制点文件可选加载先前创建的地面控制点文件加载文件或自动加载创建新地面控制点文件的界面创建文件点击望远镜创建点击之后会自动打开界面必选项用于定位这里选择上一步做好的解缠结果文件或者干涉文件可选项用于检测对应的高程值这里选择文件可选项为选择提供一个参考依据可以选择相干系数图干涉图等与同时显示在一个窗口中点击进入下一步指插入可以删除或者移动说明选择重要的标准包括没有残余地形条纹没有形变条纹远离形变区域除非已知这个点的形变速率没有相位跃变如果点位于一个孤立相位上并且解缠的值非常差这个位置可能是斜坡相位的一部分那么选择的这个是不对的由于在中很难找到完美的可以全部用在所有的数据对中因为数据对拥有不同的相干性因此建议多选择一些至少个点参考着影像插入完成之后在里面看看有无位于相位孤岛的地方如果有就删掉或移动这种点就应该删掉或者移动点击下面的黑色就是删除选中的点如果点击四个红色就是删除所有的点编辑完之后点击在界面选择坐标系在界面选择数据出路径最后点击参数设置选择选项设置以下参数是否全部重建如果选择那么中断计算后再点击就会重新计算这一步如果点击中断计算后如果再次点击则会继承之前计算的结果继续计算默认相关系数阈值当低于这个阈值的像素将以输出这里设置提示基于模型计算出所有像对的形变日期速度加速度和加速度变化和高程校正值和新的提供无位移模型线性模型二次方模型三次方模型四个模型其中线性模型最稳定其他模型需要密集的连接图和高相干性才能得到可靠的结果估算残余高度在高质量的高参考分辨率的情况下不需要对地形分量进行估算在少于张图像的情况下这可能导致倾倒残余高度估计从而导致错误的速度估算如果选择了此参数并且选择的位移模型类型为无位移则将用于生成精确的空间小波尺寸它将估算的残差地形数据分辨率保留到指定值可以消除此分辨率值下的低通失真并使用小波分解保留了空间细节如果此值较小或等于则不考虑此值是否丢弃孤立成像数据默认为最小有效干涉图每个输出网格点获得可接受结果的可接受反演方程超过相干阈值的干涉图的最小数量的百分比如果此参数等于或大于零有效干涉图则考虑此参数并且应在标记是否丢弃孤立成像数据或之前已在连接图生成步骤中标记是否丢弃孤立成像数据时使用可以在二次解缠前停止好让用户检查第一次的结果结果在输出路径下的文件夹下默认为同时解缠数量定义将并行执行的解缠数量数每个线程一个干涉图此参数不得超过线程的总数解缠方法解缠分解等级默认解缠相干系数阈值设置为轨道精炼半径最大缓冲半径为地面控制点相对于斜距解缠相位更近的有效像素轨道精炼的多项式次数在重去平的过程中用到的估算相位斜坡的多项式次数若输入的控制点个数较少次数会自动降低默认的表示在距离向和方位向加上一个恒定的相位偏移的相位斜坡会被修正如果仅需要相位偏移校正这个次数可以设置为点击开始计算查看输出结果输出结果均保存在文件夹下反演第二步工具路径这一步的核心是计算时间序列上的位移在第一步得到的形变速率基础上进行定制的大气滤波从而估算和去除大气相位得到更加纯净的时间序列上的最终位移结果大气高通大气低通两个选项对大气影响进行估计最后每个时间都从测量的位移中减去这些大气部分在这里是用来去除还有残余的相位或相位斜坡在这里使用轨道精炼的时候所用的轨道控制点输入文件在选项中选择前面轨道精炼的时候使用的控制点文件可选这里我没输入提示这里的只是用来移除恒定相位或者斜坡相位参数设置单击面板选择选项设置以下参数是否全部重建如果选择那么中断计算后再点击就会重新计算这一步如果点击中断计算后如果再次点击则会继承之前计算的结果继续计算默认相关系数阈值当低于这个阈值的像素将以输出这里设置当时间序列数据不存在的部分可以通过插值方法估算形变如果前面处理中设置了时这里可以设置为最小有效购置量在每个输出网格点获得可接受结果的最小有效采集次数百分比至少由超过相干阈值的一定数量的有效干涉图覆盖如果该参数等于或大于零则应考虑该参数并且应在标记或之前在连接图生成步骤中标记了允许断开连接块时使用该参数如果该参数等于或大于零则应考虑该参数并且应在标记或之前在连接图生成步骤中标记了允许断开连接块时使用该参数最小有效购置量在每个输出网格点获得可接受结果的最小有效采集次数由至少一定量的有效干涉图覆盖超过相干阈值的百分比如果等于或大于零则考虑此参数并且应在标记国际刑警组织断开连接块时使用或者之前已在连接图生成步骤中标记了允许断开连接的块大气低通尺寸输入以米为单位的窗口大小应用于空间分布相关滤波默认大气高通尺寸输入以天为单位的窗口大小应用于时间分布相关滤波默认轨道精炼半径最大缓冲半径为地面控制点相对于斜距解缠相位更近的有效像素轨道精炼的多项式次数在重去平的过程中用到的估算相位斜坡的多项式次数若输入的控制点个数较少次数会自动降低默认的表示在距离向和方位向加上一个恒定的相位偏移的相位斜坡会被修正如果仅需要相位偏移校正这个次数可以设置为查看输出结果输出成果均保存在文件夹下包含以下产品的目录由于输出产品大量元数据并生成时间序列文件它们能够同时加载所有相关的输出产品反演子文件夹其中包含反转中的产品第二个模型在斜距几何图中轨道精炼和重去平的内部副本转化为格式的斜距轨道精炼和重去平几何文件转换为和格式的地距轨道精炼和重去平几何文件生成的元数据和时间序列数据指的是从时间序列多项式回归中获得的残余高度和位移速度加上辅助层在倾斜范围几何中指的是按日期排列的日期位移以斜距几何形状测量无需大气校正指的是在大气校正后以斜距几何形状测量的日期位移指每次采集的有效测量相干性高于产品相干阈值的干涉图数量系列指由残余高度估算分量的所有去平相位解缠数据指为第二次反演的重去平解缠相位数据反演的输出结果位移相关产品有对应于反演多项式的零次项对应于反演多项式的一阶项年对应于反演多项式的二阶项对应于反演多项式的三阶项对应于平均位移速度年对应于平均位移加速度对应于平均位移加速度变化对应于周期性模型调制对应于周期性模型延迟天对应于相对于第一个采集日期测量的特定位移以毫米为单位该日期分配了零位移没有大气校正对应于在大气校正后相对于第一个采集日期测量的特定位移以毫米为单位该日期分配了零位移一般产品对应于多时序相干性它显示位移趋势与所选模型的拟合程度这是反演质量的衡量标准它是以弧度表示的此值越高拟合和反转质量越差这是衡量配件质量的指标它是以毫米表示的此值越高拟合和反转质量越差对应于按日期计算的日期绝对值位移的累积总和以毫米为单位使用每个获取的有效度量值编号进行计数有效的购置百分比至少由一个有效度量值涵盖有效的干涉图百分比位移值报告如下如果位移对应于传感器到目标的斜距减小则为正号如果位移对应于传感器到目标的斜距增加则为负号文件夹用于存储中间处理结果的目录地理编码工具路径输入数据在面板中选择文件参数设置单击面板选择选项设置以下参数是否全部重建如果选择那么中断计算后再点击就会重新计算这一步如果点击中断计算后如果再次点击则会继承之前计算的结果继续计算默认高度精度阈值速率精度阈值产品时间一致性阈值时间一致性测量值的下限该阈值与高度精度阈值和速度精度阈值一起用于掩膜过程水域掩膜单位用作从平均强度图像中检索水体掩模的阈值低于此阈值的所有点将从输出层中删除如果小于则激活是否创建地理编码栅格选将生成输出栅格文件是否创建地理编码矢量选将生成输出矢量文件最大点数如果输入了以外的值则输出形状文件将拆分为多个部分每个部分都用渐进编号标记形状的每个部分都包含总点数的一部分该部分对应于输入的值建议不要超过点以避免可视化问题生成时间序列选将生成输出矢量文件其中包含位移时间演变生成矢量计数器序列通过设置此标志将生成输出矢量文件其中包含每个采集日期的有效干涉图计数器当计数器为零时对应的采集日期已被时间插值计数器越高相应的估计位移测量的可靠性越高垂直形变形变和速率将投影到垂直方向如果实际位移方向未知则不要使用重新投影斜面形变形变和速率将投影到斜距方向如果实际位移方向未知则不要使用重新投影自定义形变方向设置为时形变和速率将投影到自定方向上需要设置方位角以度为单位从北顺时针方向和倾斜角以度为单位从水平面开始计算方位角自定义方向方位角从北向以度为单位测量顺时针方向入射角自定义方向倾角以与水平平面的度数为单位进行测量输出像元方向大小以米为单位对于地理投影如果输入的值大于它们将被视为公制单位然后自动粗略地从米转换为度如果输入的值小于它们将被视为度数并且无需任何转换即可使用输出像元方向大小以米为单位对于地理投影如果输入的值大于它们将被视为公制单位然后自动粗略地从米转换为度如果输入的值小于它们将被视为度数并且无需任何转换即可使用对高度图像结果做均值滤波处理如果果输入则不应用均值滤波此筛选器在执行插值步骤后应用对结果图像中的无效值用窗口大小内的像素平均值差值设置表示不进行插值轨道精炼半径最大缓冲半径为地面控制点相对于斜距解缠相位更近的有效像素轨道精炼的多项式次数在重去平的过程中用到的估算相位斜坡的多项式次数若输入的控制点个数较少次数会自动降低默认的表示在距离向和方位向加上一个恒定的相位偏移的相位斜坡会被修正如果仅需要相位偏移校正这个次数可以设置为输出文件对的结果进行地理编码同时可以将地表形变结果投影到用户自定义方向上主要的产品结果包括地理编码文件夹包含以下产品的目录由于输出产品元数据并生成时间序列文件它们能够同时加载所有相关的输出产品包含栅格版本中产品的栅格子文件夹矢量子文件夹其中包含形状版本的产品生成的元数据并生成时间序列文件它是指输出投影坐标中的高度和位移速度测量值以及辅助图层指在输出投影坐标中测量的按日期排列的位移无需大气校正指输出投影坐标中大气校正后按日期排列的形变它指的是每次获取的有效度量值计数器栅格文件夹中的输出结果包括位移相关产品有对应于第一反演平均位移速度年此栅格是不存在时的结果对应于第一个反演平均位移加速度年此栅格是不存时的结果对应于第一反演平均位移加速度变化年此栅格是不存在时的结果对应于第二反演平均位移速度年对应于第二反演平均位移加速度年第年对应于第二反演平均位移加速度变化年对应于第二反演多项式的零次项对应于第二反演多项式的一阶项对应于第二反演多项式的二阶项对应于第二反演多项式的三阶项对应于速度测量平均精度年对应于相对于第一个采集日期测量的特定位移其中分配了零位移其中为获取日期为增量日期对应于相对于第一个采集日期测量的特定位移该日期被分配为零位移而不进行大气去除其中为获取日期为增量日期一般产品包括对应于相对于输入数字高程模型的第一反转校正此栅格是不存在时的结果对应于相对于输入数字高程模型的第二次反演校正对应于高度测量平均精度有关详细信息请参阅相位到位移的转换对应于第一个反演校正数字高程模型此栅格是不存在时的结果对应于第二个反演校正数字高程模型这是对地理编码的拟合质量的度量它是嗯号此值越高拟合和反转质量越差对应于每个日期的有效度量值计数器有效的干涉图百分比有效的购置百分比至少由一个有效度量值涵盖断开连接计数器断开连接块断开连接计数器方位角视线正角是从北面顺时针方向测量的负角是从北面逆时针方向测量的视线的入射角角度是在视线和椭球体上的垂直线平坦的地球之间测量的矢量文件夹中的输出结果包括其中是精度速度阈值是高度精度阈值是时间相干阈值是形状部件如果点数大于持久散射器参数中定义的形状最大点数则会创建多个矢量文件形变结果时序分析工具路径打开文件打开工具后在图上点击需要分析的地点再点击画图即可点可以多选感谢阅读',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-10 00:55:18',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/inject/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://ramsayi.github.io/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbk.github.io" title="网址导航"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="网址导航"/><span class="back-menu-item-text">网址导航</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://scabet.github.io" title="Scabet"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="Scabet"/><span class="back-menu-item-text">Scabet</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbt.github.io/" title="Aabbt"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="Aabbt"/><span class="back-menu-item-text">Aabbt</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://swclub.github.io/" title="SWClub"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="SWClub"/><span class="back-menu-item-text">SWClub</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbs.github.io/" title="花里胡哨"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blog.anheyu.com/favicon.ico" alt="花里胡哨"/><span class="back-menu-item-text">花里胡哨</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">Ramsayi</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=13912531641&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/technology-stack/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 技术栈</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/wechat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/wechat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Axios/" style="font-size: 1.05rem;">Axios<sup>1</sup></a><a href="/tags/Bilibili/" style="font-size: 1.05rem;">Bilibili<sup>1</sup></a><a href="/tags/C/" style="font-size: 1.05rem;">C++<sup>39</sup></a><a href="/tags/CSS/" style="font-size: 1.05rem;">CSS<sup>9</sup></a><a href="/tags/Curl/" style="font-size: 1.05rem;">Curl<sup>1</sup></a><a href="/tags/Dart/" style="font-size: 1.05rem;">Dart<sup>2</sup></a><a href="/tags/ECharts/" style="font-size: 1.05rem;">ECharts<sup>4</sup></a><a href="/tags/ENVI/" style="font-size: 1.05rem;">ENVI<sup>3</sup></a><a href="/tags/ESLint/" style="font-size: 1.05rem;">ESLint<sup>1</sup></a><a href="/tags/Excel/" style="font-size: 1.05rem;">Excel<sup>1</sup></a><a href="/tags/FFmpeg/" style="font-size: 1.05rem;">FFmpeg<sup>1</sup></a><a href="/tags/Flutter/" style="font-size: 1.05rem;">Flutter<sup>2</sup></a><a href="/tags/Getx/" style="font-size: 1.05rem;">Getx<sup>1</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>2</sup></a><a href="/tags/GitKraken/" style="font-size: 1.05rem;">GitKraken<sup>1</sup></a><a href="/tags/HTML/" style="font-size: 1.05rem;">HTML<sup>9</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem;">Hexo<sup>3</sup></a><a href="/tags/Husky/" style="font-size: 1.05rem;">Husky<sup>1</sup></a><a href="/tags/JavaScript/" style="font-size: 1.05rem;">JavaScript<sup>7</sup></a><a href="/tags/Jupyter/" style="font-size: 1.05rem;">Jupyter<sup>1</sup></a><a href="/tags/Markdown/" style="font-size: 1.05rem;">Markdown<sup>1</sup></a><a href="/tags/OneDrive/" style="font-size: 1.05rem;">OneDrive<sup>1</sup></a><a href="/tags/Preitter/" style="font-size: 1.05rem;">Preitter<sup>1</sup></a><a href="/tags/Python/" style="font-size: 1.05rem;">Python<sup>33</sup></a><a href="/tags/React/" style="font-size: 1.05rem;">React<sup>9</sup></a><a href="/tags/SARscape/" style="font-size: 1.05rem;">SARscape<sup>3</sup></a><a href="/tags/Ubuntu/" style="font-size: 1.05rem;">Ubuntu<sup>2</sup></a><a href="/tags/VMware/" style="font-size: 1.05rem;">VMware<sup>1</sup></a><a href="/tags/VSCode/" style="font-size: 1.05rem;">VSCode<sup>1</sup></a><a href="/tags/Vim/" style="font-size: 1.05rem;">Vim<sup>1</sup></a><a href="/tags/Windows/" style="font-size: 1.05rem;">Windows<sup>3</sup></a><a href="/tags/You-Get/" style="font-size: 1.05rem;">You-Get<sup>1</sup></a><a href="/tags/npm/" style="font-size: 1.05rem;">npm<sup>1</sup></a><a href="/tags/%E4%B8%96%E7%95%8C%E5%8D%A1%E8%BD%A6%E6%A8%A1%E6%8B%9F/" style="font-size: 1.05rem;">世界卡车模拟<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.05rem;">博客<sup>5</sup></a><a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 1.05rem;">快捷键<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 1.05rem;">游戏<sup>1</sup></a><a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 1.05rem;">爬虫<sup>1</sup></a><a href="/tags/%E7%BB%88%E7%AB%AF/" style="font-size: 1.05rem;">终端<sup>6</sup></a><a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 1.05rem;">虚拟机<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/02/"><span class="card-archive-list-date">二月 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/03/"><span class="card-archive-list-date">三月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"><a class="article-meta__tags" href="/tags/ENVI/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>ENVI</span></a><a class="article-meta__tags" href="/tags/SARscape/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>SARscape</span></a></span></div></div><h1 class="post-title" itemprop="name headline">SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2026-02-09T16:50:37.000Z" title="发表于 2026-02-10 00:50:37">2026-02-10</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-02-09T16:55:18.136Z" title="更新于 2026-02-10 00:55:18">2026-02-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">5.4k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为江苏"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>江苏</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/sarscape-01.webp"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://ramsayi.github.io/posts/17d71d05/"><header><a href="/tags/ENVI/" tabindex="-1" itemprop="url">ENVI</a><a href="/tags/SARscape/" tabindex="-1" itemprop="url">SARscape</a><h1 id="CrawlerTitle" itemprop="name headline">SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Ramsayi</span><time itemprop="dateCreated datePublished" datetime="2026-02-09T16:50:37.000Z" title="发表于 2026-02-10 00:50:37">2026-02-10</time><time itemprop="dateCreated datePublished" datetime="2026-02-09T16:55:18.136Z" title="更新于 2026-02-10 00:55:18">2026-02-10</time></header><h1 id="反演第一步Inversion：First-Step"><a href="#反演第一步Inversion：First-Step" class="headerlink" title="反演第一步Inversion：First Step"></a>反演第一步Inversion：First Step</h1><p>工具路径：<code>/SARscape/Interferometric Stacking/SBAS/3 - Inversion: First Step</code></p>
+<ul>
+<li>这一步是 SBAS 反演的核心，第一次估算形变速率和残余地形。这一步也会做二次解缠，用来对输入的干涉图进行优化，以便进行下一步处理，程序可以在二次解缠之前停止一下，让用户能分析第一次的结果，在 inversion 文件夹中。</li>
+</ul>
+<h2 id="导入设置"><a href="#导入设置" class="headerlink" title="导入设置"></a>导入设置</h2><ul>
+<li>在连接图中输出的auxiliary.sml文件，这个文件在后续的处理中会被更新<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005320-632.png" alt="在这里插入图片描述"></li>
+</ul>
+<h2 id="optional-file"><a href="#optional-file" class="headerlink" title="optional file"></a>optional file</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005325-548.png" alt="在这里插入图片描述"></p>
+<h3 id="控制点文件，可选"><a href="#控制点文件，可选" class="headerlink" title="控制点文件，可选"></a>控制点文件，可选</h3><p>加载先前创建的地面控制点文件（.xml）（加载 GCP 文件）或自动加载创建新地面控制点文件的界面（创建 GCP 文件）</p>
+<ul>
+<li>点击望远镜，创建GCP</li>
+<li>点击之后，会自动打开Generate Ground Control Points界面<ul>
+<li>Input File：必选项。用于 GCP 定位。这里选择上一步做好的解缠结果文件或者干涉文件。</li>
+<li>DEM File：可选项。用于检测 GCP 对应的高程值。这里选择 DEM 文件。</li>
+<li>Reference File：可选项。为选择 GCP 提供一个参考依据，可以选择相干系数图、干涉图等。Reference File 与 Input File 同时显示在一个窗口中。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005124-517.png" alt="在这里插入图片描述"></li>
+</ul>
+</li>
+<li>点击Next，进入下一步，Insert指插入GCP，Edit&#x2F;Modify可以删除或者移动GCP<br><strong>说明：选择 GCP 重要的标准包括：</strong><br>1、没有残余地形条纹；<br>2、没有形变条纹，远离形变区域，除非已知这个点的形变速率；<br>3、没有相位跃变，如果 GCP 点位于一个孤立相位上，并且解缠的值非常差，这个位置可能是斜坡相位（phase ramp）的一部分，那么选择的这个 GCP 是不对的；<br>4、由于在 SBAS 中，很难找到完美的 GCP 可以全部用在所有的数据对中，因为数据对拥有不同的相干性。因此建议多选择一些 GCP，至少 20-30 个点。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005124-539.png" alt="在这里插入图片描述"><br>-参考着cc影像插入GCP完成之后，在fint里面看看有无位于相位孤岛的地方，如果有就删掉或移动<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005337-815.png" alt="在这里插入图片描述"></li>
+<li>这种点就应该删掉或者移动，点击GCPs下面的黑色X就是删除选中的GCP点，如果点击四个红色X就是删除所有的GCP点<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005345-383.png" alt="在这里插入图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005126-024.png" alt="在这里插入图片描述"></li>
+<li>编辑完之后点击在Cartographic System界面选择坐标系，在export界面选择数据出路径，最后点击finsh<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005353-051.png" alt="在这里插入图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005358-958.png" alt="在这里插入图片描述"></li>
+</ul>
+<h2 id="parameters参数设置"><a href="#parameters参数设置" class="headerlink" title="parameters参数设置"></a>parameters参数设置</h2><p>选择 Principal Parameters 选项，设置以下参数：</p>
+<ul>
+<li>Rebuild All：是否全部重建，如果选择true，那么中断计算后再点击exec就会重新计算这一步，如果点击false，中断计算后如果再次点击exec则会继承之前计算的结果继续计算。默认false。</li>
+<li>Product Coherence Threshold：相关系数阈值，当低于这个阈值的像素将以 NaN 输出。这里设置0.3。</li>
+<li>Displacement Model Type：Linear。提示：基于模型计算出所有像对的形变（日期、速度、加速度和加速度变化）和高程（校正值和新的 DEM），提供无位移模型、线性模型、二次方模型、三次方模型四个模型，其中，线性模型最稳定，其他模型需要密集的连接图和高相干性才能得到可靠的结果。</li>
+<li>Estimate Residual Height：估算残余高度，<ul>
+<li>在高质量的高参考分辨率 DEM 的情况下，不需要对地形分量进行估算。</li>
+<li>在少于20张图像的情况下，这可能导致倾倒残余高度估计，从而导致错误的速度估算。<br>如果选择了此参数，并且选择的“位移模型类型”为“无位移”，则 SBAS 将用于生成精确的 DEM。</li>
+</ul>
+</li>
+<li>Spatial Wavelet Size（m）：空间小波尺寸，它将估算的残差地形数据分辨率保留到指定值。可以消除此分辨率值下的低通失真，并使用小波分解保留了空间细节。 如果此值较小或等于 0，则不考虑此值。</li>
+<li>Allow Disconnected Blocks：是否丢弃孤立成像数据，默认为 False。</li>
+<li>Min Valid Interferograms %：最小有效干涉图，每个输出网格点获得可接受结果的可接受 SBAS 反演方程（超过相干阈值的干涉图）的最小数量的百分比。 如果此参数等于或大于零有效干涉图，则考虑此参数，并且应在标记“是否丢弃孤立成像数据”（或之前已在连接图生成步骤中标记“是否丢弃孤立成像数据”）时使用。</li>
+<li>Stop Before Unwrapping：可以在二次解缠前停止，好让用户检查第一次的结果，结果在输出路径下的 “inversion folder” 文件夹下，默认为 False。</li>
+<li>Number of Parallel Unwrapping：同时解缠数量，定义将并行执行的解缠数量数（每个线程一个干涉图）。此参数不得超过 CPU 线程的总数。</li>
+<li>Unwrapping Method Type：Delaunay MCF，解缠方法。</li>
+<li>Unwrapping Decomposition Level：解缠分解等级，默认 1。</li>
+<li>Unwrapping Coherence Threshold：解缠相干系数阈值，设置为 0.3。</li>
+<li>Refinement Radius：轨道精炼半径，最大缓冲半径为地面控制点相对于斜距解缠相位更近的有效像素</li>
+<li>Redinement Res Phase Poly Degree：轨道精炼的多项式次数，在重去平的过程中用到的估算相位斜坡的多项式次数，若输入的控制点个数较少，次数会自动降低。默认的 3 表示在距离向和方位向加上一个恒定的相位偏移的相位斜坡会被修正，如果仅需要相位偏移校正，这个次数可以设置为 1。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005126-432.png" alt="在这里插入图片描述"></li>
+</ul>
+<p>点击exec开始计算</p>
+<h2 id="查看输出结果"><a href="#查看输出结果" class="headerlink" title="查看输出结果"></a>查看输出结果</h2><ul>
+<li>输出结果均保存在<code>first_inversion</code>文件夹下<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005406-971.png" alt="在这里插入图片描述"></li>
+</ul>
+<h1 id="反演第二步Inversion：Second-Step"><a href="#反演第二步Inversion：Second-Step" class="headerlink" title="反演第二步Inversion：Second Step"></a>反演第二步Inversion：Second Step</h1><p>工具路径：<code>/SARscape/Interferometric Stacking/SBAS/4 - Inversion: Second Step</code></p>
+<ul>
+<li>这一步的核心是计算<strong>时间序列</strong>上的位移，在第一步得到的形变速率(_disp_first)基础上，进行定制的大气滤波，从而估算和去除大气相位，得到更加纯净的时间序列上的最终位移结果。</li>
+<li>大气高通、大气低通两个选项，对大气影响进行估计，最后每个时间都从测量的位移中减去这些大气部分。在这里“Displacement GCP file”是用来去除还有残余的相位或相位斜坡，在这里，使用轨道精炼的时候所用的轨道控制点。</li>
+</ul>
+<h2 id="输入auxiliary-sml文件"><a href="#输入auxiliary-sml文件" class="headerlink" title="输入auxiliary.sml文件"></a>输入auxiliary.sml文件</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005412-626.png" alt="在这里插入图片描述"></p>
+<ol start="2">
+<li>在 Refinement GCP file 选项中选择前面轨道精炼的时候使用的控制点文件。可选，这里我没输入。</li>
+</ol>
+<p>提示：这里的 GCP 只是用来移除恒定相位或者斜坡相位。</p>
+<h2 id="Parameters-参数设置"><a href="#Parameters-参数设置" class="headerlink" title="Parameters 参数设置"></a>Parameters 参数设置</h2><p>单击 Parameters 面板，选择 Principal Parameters 选项，设置以下参数：</p>
+<ul>
+<li>Rebuild All：- Rebuild All：是否全部重建，如果选择true，那么中断计算后再点击exec就会重新计算这一步，如果点击false，中断计算后如果再次点击exec则会继承之前计算的结果继续计算。默认false。</li>
+<li>Product Coherence Threshold：相关系数阈值，当低于这个阈值的像素将以 NaN 输出。这里设置 0.3。</li>
+<li>Interpol Disconnected Blocks：当时间序列数据不存在的部分，可以通过插值方法估算形变。如果前面处理中设置了 Allow Disconnected Blocks&#x3D;True 时，这里可以设置为 True。</li>
+<li>Min Valid Interferograms %： 最小有效购置量（%），在每个输出网格点获得可接受结果的最小有效采集次数百分比（至少由超过相干阈值的一定数量的有效干涉图覆盖）。如果该参数等于或大于零，则应考虑该参数，并且应在标记“Interpol Disconnected Blocks”（或之前在连接图生成步骤中标记了“Allow Disconnect Blocks（允许断开连接块）”）时使用该参数。如果该参数等于或大于零，则应考虑该参数，并且应在标记“Interpol Disconnected Blocks”（或之前在连接图生成步骤中标记了“Allow Disconnect Blocks（允许断开连接块）”）时使用该参数。</li>
+<li>Min Valid Acquisitions：最小有效购置量，在每个输出网格点获得可接受结果的最小有效采集次数（由至少一定量的有效干涉图覆盖超过相干阈值）的百分比。如果等于或大于零，则考虑此参数，并且应在标记国际刑警组织断开连接块时使用（或者之前已在连接图生成步骤中标记了“允许断开连接的块”）</li>
+<li>Atmosphere Low Pass Size：大气低通尺寸，输入以米为单位的窗口大小。应用于空间分布相关滤波。默认 1200。</li>
+<li>Atmosphere High Pass Size：大气高通尺寸，输入以天为单位的窗口大小。应用于时间分布相关滤<br>波。默认 365。</li>
+<li>Refinement Radius：轨道精炼半径，最大缓冲半径为地面控制点相对于斜距解缠相位更近的有效像素</li>
+<li>Redinement Res Phase Poly Degree：轨道精炼的多项式次数，在重去平的过程中用到的估算相位斜坡的多项式次数，若输入的控制点个数较少，次数会自动降低。默认的 3 表示在距离向和方位向加上一个恒定的相位偏移的相位斜坡会被修正，如果仅需要相位偏移校正，这个次数可以设置为 1。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005127-427.png" alt="在这里插入图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005127-430.png" alt="在这里插入图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005421-763.png" alt="在这里插入图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005426-841.png" alt="在这里插入图片描述"></li>
+</ul>
+<h2 id="查看输出结果-1"><a href="#查看输出结果-1" class="headerlink" title="查看输出结果"></a>查看输出结果</h2><ul>
+<li>输出成果均保存在<code>second_inversion</code>文件夹下<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005128-218.png" alt="在这里插入图片描述"></li>
+</ul>
+<p><strong>包含以下产品的目录：</strong></p>
+<ul>
+<li>由于输出产品大量元数据（_meta），并生成时间序列 （.series）.文件。它们能够同时加载所有相关的输出产品：</li>
+<li><code>反演inversion</code>子文件夹，其中包含 SBAS 反转中的产品（第二个模型）在斜距几何图中。</li>
+<li>轨道精炼和重去平 GCP 的内部副本 （.xml）。</li>
+<li>转化为shp格式的斜距轨道精炼和重去平 GCP几何文件。</li>
+<li>转换为shp和kml格式的地距轨道精炼和重去平 GCP 几何文件。</li>
+</ul>
+<p><strong>生成的元数据和时间序列数据：</strong></p>
+<ul>
+<li>SI_model_meta，SI_model.series，指的是从时间序列多项式回归中获得的残余高度和位移速度（加上辅助层），在倾斜范围几何中。</li>
+<li>SI_disp_first_meta，SI_disp_first.series，指的是按日期排列的日期位移，以斜距几何形状测量，无需大气校正。</li>
+<li>SI_disp_meta，SI_disp.series，指的是在大气校正后以斜距几何形状测量的日期位移。</li>
+<li>SI_interf_counter_meta，SI_interf_counter.series，指每次采集的有效测量（相干性高于产品相干阈值的干涉图）数量。</li>
+<li>SI_only_disp_upha_meta，SI_only_disp_upha系列，指由残余高度估算分量的所有去平相位解缠数据。</li>
+<li>SI_second_reflat_upha_meta，SI_second_reflat_upha.series，指为第二次SVD反演的重去平解缠相位数据。</li>
+</ul>
+<p><strong>反演的输出结果：</strong></p>
+<ul>
+<li>位移相关产品有：</li>
+<li>SI_term_0，对应于反演多项式 [mm] 的零次项。</li>
+<li>SI_term_1，对应于反演多项式的一阶项 [mm&#x2F;年]。 SI_term_2，对应于反演多项式的二阶项[mm&#x2F;year2]。</li>
+<li>SI_term_3，对应于反演多项式的三阶项 [mm&#x2F;year3]。</li>
+<li>SI_velocity，对应于平均位移速度 [mm&#x2F;年]。</li>
+<li>SI_acceleration，对应于平均位移加速度 [mm&#x2F;year2]。</li>
+<li>SI_delta_acceleration，对应于平均位移加速度变化[mm&#x2F;year3]。</li>
+<li>SI_periodical_modulation，对应于周期性模型调制[mm]。</li>
+<li>SI_periodical_delay，对应于周期性模型延迟[天]。</li>
+<li>SI_disp_first_est，对应于相对于第一个采集日期测量的特定位移（以毫米为单位），该日期分配了零位移，没有大气校正</li>
+<li>SI_disp，对应于在大气校正后相对于第一个采集日期测量的特定位移（以毫米为单位），该日期分配了零位移</li>
+</ul>
+<p><strong>一般产品：</strong></p>
+<ul>
+<li>SI_coherence，对应于多时序相干性。它显示位移趋势与所选模型的拟合程度。</li>
+<li>SI_RMSE_rad，这是反演质量的衡量标准。它是以弧度表示的RMSE。此值越高，拟合和反转质量越差。</li>
+<li>SI_RMSE_mm，这是衡量配件质量的指标。它是以毫米表示的RMSE。此值越高，拟合和反转质量越差。</li>
+<li>SI_norm_L1，对应于按日期计算的日期绝对值位移的累积总和（以毫米为单位）。</li>
+<li>SI_interf_counter，使用每个获取的有效度量值编号进行计数。</li>
+<li>SI_image_perc有效的购置百分比（至少由一个有效度量值涵盖）。</li>
+<li>SI_interf_perc，有效的干涉图百分比。</li>
+</ul>
+<p><strong>位移值报告如下：</strong></p>
+<ul>
+<li>如果位移对应于传感器到目标的斜距减小，则为正号。</li>
+<li>如果位移对应于传感器到目标的斜距增加，则为负号。</li>
+</ul>
+<p><strong>work_second_inversion文件夹</strong></p>
+<ul>
+<li>用于存储中间处理结果的目录。</li>
+</ul>
+<h1 id="地理编码Geocoding"><a href="#地理编码Geocoding" class="headerlink" title="地理编码Geocoding"></a>地理编码Geocoding</h1><p>工具路径：<code>/SARscape/Interferometric Stacking/SBAS/5 - Geocoding</code></p>
+<h2 id="输入auxiliary-sml数据"><a href="#输入auxiliary-sml数据" class="headerlink" title="输入auxiliary.sml数据"></a>输入auxiliary.sml数据</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005439-201.png" alt="在这里插入图片描述"></p>
+<h2 id="在-DEM-Cartographic-System-面板中，选择-DEM-文件。"><a href="#在-DEM-Cartographic-System-面板中，选择-DEM-文件。" class="headerlink" title="在 DEM&#x2F;Cartographic System 面板中，选择 DEM 文件。"></a>在 DEM&#x2F;Cartographic System 面板中，选择 DEM 文件。</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005444-622.png" alt="在这里插入图片描述"></p>
+<h2 id="Parameters参数设置"><a href="#Parameters参数设置" class="headerlink" title="Parameters参数设置"></a>Parameters参数设置</h2><p>单击 Parameters 面板，选择 Principal Parameters 选项，设置以下参数：</p>
+<ul>
+<li>Rebuild All：- Rebuild All：是否全部重建，如果选择true，那么中断计算后再点击exec就会重新计算这一步，如果点击false，中断计算后如果再次点击exec则会继承之前计算的结果继续计算。默认false。</li>
+<li>Height Precision Threshold：10。高度精度阈值。</li>
+<li>Velocity Precision Threshold：8。速率精度阈值。</li>
+<li>Product Temporal Coherence Threshold：产品时间一致性阈值，时间一致性测量值的下限。该阈值与“高度精度阈值”和“速度精度阈值”一起用于掩膜过程。</li>
+<li>Water Mask (dB)：水域掩膜，Vale（单位：dB）用作从平均强度图像中检索水体掩模的阈值。低于此阈值的所有点将从输出层中删除。如果小于0，则激活。</li>
+<li>Make Geocoded Raster：是否创建地理编码栅格，选True，将生成输出栅格文件。</li>
+<li>Make Geocoded Shape：是否创建地理编码矢量，选True，将生成输出矢量文件。</li>
+<li>Shape Max Number of Points：最大点数，如果输入了-1以外的值，则输出形状文件将拆分为多个部分（每个部分都用渐进编号标记 - _1; _2;形状的每个部分都包含总点数的一部分，该部分对应于输入的值。建议不要超过200000点，以避免可视化问题。</li>
+<li>Generate Shape Time Series：生成时间序列，选True，将生成输出矢量文件，其中包含位移时间演变。</li>
+<li>Generate Shape Counter Series：生成矢量计数器序列，通过设置此标志，将生成输出矢量文件，其中包含每个采集日期的有效干涉图计数器。当计数器为零时，对应的采集日期已被时间插值。计数器越高，相应的估计位移测量的可靠性越高。</li>
+<li>Vertical Displacement：垂直形变，形变和速率将投影到垂直方向，如果实际位移方向未知，则不要使用重新投影。</li>
+<li>Slope Displacement：斜面形变，形变和速率将投影到斜距方向，如果实际位移方向未知，则不要使用重新投影。</li>
+<li>Displacement Custom Direction：自定义形变方向，设置为 True 时，形变和速率将投影到自定方向上，需要设置方位角（Azimuth Angle：以度为单位，从北顺时针方向）和倾斜角（Inclination Angle：以度为单位，从水平面开始计算）。</li>
+<li>Azimuth Angle：方位角，自定义方向 方位角 从北向以度为单位测量 - 顺时针方向。</li>
+<li>Inclination Angle：入射角，自定义方向倾角，以与水平平面的度数为单位进行测量。</li>
+<li>X Dimension (m)：输出像元 X 方向大小，以米为单位。对于地理投影，如果输入的值大于0.2，它们将被视为公制单位，然后自动（粗略地）从米转换为度;如果输入的值小于0.2，它们将被视为度数，并且无需任何转换即可使用。</li>
+<li>Y Dimension (m)：输出像元 Y 方向大小，以米为单位。对于地理投影，如果输入的值大于0.2，它们将被视为公制单位，然后自动（粗略地）从米转换为度;如果输入的值小于0.2，它们将被视为度数，并且无需任何转换即可使用。</li>
+<li>Mean Window Size：对高度图像结果做均值滤波处理。如果果输入0，则不应用均值滤波。 此筛选器在执行插值步骤后应用</li>
+<li>Interpolation Window Size：对结果图像中的无效值用窗口大小内的像素平均值差值，设置 0 表示不进行插值。</li>
+<li>Refinement Radius：轨道精炼半径，最大缓冲半径为地面控制点相对于斜距解缠相位更近的有效像素</li>
+<li>Redinement Res Phase Poly Degree：轨道精炼的多项式次数，在重去平的过程中用到的估算相位斜坡的多项式次数，若输入的控制点个数较少，次数会自动降低。默认的 3 表示在距离向和方位向加上一个恒定的相位偏移的相位斜坡会被修正，如果仅需要相位偏移校正，这个次数可以设置为 1。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005128-725.png" alt="在这里插入图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005453-168.png" alt="在这里插入图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005459-244.png" alt="在这里插入图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005129-711.png" alt="在这里插入图片描述"></li>
+</ul>
+<h2 id="输出文件"><a href="#输出文件" class="headerlink" title="输出文件"></a>输出文件</h2><ul>
+<li>对 SBAS 的结果进行地理编码，同时可以将地表形变结果投影到用户自定义方向上。主要的产品结果包括：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005129-952.png" alt="在这里插入图片描述"></li>
+</ul>
+<p><strong>geocoding地理编码文件夹：</strong></p>
+<ul>
+<li>包含以下产品的目录：<ul>
+<li>由于输出产品元数据（_meta），并生成时间序列（.series）文件。它们能够同时加载所有相关的输出产品：</li>
+<li>包含栅格版本中产品的<strong>栅格raster</strong>子文件夹。</li>
+<li><strong>矢量ector</strong>子文件夹，其中包含形状版本的产品。</li>
+</ul>
+</li>
+<li>生成的元数据（_meta），并生成时间序列（.series）文件。<ul>
+<li>G_model_geo_meta，它是指输出投影坐标中的高度和位移速度测量值（以及辅助图层）。</li>
+<li>G_disp_first_geo_meta，指在输出投影坐标中测量的按日期排列的位移，无需大气校正。</li>
+<li>G_disp_geo_meta，指输出投影坐标中大气校正后按日期排列的形变。</li>
+<li>G_interf_counter_geo_meta，它指的是每次获取的有效度量值计数器。</li>
+</ul>
+</li>
+</ul>
+<p><strong>“栅格raster”文件夹中的输出结果包括：</strong></p>
+<ul>
+<li>位移相关产品有：<ul>
+<li>G_FI_velocity_geo，对应于第一反演平均位移速度 [mm&#x2F;年]。此栅格是不存在G_SI_velocity_geo时的结果。</li>
+<li>G_FI_acceleration_geo，对应于第一个反演平均位移加速度 [mm&#x2F;年2]。此栅格是不存G_SI_acceleration_geo时的结果</li>
+<li>G_FI_delta_acceleration_geo，对应于第一反演平均位移加速度变化[mm&#x2F;年3]。此栅格是不存在G_SI_delta_acceleration_geo时的结果</li>
+<li>G_SI_velocity_geo，对应于第二反演平均位移速度 [mm&#x2F;年]。</li>
+<li>G_SI_acceleration_geo，对应于第二反演平均位移加速度[mm&#x2F;年第2年]。</li>
+<li>G_SI_delta_acceleration_geo，对应于第二反演平均位移加速度变化[mm&#x2F;年3]。</li>
+<li>G_SI_term_0_geo，对应于第二反演多项式 [mm] 的零次项。</li>
+<li>G_SI_term_1_geo，对应于第二反演多项式 [mm&#x2F;year] 的一阶项。</li>
+<li>G_SI_term_2_geo，对应于第二反演多项式的二阶项 [mm&#x2F;year2]。</li>
+<li>G_SI_term_3_geo，对应于第二反演多项式的三阶项 [mm&#x2F;year3]。</li>
+<li>G_FI_V_precision_geo，对应于速度测量平均精度 [mm&#x2F;年]。</li>
+<li>G_SI_DDDDDDD_X_disp_geo，对应于相对于第一个采集日期测量的特定位移 [mm]，其中分配了零位移。其中，“DDDDDDD”为获取日期，X 为增量日期 ID。</li>
+<li>G_SI_DDDDDDD_X_disp_first_geo，对应于相对于第一个采集日期测量的特定位移[mm]，该日期被分配为零位移，而不进行大气去除。其中，“DDDDDDD”为获取日期，X 为增量日期 ID。</li>
+</ul>
+</li>
+<li>一般产品包括：<ul>
+<li>G_FI_H_correction_geo，对应于相对于输入数字高程模型的第一反转校正 [m]。此栅格是不存在G_SI_H_corretion_geo时的结果。</li>
+<li>G_SI_H_correction_geo，对应于相对于输入数字高程模型的第二次反演校正 [m]。</li>
+<li>G_FI_H_precision_geo，对应于高度测量平均精度 [m]（有关详细信息，请参阅相位到位移的转换）。</li>
+<li>G_FI_DEM，对应于第一个反演校正数字高程模型[m]。此栅格是不存在G_SI_DEM时的结果。</li>
+<li>G_SI_DEM，对应于第二个反演校正数字高程模型[m]。</li>
+<li>G_SI_RMSE_mm_geo，这是对地理编码的拟合质量的度量。它是 “嗯”号。此值越高，拟合和反转质量越差。</li>
+<li>G_SI_ DDDDDDD_X_interf_counter_geo，对应于每个日期的有效度量值计数器。</li>
+<li>G_SI_interf_perc_geo，有效的干涉图百分比。</li>
+<li>G_SI_image_perc_geo有效的购置百分比（至少由一个有效度量值涵盖）。</li>
+<li>G_SI_disc_counter_geo，断开连接计数器（SBAS 断开连接块断开连接计数器）。</li>
+<li>G_ALOS_geo，方位角视线。正角是从北面顺时针方向测量的;负角是从北面逆时针方向测量的。</li>
+<li>G_ILOS_geo，视线的入射角。角度是在视线和椭球体上的垂直线（平坦的地球）之间测量的。</li>
+</ul>
+</li>
+</ul>
+<p><strong>“矢量vector”文件夹中的输出结果包括：</strong></p>
+<ul>
+<li>G_vVdV_hHdH_cCdC_X.shp，其中 VdV 是精度速度阈值，HdH 是高度精度阈值，CdC 是时间相干阈值，X .kml .dbf 是形状部件 ID。如果点数大于“持久散射器参数”中定义的“形状最大点数”，则会创建多个矢量文件。</li>
+</ul>
+<h1 id="形变结果时序分析"><a href="#形变结果时序分析" class="headerlink" title="形变结果时序分析"></a>形变结果时序分析</h1><ul>
+<li>工具路径：<code>/SARscape/General Tools/Time Series Analyzer/Raster</code></li>
+<li>打开G_disp_geo_meta文件<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005130-912.png" alt="在这里插入图片描述"></li>
+<li>打开工具后，在图上点击需要分析的地点，再点击Plot画图即可，点可以多选</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005511-018.png" alt="在这里插入图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/article/SBAS-InSAR/20260210-005515-270.png" alt="在这里插入图片描述"></p>
+<p>感谢阅读！</p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/avatar.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/avatar.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Ramsayi</div><div class="post-copyright__author_desc">这个人很懒，什么都填了</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://ramsayi.github.io/posts/17d71d05/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://ramsayi.github.io/posts/17d71d05/')">SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/wechat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/alipay.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://ramsayi.github.io/posts/17d71d05/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）&amp;url=https://ramsayi.github.io/posts/17d71d05/&amp;pic=https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/sarscape-01.webp" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ramsayi.github.io" target="_blank">Ramsayi</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/ENVI/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>ENVI<span class="tagsPageCount">3</span></a><a class="post-meta__box__tags" href="/tags/SARscape/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>SARscape<span class="tagsPageCount">3</span></a></div></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/posts/91436fab/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/sarscape-01.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SARScape中用sentinel-1数据做SBAS-InSAR完整流程（1/2）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/posts/36da500e/" title="SARscape中SAR数据处理准备工作总结"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/sarscape-01.webp" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-09-19</div><div class="title">SARscape中SAR数据处理准备工作总结</div></div></a></div><div><a href="/posts/91436fab/" title="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（1&#x2F;2）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/sarscape-01.webp" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2026-02-09</div><div class="title">SARScape中用sentinel-1数据做SBAS-InSAR完整流程（1&#x2F;2）</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">Ramsayi</h1><div class="author-info__desc">这个人很懒，什么都填了</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/ramsayi" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/354247938" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E6%BC%94%E7%AC%AC%E4%B8%80%E6%AD%A5Inversion%EF%BC%9AFirst-Step"><span class="toc-number">1.</span> <span class="toc-text">反演第一步Inversion：First Step</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">导入设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optional-file"><span class="toc-number">1.2.</span> <span class="toc-text">optional file</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E7%82%B9%E6%96%87%E4%BB%B6%EF%BC%8C%E5%8F%AF%E9%80%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">控制点文件，可选</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#parameters%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.3.</span> <span class="toc-text">parameters参数设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.</span> <span class="toc-text">查看输出结果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E6%BC%94%E7%AC%AC%E4%BA%8C%E6%AD%A5Inversion%EF%BC%9ASecond-Step"><span class="toc-number">2.</span> <span class="toc-text">反演第二步Inversion：Second Step</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5auxiliary-sml%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">输入auxiliary.sml文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parameters-%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">Parameters 参数设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C-1"><span class="toc-number">2.3.</span> <span class="toc-text">查看输出结果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%B0%E7%90%86%E7%BC%96%E7%A0%81Geocoding"><span class="toc-number">3.</span> <span class="toc-text">地理编码Geocoding</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5auxiliary-sml%E6%95%B0%E6%8D%AE"><span class="toc-number">3.1.</span> <span class="toc-text">输入auxiliary.sml数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-DEM-Cartographic-System-%E9%9D%A2%E6%9D%BF%E4%B8%AD%EF%BC%8C%E9%80%89%E6%8B%A9-DEM-%E6%96%87%E4%BB%B6%E3%80%82"><span class="toc-number">3.2.</span> <span class="toc-text">在 DEM&#x2F;Cartographic System 面板中，选择 DEM 文件。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parameters%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.3.</span> <span class="toc-text">Parameters参数设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6"><span class="toc-number">3.4.</span> <span class="toc-text">输出文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%A2%E5%8F%98%E7%BB%93%E6%9E%9C%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">形变结果时序分析</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/17d71d05/" title="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/sarscape-01.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）"/></a><div class="content"><a class="title" href="/posts/17d71d05/" title="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）">SARScape中用sentinel-1数据做SBAS-InSAR完整流程（2/2）</a><time datetime="2026-02-09T16:50:37.000Z" title="发表于 2026-02-10 00:50:37">2026-02-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/91436fab/" title="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（1/2）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/sarscape-01.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（1/2）"/></a><div class="content"><a class="title" href="/posts/91436fab/" title="SARScape中用sentinel-1数据做SBAS-InSAR完整流程（1/2）">SARScape中用sentinel-1数据做SBAS-InSAR完整流程（1/2）</a><time datetime="2026-02-09T12:01:32.000Z" title="发表于 2026-02-09 20:01:32">2026-02-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4e290ddc/" title="Neo4j图数据库"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/neo4j-01.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Neo4j图数据库"/></a><div class="content"><a class="title" href="/posts/4e290ddc/" title="Neo4j图数据库">Neo4j图数据库</a><time datetime="2025-03-26T03:59:19.000Z" title="发表于 2025-03-26 11:59:19">2025-03-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c6f5a50c/" title="Cesium入门到精通"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/cesium-01.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cesium入门到精通"/></a><div class="content"><a class="title" href="/posts/c6f5a50c/" title="Cesium入门到精通">Cesium入门到精通</a><time datetime="2025-03-18T01:42:41.000Z" title="发表于 2025-03-18 09:42:41">2025-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/261ddbfa/" title="Windows系统重装优化指南"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/banner/windows11.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows系统重装优化指南"/></a><div class="content"><a class="title" href="/posts/261ddbfa/" title="Windows系统重装优化指南">Windows系统重装优化指南</a><time datetime="2024-08-14T05:35:56.000Z" title="发表于 2024-08-14 13:35:56">2024-08-14</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:anzhiyu-c@qq.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://weibo.com/u/6378063631" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.facebook.com/profile.php?id=100092208016287&amp;sk=about" title="facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/ramsayi/assets/other/avatar.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/372204786" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://v.douyin.com/DwCpMEy/" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i></a></div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-上班摸鱼中.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" href="/docs/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="更新日志" href="/update/">更新日志</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://hexo.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://www.dogecloud.com/" style="margin-inline:5px" data-title="本站使用多吉云为静态资源提供CDN加速" title="本站使用多吉云为静态资源提供CDN加速"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/CDN-多吉云-3693F3.svg" alt="本站使用多吉云为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2018 - 2026 By <a class="footer-bar-link" href="/" title="Ramsayi" target="_blank">Ramsayi</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  getScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js').then(() => {
+    jinrishici.load(result =>{
+      if (true) {
+        const sub = []
+        const content = result.data.content
+        sub.unshift(content)
+        window.typed = new Typed('#footer-type-tips', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('footer-type-tips').innerHTML = result.data.content
+      }
+    })
+  })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://image.anheyu.com" title="图床">图床</a><a class="footer-bar-link cc" href="/copyright" title="CC协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">156</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">25</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://ramsayi.github.io/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbk.github.io" title="网址导航"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="网址导航"/><span class="back-menu-item-text">网址导航</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://scabet.github.io" title="Scabet"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="Scabet"/><span class="back-menu-item-text">Scabet</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbt.github.io/" title="Aabbt"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="Aabbt"/><span class="back-menu-item-text">Aabbt</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://swclub.github.io/" title="SWClub"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="SWClub"/><span class="back-menu-item-text">SWClub</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aabbs.github.io/" title="花里胡哨"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blog.anheyu.com/favicon.ico" alt="花里胡哨"/><span class="back-menu-item-text">花里胡哨</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 归档</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=13912531641&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/equipment/"><i class="anzhiyufont anzhiyu-icon-dice-d20 faa-tada" style="font-size: 0.9em;"></i><span> 我的装备</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/technology-stack/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 技术栈</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Axios/" style="font-size: 0.88rem;">Axios<sup>1</sup></a><a href="/tags/Bilibili/" style="font-size: 0.88rem;">Bilibili<sup>1</sup></a><a href="/tags/C/" style="font-size: 0.88rem;">C++<sup>39</sup></a><a href="/tags/CSS/" style="font-size: 0.88rem;">CSS<sup>9</sup></a><a href="/tags/Curl/" style="font-size: 0.88rem;">Curl<sup>1</sup></a><a href="/tags/Dart/" style="font-size: 0.88rem;">Dart<sup>2</sup></a><a href="/tags/ECharts/" style="font-size: 0.88rem;">ECharts<sup>4</sup></a><a href="/tags/ENVI/" style="font-size: 0.88rem;">ENVI<sup>3</sup></a><a href="/tags/ESLint/" style="font-size: 0.88rem;">ESLint<sup>1</sup></a><a href="/tags/Excel/" style="font-size: 0.88rem;">Excel<sup>1</sup></a><a href="/tags/FFmpeg/" style="font-size: 0.88rem;">FFmpeg<sup>1</sup></a><a href="/tags/Flutter/" style="font-size: 0.88rem;">Flutter<sup>2</sup></a><a href="/tags/Getx/" style="font-size: 0.88rem;">Getx<sup>1</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>2</sup></a><a href="/tags/GitKraken/" style="font-size: 0.88rem;">GitKraken<sup>1</sup></a><a href="/tags/HTML/" style="font-size: 0.88rem;">HTML<sup>9</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem;">Hexo<sup>3</sup></a><a href="/tags/Husky/" style="font-size: 0.88rem;">Husky<sup>1</sup></a><a href="/tags/JavaScript/" style="font-size: 0.88rem;">JavaScript<sup>7</sup></a><a href="/tags/Jupyter/" style="font-size: 0.88rem;">Jupyter<sup>1</sup></a><a href="/tags/Markdown/" style="font-size: 0.88rem;">Markdown<sup>1</sup></a><a href="/tags/OneDrive/" style="font-size: 0.88rem;">OneDrive<sup>1</sup></a><a href="/tags/Preitter/" style="font-size: 0.88rem;">Preitter<sup>1</sup></a><a href="/tags/Python/" style="font-size: 0.88rem;">Python<sup>33</sup></a><a href="/tags/React/" style="font-size: 0.88rem;">React<sup>9</sup></a><a href="/tags/SARscape/" style="font-size: 0.88rem;">SARscape<sup>3</sup></a><a href="/tags/Ubuntu/" style="font-size: 0.88rem;">Ubuntu<sup>2</sup></a><a href="/tags/VMware/" style="font-size: 0.88rem;">VMware<sup>1</sup></a><a href="/tags/VSCode/" style="font-size: 0.88rem;">VSCode<sup>1</sup></a><a href="/tags/Vim/" style="font-size: 0.88rem;">Vim<sup>1</sup></a><a href="/tags/Windows/" style="font-size: 0.88rem;">Windows<sup>3</sup></a><a href="/tags/You-Get/" style="font-size: 0.88rem;">You-Get<sup>1</sup></a><a href="/tags/npm/" style="font-size: 0.88rem;">npm<sup>1</sup></a><a href="/tags/%E4%B8%96%E7%95%8C%E5%8D%A1%E8%BD%A6%E6%A8%A1%E6%8B%9F/" style="font-size: 0.88rem;">世界卡车模拟<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 0.88rem;">博客<sup>5</sup></a><a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 0.88rem;">快捷键<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 0.88rem;">游戏<sup>1</sup></a><a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 0.88rem;">爬虫<sup>1</sup></a><a href="/tags/%E7%BB%88%E7%AB%AF/" style="font-size: 0.88rem;">终端<sup>6</sup></a><a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 0.88rem;">虚拟机<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="13883942641" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"><a class="tag-list" href="/tags/JavaScript" title="JavaScript">JavaScript</a><a class="tag-list" href="/tags/Hexo" title="Hexo">Hexo</a></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://music.163.com/playlist?id=13883942641&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@6.1.6/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("01/01/2018 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-下班啦.svg";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="https://cdn.cbd.int/algoliasearch@4.18.0/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.cbd.int/instantsearch.js@4.84.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'hYhAkaCoGek8gsKP8H2vLfmS-gzGzoHsz',
+      appKey: '8Cxp5qHQuHTnuUIsOuPqWoQk',
+      avatar: 'mp',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.cbd.int/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script src="https://cdn.cbd.int/blueimp-md5@2.19.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon
+    let defaultIcon = '?d=mp'
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = () => {
+    const serverURL = 'https://hYhAkaCo.api.lncldglobal.com'
+
+    var settings = {
+      "method": "GET",
+      "headers": {
+        "X-LC-Id": 'hYhAkaCoGek8gsKP8H2vLfmS-gzGzoHsz',
+        "X-LC-Key": '8Cxp5qHQuHTnuUIsOuPqWoQk',
+        "Content-Type": "application/json"
+      },
+    }
+
+    fetch(`${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,settings)
+      .then(response => response.json())
+      .then(data => {
+        const valineArray = data.results.map(function (e) {
+          return {
+            'avatar': getIcon(e.QQAvatar, e.mail),
+            'content': changeContent(e.comment),
+            'nick': e.nick,
+            'url': e.url + '#' + e.objectId,
+            'date': e.updatedAt,
+          }
+        })
+        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      }).catch(e => {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      }) 
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('valine-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://cdn.cbd.int/qrcodejs@1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script src="/inject/custom.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
