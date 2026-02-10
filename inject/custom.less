@@ -1,17 +1,35 @@
-/* 天气 */
-#he-plugin-simple a {
-  background-color: transparent !important;
+/* 文章内容 */
+#article-container {
+  code:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: rgb(87, 189, 106);
+  }
+
+  img {
+    border-radius: 0;
+  }
 }
 
-/* 安知鱼 上班 下班 */
-#workboard .workSituationImg {
-  display: none !important;
+/* 目录 悬停 */
+.toc-link:hover {
+  background-color: #899fff4e;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
 }
 
-/* 行内代码悬停 */
-code:hover {
-  transition: all 0.3s ease-in-out !important;
-  background-color: rgb(87, 189, 106) !important;
+/* 目录 */
+#aside-content #card-toc .toc-content {
+  max-height: calc(-170px + 100vh);
+
+  .toc-link.active {
+    background-color: #899fff4e;
+    font-size: unset;
+  }
+}
+
+/* PDF 嵌入 */
+embed[type="application/pdf"] {
+  height: 100vh;
 }
 
 /* 关于本人页面的技能 SVG Logo */
@@ -29,78 +47,4 @@ code:hover {
 .author-content-item.skills .skills-style-group {
   overflow: scroll;
   overflow-x: hidden;
-}
-
-// 目录滚动条
-// #card-toc {
-//   overflow-y: scroll !important;
-//   .toc-content {
-//     overflow: hidden !important;
-//   }
-// }
-
-/* Logo 组合元素 */
-.logo-div {
-  display: inline-block !important;
-  overflow: visible !important;
-  margin-right: 15px !important;
-  width: 110px !important;
-  height: 110px !important;
-  a {
-    display: flex !important;
-    width: 80px !important;
-    height: 80px !important;
-    justify-content: center !important;
-    align-items: center !important;
-    z-index: 2 !important;
-    position: relative !important;
-    margin: 15px !important;
-    img {
-      margin: 0 !important;
-      object-fit: contain !important;
-      max-width: 80px !important;
-      max-height: 80px !important;
-    }
-  }
-  p {
-    font-size: small !important;
-    text-align: center !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-  }
-  .logo-round {
-    position: relative !important;
-    float: left !important;
-    width: 110px !important;
-    height: 110px !important;
-    border-radius: 20% !important;
-    background-color: #ffffff !important;
-    top: -153px !important;
-    z-index: 1 !important;
-    box-shadow: 0 5px 20px 0 #ccc !important;
-  }
-}
-
-/* 目录 悬停 */
-.toc-link:hover {
-  background-color: #899fff4e;
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-}
-
-/* 目录 选中 */
-#aside-content #card-toc .toc-content .toc-link.active {
-  background-color: #899fff4e;
-  font-size: unset;
-}
-
-/* 目录 高度 */
-#aside-content #card-toc .toc-content {
-  max-height: calc(-170px + 100vh);
-}
-
-/* PDF 嵌入 */
-embed[type="application/pdf"] {
-  height: 100vh;
 }
